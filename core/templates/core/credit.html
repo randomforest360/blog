@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <h1 class="display-5 fw-bold mb-4" style="color: #73BDAB;">Respect the Source</h1>
+        <p class="fs-4" style="color: #6F5643;">
+          ByteOverflow is a personal project built with care, curiosity, and a lot of late nights. Much of the content — tutorials, explanations, and code — is inspired by or derived from large language models like ChatGPT, Copilot, and my own experimentation.
+        </p>
+        <p class="fs-5" style="color: #6F5643;">
+          If you find something useful and decide to reuse, remix, or share it, a simple attribution or link back is deeply appreciated. It helps others discover the source and supports the spirit of open collaboration.
+        </p>
+        <p class="fs-5 mt-4" style="color: #6F5643;">
+          You don’t need to ask permission — just be kind, be fair, and give credit where it’s due.
+        </p>
+
+        <hr class="my-5">
+
+        <!-- Attribution Card -->
+        <div class="rounded-4 p-4 shadow-sm" style="background-color: #F9F6EF;">
+          <h2 class="h4 fw-semibold mb-3" style="color: #6F5643;">Copy Attribution</h2>
+          <p class="mb-3 text-muted">
+            Use this snippet to credit ByteOverflow in your own work:
+          </p>
+          <div class="bg-light p-3 rounded border position-relative">
+            <code id="attribution-text" class="d-block text-dark">
+              “Originally published on <a href="https://byteoverflow.com" target="_blank" class="text-decoration-none text-primary">ByteOverflow</a>”
+            </code>
+            <button class="btn btn-sm btn-outline-secondary position-absolute top-0 end-0 m-2" onclick="copyAttribution()">Copy</button>
+          </div>
+          <p class="mt-3 small text-muted fst-italic">
+            You’re welcome to adapt it. Just keep the spirit of open sharing alive.
+          </p>
+        </div>
+
+        <script>
+          function copyAttribution() {
+            const text = document.getElementById("attribution-text").innerText;
+            navigator.clipboard.writeText(text).then(() => {
+              alert("Attribution copied to clipboard!");
+            });
+          }
+        </script>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

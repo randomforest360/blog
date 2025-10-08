@@ -1,0 +1,36 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <!-- Brand + Logo -->
+    <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}" >
+      {% comment %} <img src="{% static 'images/logo.png' %}" alt="ByteForge Logo" width="40" height="40" class="me-2"> {% endcomment %}
+      <i class="bi bi-rocket fs-1 me-2" style="color: #73BDAB; transform: rotate(45deg); display: inline-block;"></i>
+
+      <span style="color: #F0AD4E"><strong>ByteOverflow</strong></span>
+    </a>
+    <!-- Hamburger menu for mobile -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto me-3">
+        <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'post_index' %}">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'tutorial_index' %}">Tutorials</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'project_index' %}">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">Contact</a></li>
+        {% comment %} <li class="nav-item"><a class="nav-link" href="{% url 'gallery_index' %}">Gallery</a></li>
+         {% endcomment %}
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+{% comment %}
+#CC6B49
+Warm Retro	#E9896A (orange)	Feels like a 70s electronics catalog. Bold, nostalgic.
+Cool Retro	#2B8A8A (teal)	Feels like vintage tech manuals. Sleek, calming.
+Muted Earthy	#5AAB6A (green)	Feels grounded and analog. Great for electronics fans. {% endcomment %}

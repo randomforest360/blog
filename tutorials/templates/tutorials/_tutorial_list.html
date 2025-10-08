@@ -1,0 +1,11 @@
+<div class="col-md-9">
+  <div class="row g-4">
+      {% for tutorial in page_obj %}
+          {% include "tutorials/_tutorial_card.html" %}
+      {% empty %}
+          <p>No tutorials found.</p>
+      {% endfor %}
+  </div>
+
+  {% include "tutorials/_pagination.html" %}
+</div>

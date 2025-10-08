@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="container py-5">
+
+  <!-- Term Header -->
+  <div class="mb-4 text-start">
+    <h1 class="display-4 fw-bold" style="color:#CC6B49;">{{ term.term }}</h1>
+  </div>
+
+  <!-- Image Section -->
+  {% if term.image %}
+    <div class="text-center mb-4">
+       
+        <img src="{% static 'images/me-banner.png' %}" class="img-fluid rounded shadow-sm" style="max-height:400px; object-fit:cover;">
+      {% comment %} <img src="{{ term.image.url }}" alt="{{ term.term }}" class="img-fluid rounded shadow-sm" style="max-height:400px; object-fit:cover;"> {% endcomment %}
+    </div>
+  {% endif %}
+
+  <!-- Definition Section -->
+  <div class="bg-light p-4 rounded shadow-sm mb-4" style="border-left: 6px solid #CC6B49;">
+    <p class="fs-5" style="line-height:1.7;">{{ term.definition|linebreaks }}</p>
+  </div>
+
+  <!-- Optional URL -->
+  {% if term.url %}
+    <div class="text-center mb-4">
+      <a href="{{ term.url }}" target="_blank" class="btn btn-primary btn-lg shadow-sm">Learn More →</a>
+    </div>
+  {% endif %}
+
+  <!-- Back Button -->
+  <div class="text-start">
+    <a href="{% url 'glossary:term_list' %}" class="btn btn-outline-primary btn-lg mt-3">← Back to Glossary</a>
+  </div>
+
+</div>
+{% endblock %}
+
+
+{% comment %} {% extends "base_fullwidth.html" %}
+{% block content %}
+<div class="container py-5">
+  <h1 class="fw-bold mb-3" style="color:#CC6B49;">{{ term.term }}</h1>
+  
+  {% if term.image %}
+    <img src="{{ term.image.url }}" alt="{{ term.term }}" class="img-fluid mb-3 rounded shadow-sm">
+  {% endif %}
+  
+  <p>{{ term.definition|linebreaks }}</p>
+
+  {% if term.url %}
+    <p>Learn more: <a href="{{ term.url }}" target="_blank" class="btn btn-primary mt-2">Visit →</a></p>
+  {% endif %}
+
+  <a href="{% url 'glossary:term_list' %}" class="btn btn-outline-primary mt-3">← Back to Glossary</a>
+</div>
+{% endblock %} {% endcomment %}

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block title %}Tutorials — My Blog{% endblock %}
+
+{% block content %}
+<div class="row">
+  <div class="col-md-8">
+    <h1 class="mb-4">Tutorials</h1>
+
+    {% for tutorial in tutorials %}
+      <article class="mb-4 pb-3 border-bottom">
+        <div class="row g-3">
+          {% if tutorial.cover %}
+            <div class="col-4">
+              <a href="{% url 'tutorial_detail' slug=tutorial.slug %}">
+                <img src="{{ tutorial.cover.url }}" alt="{{ tutorial.cover_alt }}" class="img-fluid rounded cover-img">
+              </a>
+            </div>
+            <div class="col-8">
+          {% else %}
+            <div class="col-12">
+          {% endif %}
+              <h2 class="h5 mb-1">
+                <a href="{% url 'tutorial_detail' slug=tutorial.slug %}">{{ tutorial.title }}</a>
+              </h2>
+
+              <div class="mb-2 text-muted small">
+                {% if tutorial.author %}By {{ tutorial.author.get_full_name|default:tutorial.author.username }} • {% endif %}
+                {{ tutorial.created_at|date:"M j, Y" }} • {{ tutorial.reading_time }} min read
+                {% if tutorial.is_featured %} • <span class="badge bg-primary">Featured</span>{% endif %}
+              </div>
+
+              <p class="mb-1">{{ tutorial.excerpt }}</p>
+
+              <div class="small">
+                {% for cat in tutorial.categories.all %}
+                  <a href="#" class="badge bg-light text-decoration-none">{{ cat.name }}</a>
+                {% endfor %}
+                {% for tag in tutorial.tags.all %}
+                  <a href="#" class="badge bg-secondary text-white text-decoration-none">{{ tag.name }}</a>
+                {% endfor %}
+              </div>
+            </div>
+        </div>
+      </article>
+    {% empty %}
+      <p>No tutorials found.</p>
+    {% endfor %}
+
+    <!-- pagination -->
+    <nav aria-label="Tutorials pagination">
+      <ul class="pagination">
+        {% if page_obj.has_previous %}
+          <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+        {% else %}
+          <li class="page-item disabled"><span class="page-link">Previous</span></li>
+        {% endif %}
+
+        {% for num in paginator.page_range %}
+          {% if page_obj.number == num %}
+            <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+          {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+          {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+          <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+        {% else %}
+          <li class="page-item disabled"><span class="page-link">Next</span></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </div>
+
+  <aside class="col-md-4">
+    <div class="mb-4">
+      <h5>About</h5>
+      <p class="small text-muted">A short blog about hardware, software and projects.</p>
+    </div>
+
+    <div class="mb-4">
+      <h6>Recent</h6>
+      <ul class="list-unstyled small">
+        {% for r in tutorials|slice:":5" %}
+          <li><a href="{% url 'tutorial_detail' slug=r.slug %}">{{ r.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </aside>
+</div>
+{% endblock %}

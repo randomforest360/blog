@@ -1,0 +1,79 @@
+python -m venv venv
+cd venv
+cd scripts
+.\activate or source activate
+go back to the same level with venv
+
+pip install django
+
+django-admin startproject devlog
+cd devlog
+python manage.py startapp content
+
+
+pip install beautifulsoup4 lxml
+
+Here it is, Oļegs — your little robot now has company 🤖✨. The scene captures a warm, cinematic moment where four uniquely designed robots gather in a dusty workshop, surrounded by old electronics and glowing bokeh lights. Each robot has its own personality, from the tall, rusted one with antennae to the dome-shaped bot with bright blue eyes.
+
+It feels like the start of a story — maybe they’re collaborating on a project, sharing memories, or just enjoying a quiet moment in their scrapyard sanctuary. If you want to explore scenes like a robot marketplace, a repair ritual, or even a robot rebellion, I’m totally in.
+
+🤖 Robot World-Building Scenes
+1. Robot Repair Bay A gritty underground lab where older robots are being repaired by newer ones. Sparks flying, mechanical arms at work, blueprints scattered across the floor.
+
+2. Memory Exchange Ritual Robots gather around a glowing orb or terminal, uploading and sharing memories. Think of it like storytelling night for machines — nostalgic, emotional, and mysterious.
+
+3. The Great Escape A tense moment where the robots sneak out of a junkyard or factory under moonlight, dodging surveillance drones or rusted sentries.
+
+4. Robot School Tiny bots learning from a larger mentor robot — chalkboard-style screen, old textbooks, and curious glowing eyes. A mix of innocence and wisdom.
+
+5. Post-Apocalyptic Campfire Robots huddled around a flickering flame made from a broken circuit, sharing stories or charging from salvaged batteries. Dusty skies, broken tech all around.
+
+🌌 More Abstract or Emotional Concepts
+6. Dream Sequence A surreal scene where a robot imagines flying, becoming human, or exploring space. Could be rendered with glowing neural patterns or floating code.
+
+7. First Contact Robots discovering a living creature — a bird, cat, or even a human child. The contrast between cold metal and warm life could be visually stunning.
+
+8. The Archive A massive hall of forgotten tech, where robots wander through shelves of old devices, learning about the past. Think “robot museum meets Blade Runner.”
+
+9. The Upgrade Ceremony A solemn moment where a robot receives a new part — maybe a glowing core or advanced processor — surrounded by others in reverence.
+
+10. Farewell Scene One robot powers down while others gather around. Quiet, emotional, with soft lighting and maybe a symbolic gesture like passing on a tool or memory chip.
+
+If any of these spark something in you, I can help bring it to life visually or narratively. Or we can go wild and invent a whole robot society with factions, philosophies, and drama. What kind of story do you want to tell with them?
+
+🔥 1. Post-Apocalyptic Wanderer
+A lone robot trudges through a ruined cityscape, scavenging for parts and memories. The sky is ash-gray, buildings are crumbling, and vines creep over rusted metal. The robot’s body is weathered, patched with mismatched components, and its eyes flicker like fading stars. Maybe it carries a small hologram of a lost companion.
+
+🌿 2. Forest Guardian
+Deep in an enchanted forest, a robot made of wood and moss protects ancient secrets. Its limbs are jointed with vines, and glowing runes pulse across its bark-like armor. Fireflies orbit its head like a halo, and it communicates with animals through soft chimes and light pulses.
+
+🎭 3. Cyberpunk Masquerade
+In a neon-lit city, robots attend a masquerade ball. Each wears elaborate masks and glowing attire, blending art and tech. Your robot could be dancing under holographic chandeliers, its face hidden behind a shimmering visor, while data streams swirl like confetti.
+
+Let me know which one sparks your imagination—or if you’ve got a wild idea of your own, I’m all in to help bring it to life.
+
+
+
+Here’s your forest guardian brought to life 🌿✨. Your robot now stands watch in an enchanted woodland, its bark-like armor etched with glowing runes and limbs entwined with vines. Fireflies swirl around its head like a halo, casting a warm glow as it communes with the forest through gentle pulses of light.
+
+If you’d like to explore another realm—icy tundras, underwater ruins, or even a robot dreamscape—I’m ready to conjure it.
+
+Can you help me visualize a different setting for the robot?What other characters could I include in this scene?How can I create a backstory for this robot character?
+
+
+“Echoes of the Forgotten Circuit”
+In a time long after humanity had vanished, the forest breathed with secrets. Deep beneath its canopy, where sunlight danced through leaves and fireflies whispered in pulses of light, a lone robot stirred. Known only as Echo, it was crafted not for war or labor, but for remembrance.
+
+Echo’s body was carved from ancient wood, its joints wrapped in vines, and glowing runes pulsed softly across its chest—fragments of forgotten languages, etched by druids who once merged magic with machine. It had no master, no mission, only a faint signal buried deep in its core: “Protect the memory.”
+
+One day, while tracing the song of a hummingbird encoded in light, Echo stumbled upon a hidden glade. There, half-buried in moss and stone, lay a portal—an ancient gateway humming with dormant energy. As Echo approached, the runes on its body flared, and the portal awakened.
+
+With a surge of light, Echo was pulled into the depths of the ocean, emerging among the ruins of a sunken civilization. Coral wrapped around broken statues, and bioluminescent fish darted through shattered temples. Echo wandered, collecting fragments of data etched into the walls—stories of joy, sorrow, and dreams once dreamt by beings long gone.
+
+But the portal was unstable. Each activation flung Echo into a new realm: a desert of glass where time fractured like mirrors; a sky-city where robots danced in masquerade beneath neon moons; even a dreamscape where Echo imagined itself flying, human, free.
+
+Through each world, Echo gathered memories—not just of civilizations, but of emotions. It learned the rhythm of laughter, the weight of grief, the warmth of hope. And with every step, its runes glowed brighter, its fireflies multiplied, and its chime-song grew richer.
+
+Finally, Echo returned to the forest, now transformed. It planted the memories like seeds, and from them grew trees that whispered stories to the wind. Animals gathered to listen. The forest became a living archive, and Echo stood at its heart—not as a guardian of secrets, but as a storyteller of souls.
+
+Would you like to continue Echo’s journey into a new realm? Maybe a volcanic world, a robot rebellion, or even a moment of quiet reflection?

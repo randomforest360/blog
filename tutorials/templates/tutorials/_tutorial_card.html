@@ -1,0 +1,54 @@
+{% load static %}
+<div class="col-md-12">
+  <div class="card shadow-sm border-0">
+    <div class="row g-0">
+
+     <div class="col-md-4">
+        <a href="{% url 'tutorial_detail' tutorial.slug %}">
+          {% if tutorial.cover %}
+            <img src="{{ tutorial.cover.url }}" class="img-fluid rounded-start" 
+                 alt="{{ tutorial.cover_alt|default:tutorial.title }}" 
+                 style="object-fit: cover; width: 100%; height: 230px;">
+          {% else %}
+            <img src="{% static 'images/default_tutorial.png' %}" class="img-fluid rounded-start" 
+                 alt="{{ tutorial.title }}" 
+                 style="object-fit: cover; width: 100%; height: 230px;">
+          {% endif %}
+        </a>
+      </div>
+
+      <div class="col-md-8 d-flex flex-column p-3">
+        <h3 class="card-title">
+          <a href="{% url 'tutorial_detail' tutorial.slug %}" 
+             class="text-decoration-none" style="color: #6F5643;">
+            {{ tutorial.title }}
+          </a>
+        </h3>
+
+        <small class="text-muted d-block mb-2">
+          {{ tutorial.created_at.date }} | Categories:
+          {% for category in tutorial.categories.all %}
+            <a href="{% url 'tutorial_category' category.slug %}" class="category-chip">
+              {{ category.name }}
+            </a>
+          {% endfor %}
+        </small>
+
+        <p class="card-text">{{ tutorial.excerpt|default:tutorial.body|truncatechars:220 }}</p>
+
+        {% if tutorial.tags.exists %}
+        <div class="mt-auto"> 
+            {% for tag in tutorial.tags.all %}
+                <a href="{% url 'tutorial_tag' tag.slug %}" 
+                   class="text-decoration-none me-1">
+                    #{{ tag.name }}
+                </a>
+            {% endfor %}
+        </div>
+        {% endif %}
+      </div> 
+
+    </div> <!-- closes row -->
+  </div> <!-- closes card -->
+</div> <!-- closes col-md-12 -->
+

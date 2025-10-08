@@ -1,0 +1,46 @@
+{% extends "base_fullwidth.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+
+  <!-- Page Header -->
+  <div class="text-center mb-5">
+    <h1 class="fw-bold" style="color:#CC6B49;">Learning Paths</h1>
+    <p class="lead text-muted">
+      Curated sequences of lessons, labs, and projects to master key topics step by step.
+    </p>
+  </div>
+
+  <!-- Path Grid -->
+  <div class="row g-4">
+    {% for path in paths %}
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 shadow-sm border-0">
+          <div class="card-body d-flex flex-column">
+            <!-- Title -->
+            <h5 class="card-title fw-bold" style="color:#CC6B49;">
+              {{ path.title }}
+            </h5>
+            <!-- Topic chip -->
+            <span class="badge rounded-pill mb-2" style="background-color:#D2A24C; color:#fff;">
+              {{ path.topic }}
+            </span>
+            <!-- Description -->
+            <p class="card-text text-muted small">
+              {{ path.description|truncatewords:20 }}
+            </p>
+            <!-- Action -->
+            <a href="{{ path.get_absolute_url }}" class="btn btn-primary mt-auto">
+              Explore Path →
+            </a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-muted text-center">No learning paths available yet.</p>
+    {% endfor %}
+  </div>
+
+</div>
+{% endblock %}

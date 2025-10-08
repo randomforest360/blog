@@ -1,0 +1,97 @@
+# ============================================
+# Python / Django .gitignore
+# ============================================
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# --- Django specific ---
+*.log
+*.pot
+*.pyc
+db.sqlite3
+media/
+staticfiles/
+static_root/
+.env
+.env.*
+*.env
+/secrets.json
+
+# --- Migrations ---
+*/migrations/__pycache__/
+*/migrations/*.py
+!*/migrations/__init__.py  # Keep __init__.py
+
+# --- Virtual environment ---
+venv/
+env/
+ENV/
+.venv/
+.virtualenv/
+
+# --- IDE / Editor settings ---
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# --- OS generated files ---
+.DS_Store
+Thumbs.db
+
+# --- Byte-compiled / cache ---
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# --- Coverage / testing ---
+.coverage
+.tox/
+.nox/
+coverage.xml
+htmlcov/
+.cache/
+
+# --- MyPy / Pyre / Pytype ---
+.mypy_cache/
+.dmypy.json
+.pyre/
+.pytype/
+
+# --- Jupyter Notebooks ---
+.ipynb_checkpoints
+
+# --- Docker ---
+*.pid
+*.seed
+*.bak
+*.swp
+*.swo
+
+# --- Node / frontend (if using Tailwind or npm) ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# --- VS Code ---
+.history/
+.vscode/
+
+# --- Backup files ---
+*~
+*.bak
+*.tmp
+*.swp
+
+# --- Local deployment ---
+local_settings.py
+.env.local

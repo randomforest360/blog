@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% comment %} {% block page_title %}
+About Me
+{% endblock page_title %} {% endcomment %}
+
+{% block content %}
+  <main class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-7 col-md-9">
+
+          <!-- Page header -->
+          <div class="text-center mb-4">
+            <h1 class="fw-bold">Subscribe</h1>
+            <p class="text-muted mb-0">Get the latest tutorials, projects and updates delivered to your inbox.</p>
+          </div>
+
+          <!-- Django messages -->
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+            {% endfor %}
+          {% endif %}
+
+          <!-- Card -->
+          <div class="card shadow-sm">
+            <div class="card-body p-4">
+              <form method="post" novalidate>
+                {% csrf_token %}
+
+                <!-- Honeypot (spam) field, hidden from users -->
+                <div style="display:none;">
+                  <label>Leave this blank</label>
+                  <input type="text" name="phone" autocomplete="off">
+                </div>
+
+                <!-- Email input -->
+                <div class="mb-3">
+                  <label for="id_email" class="form-label">Email address</label>
+                  <input
+                    type="email"
+                    name="email"
+                    id="id_email"
+                    value="{{ form.email.value|default_if_none:'' }}"
+                    class="form-control {% if form.email.errors %}is-invalid{% endif %}"
+                    placeholder="you@example.com"
+                    required
+                  >
+                  {% if form.email.errors %}
+                 <div class="invalid-feedback">
+  {{ form.email.errors.as_text|striptags }}
+</div>
+                  {% endif %}
+                </div>
+
+                <!-- Acceptance checkbox -->
+                <div class="mb-3 form-check">
+                  <input type="checkbox"
+                         class="form-check-input {% if form.accept.errors %}is-invalid{% endif %}"
+                         id="id_accept" name="accept" {% if form.accept.value %}checked{% endif %} required>
+                  <label class="form-check-label" for="id_accept">
+                    I agree to receive a confirmation email and accept the
+                    {% comment %} <a href="{% url 'privacy' %}" target="_blank">privacy policy</a>. {% endcomment %}
+                  </label>
+                  {% if form.accept.errors %}
+                    <div class="text-danger small mt-1">{{ form.accept.errors.as_text|striptags }}</div>
+
+                  {% endif %}
+                </div>
+
+                <!-- Important note -->
+                <div class="mb-3">
+                  <small class="text-muted">
+                    After subscribing you will receive a confirmation email. Please click the link in that email to verify your address — we will only send emails after you verify.
+                  </small>
+                </div>
+
+                <!-- Submit -->
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-primary btn-lg">Subscribe</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <p class="text-center text-muted small mt-3">
+            You can unsubscribe anytime. We respect your privacy.
+          </p>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+{% endblock content %}
+

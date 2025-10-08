@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% comment %} {% block page_title %}
+Projects in category: {{ category.name }}
+{% endblock page_title %} {% endcomment %}
+
+{% block content %}
+<div class="row">
+    <!-- Main content -->
+    {% include "blog/_post_list.html" %}
+    <!-- Sidebar -->
+    {% include "blog/_sidebar.html" %}
+</div>
+{% endblock content %}
+

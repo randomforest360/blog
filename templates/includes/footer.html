@@ -1,0 +1,53 @@
+<footer class="footer  text-light py-4 mt-5">
+    <div class="container">
+        <div class="row">
+            <!-- Column 1: Tutorials -->
+            <div class="col-md-3 mb-4">
+                <h5 class="footer-title">Tutorials</h5>
+                <ul class="list-unstyled">
+                    {% comment %} <li><a href="#" class="footer-link" style="color: #F4AB6A">React Basics</a></li> {% endcomment %}
+                    <li><a href="{% url 'glossary:term_list' %}" class="footer-link">Glossary</a></li>
+                    <li><a href="{% url 'glossary:term_list' %}" class="footer-link">Glossary</a></li>
+                    <li><a href="{% url 'glossary:term_list' %}" class="footer-link">Glossary</a></li>
+                    <li><a href="{% url 'glossary:term_list' %}" class="footer-link">Glossary</a></li>
+
+                </ul>
+            </div>
+            <!-- Column 2: Projects -->
+            <div class="col-md-3 mb-4">
+                <h5 class="footer-title">Projects</h5>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'learning:path_list' %}" class="footer-link">Learning Paths</a></li>
+                    <li><a href="{% url 'learning:path_list' %}" class="footer-link">Learning Paths</a></li>
+                    <li><a href="{% url 'learning:path_list' %}" class="footer-link">Learning Paths</a></li>
+                    <li><a href="{% url 'learning:path_list' %}" class="footer-link">Learning Paths</a></li>
+                </ul>
+            </div>
+            <!-- Column 3: Posts -->
+            <div class="col-md-3 mb-4">
+                <h5 class="footer-title">Articles</h5>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'resources:index' %}" class="footer-link">Resources</a></li>
+                    <li><a href="{% url 'resources:index' %}" class="footer-link">Resources</a></li>
+                    <li><a href="{% url 'resources:index' %}" class="footer-link">Resources</a></li>
+                    <li><a href="{% url 'privacy_policy' %}" class="footer-link">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <!-- Column 4: About / Contact -->
+            <div class="col-md-3 mb-4">
+                <h5 class="footer-title">About & Contact</h5>
+                <ul class="list-unstyled">
+                    <li><a href="{% url 'about' %}" class="footer-link">About</a></li>
+                    <li><a href="{% url 'contact' %}" class="footer-link">Contact</a></li>
+                    <li><a href="{% url 'support' %}" class="footer-link">Support</a></li>
+                    <li><a href="{% url 'subscribe' %}" class="footer-link">Subscribe</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr style="border-color: rgba(255,255,255,0.2);">
+        
+        <div class="text-center">
+            <p class="mb-0">&copy; {% now "Y" %} ByteOverflow. All rights reserved.</p>
+        </div>
+    </div>
+</footer>

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% comment %} {% block page_title %}
+<div class="text-center my-4">
+    <h1 class="display-4 fw-bold" style="color: #73BDAB;">Search Results{% if query %} for "{{ query }}"{% endif %}</h1>
+</div>
+{% endblock %} {% endcomment %}
+
+{% block content %}
+<div class="row">
+    <!-- Main content -->
+    <div class="col-md-9">
+        <div class="row g-4">
+            {% for post in page_obj %}
+                {% include "blog/_post_card.html" with post=post %}
+            {% empty %}
+                <p>No posts found.</p>
+            {% endfor %}
+        </div>
+        {% include "blog/_pagination.html" with page_obj=page_obj %}
+    </div>
+
+    <!-- Sidebar -->
+    {% include "blog/_sidebar.html" %}
+</div>
+{% endblock %}

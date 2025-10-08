@@ -1,0 +1,729 @@
+{% extends "base_fullwidth.html" %}
+{% load static %}
+
+{% block content %}
+<!-- Hero Banner with Image -->
+<section class="hero-banner position-relative" style="height: 700px; overflow: hidden;">
+    <!-- Background Image -->
+    <img src="{% static 'images/banner12.png' %}" 
+         alt="Contact Banner" 
+         class="w-100 h-100 hero-img"
+         style="object-fit: cover; object-position: center 90%;">
+
+    <!-- Dark overlay -->
+    <div class="position-absolute top-0 start-0 w-100 h-100" 
+         style="background: rgba(92,64,51,0.3); z-index: 1;"></div>
+
+    <!-- Absolute wrapper for vertical centering -->
+    <!-- Absolute wrapper for vertical centering -->
+    <div class="position-absolute top-50 start-0 translate-middle-y w-100" style="z-index: 2;">
+        <!-- Container aligned to right -->
+        <div class="container-md d-flex justify-content-end">
+            <div class="hero-text text-white text-end" style="max-width: 650px;">
+                <h1 class="display-4 fw-bold">Forging Ideas into Reality</h1>
+                <p class="lead">
+                    Projects, tutorials, and experiments<br>
+                    for curious makers and developers.
+                </p>
+                <a class="btn btn-primary  btn-lg mt-3" href="{% url 'project_index' %}">Start Your Journey</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- About website with Image -->
+ <section id="about-site" class="py-5">
+    <div class="container">
+        <div class="row align-items-start g-4">
+       
+            <div class="col-md-7">
+                <h2 class="fw-bold mb-3" style="color: #73BDAB;">About Me</h2>
+                <p class=" mb-3">
+                      I’m a self-taught developer who learned through endless tutorials, documentation, and late-night debugging. It wasn’t always easy — broken code, moments of doubt, and a steep learning curve — but determination kept me moving forward.
+                </p>
+                <p class="mb-3">
+    This site is my way of giving back: sharing knowledge, documenting what I’ve learned, and connecting with others who are on their own path.
+                </p>
+                <p>
+                    Whether you're just starting out or deep into your tech journey, I hope you find something here that inspires you to keep going.
+                </p>
+                <a href="{% url 'about' %}#journey" class="mt-3" style="color: #73BDAB;">Read more</a>
+            </div>
+ 
+  
+            <div class="col-md-5 text-center">
+                <img src="{% static 'images/website-banner.png' %}" alt="About This Site" class="img-fluid rounded shadow-sm">
+            </div>
+        </div>
+    </div>
+</section> 
+<!-- About website with Image -->
+ <section id="about-site" class="py-5">
+    <div class="container">
+        <div class="row align-items-start g-4">
+        <div class="col-md-5 text-center">
+                <img src="{% static 'images/me-banner.png' %}" alt="About This Site" class="img-fluid rounded shadow-sm">
+            </div>
+            <div class="col-md-7">
+                <h2 class="fw-bold mb-3" style="color: #73BDAB;">About ByteOverflow</h2>
+                <p class="mb-3">
+                    ByteOverflow is more than just a website — it’s a space built to share knowledge, spark ideas, and support developers at every stage of their journey. Whether you're debugging your first script or architecting full-scale systems, you'll find something here to fuel your curiosity and sharpen your skills.
+                </p>
+                <p class="mb-3">
+                    Everything here is created with the intention to teach, share, and connect. You’re welcome to use any of the materials freely — whether it’s code snippets, walkthroughs, or ideas. If you find something useful and feel like giving credit, that’s always appreciated.
+                </p>
+
+                <a href="{% url 'about' %}#deep-dive" class="mt-3" style="color: #73BDAB;">Read more</a>
+            </div>
+
+  
+           
+        </div>
+    </div>
+</section> 
+
+<section id="features" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold" style="color: #73BDAB;">Explore the Site</h2>
+            <p class="lead">Discover tutorials, projects, and blog posts to inspire and guide your journey.</p>
+        </div>
+
+        <div class="row g-4 text-center">
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
+                    <i class="bi bi-rocket fs-1 mb-3"></i>
+                    
+                    <h5 class="card-title"><a href="{% url 'project_index' %}" class="stretched-link text-decoration-none text-reset">
+        <strong>Projects</strong>
+      </a></h5>
+                    <p class="card-text">A showcase of builds and ideas to explore and get inspired.</p>
+                    
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
+                    <i class="bi bi-journal-bookmark fs-1 mb-3"></i>
+                    <h5 class="card-title"><strong>Tutorials</strong></h5>
+                    <p class="card-text">Step-by-step guides to help you learn and implement new skills.</p>
+                    {% comment %} <a href="{% url 'tutorial_index' %}" class="btn btn-primary btn-sm">Browse Tutorials</a> {% endcomment %}
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
+                    <i class="bi bi-file-text fs-1 mb-3"></i>
+                    <h5 class="card-title"><strong>Blog Posts</strong></h5>
+                    <p class="card-text">Thoughts, tips, and reflections from my journey in tech.</p>
+                    {% comment %} <a href="{% url 'post_index' %}" class="btn btn-primary btn-sm">Read Blog</a> {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- Featured Section -->
+<!-- Featured Section -->
+<div class="container mt-4">
+  <section class="mb-5">
+    <h2 class="mb-3 fw-bold" style="color: #73BDAB;">Featured Project</h2>
+
+    {% if featured_project %}
+    <div class="row align-items-stretch g-4">
+      <!-- Left: Project Image -->
+      <div class="col-lg-6">
+        <div class="card border-0 shadow-sm h-100">
+          <a href="{{ featured_project.get_absolute_url }}">
+            
+             <img src="{% static 'images/default_project.png' %}" 
+                 alt="{{ featured_project.title }}" 
+                 class="w-100 h-100 rounded" 
+                 style="object-fit: cover; object-position: center 25%;">
+            {% comment %} <img src="{{ featured_project.cover_image.url }}" 
+                 alt="{{ featured_project.title }}" 
+                 class="w-100 h-100" 
+                 style="object-fit: cover;"> {% endcomment %}
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Project Info -->
+      <div class="col-lg-6">
+        <div class="p-4 rounded shadow-sm h-100 d-flex flex-column" style="background-color: #F5F0E6">
+          <h3 class="fw-bold" style="color: #6F5643;">{{ featured_project.title }}</h3>
+          <p class="lead">{{ featured_project.excerpt }}</p>
+
+                      <!-- Difficulty -->
+         {% comment %} <p class="mb-2">
+  <span class="badge bg-secondary text-capitalize">{{ featured_project.difficulty }}</span>
+</p> {% endcomment %}
+
+<span class="difficulty-bars" style="color: #6F5643;">
+ {% comment %} <i class="bi bi-lightning-fill"></i> {% endcomment %}
+ <i class="bi bi-bar-chart-fill me-1 fs-6"></i>
+  {% if featured_project.difficulty == 'beginner' %}
+    <i class="bi bi-square-fill filled-bar"></i>
+    <i class="bi bi-square-fill empty-bar"></i>
+    <i class="bi bi-square-fill empty-bar"></i>
+  {% elif featured_project.difficulty == 'intermediate' %}
+    <i class="bi bi-square-fill filled-bar"></i>
+    <i class="bi bi-square-fill filled-bar"></i>
+    <i class="bi bi-square-fill empty-bar"></i>
+  {% elif featured_project.difficulty == 'advanced' %}
+    <i class="bi bi-square-fill filled-bar"></i>
+    <i class="bi bi-square-fill filled-bar"></i>
+    <i class="bi bi-square-fill filled-bar"></i>
+  {% endif %}
+</span>
+
+       {% if featured_project.tags.exists %}
+    <div class="mt-3">
+        <i class="bi bi-tags-fill me-1  fs-6" style="color: #6F5643;"></i> 
+
+        {% for tag in featured_project.tags.all %}
+            <a href="{% url 'project_tag' tag.slug %}" 
+               class=" text-decoration-none me-1">
+                <strong>#{{ tag.name }}</strong>
+            </a>
+        {% endfor %}
+    </div>
+{% endif %} 
+
+                   {% comment %} <div class="mt-auto d-flex flex-wrap gap-3 text-muted small pt-2 border-top">
+                <span><i class="bi bi-calendar-event me-1"></i>{{ featured_project.created_at|date:"F j, Y" }}</span>
+                <span><i class="bi bi-clock me-1"></i>{{ featured_project.reading_time }} min read</span>
+                </div> {% endcomment %}
+          <a href="{{ featured_project.get_absolute_url }}" class="btn btn-primary btn-lg mt-auto">Explore</a>
+        </div>
+      </div>
+    </div>
+    {% else %}
+    <p class="text-muted">No featured project available at the moment.</p>
+    {% endif %}
+
+    <div class="text-center mt-4">
+      <a href="{% url 'project_index' %}" class="text-decoration-none" style="color: #73BDAB;">
+        Browse all projects →
+      </a>
+    </div>
+  </section>
+</div>
+
+
+</div>
+<!-- 4. Quote / Testimonial Section -->
+ {% comment %} <section class="py-5 text-center" >
+    <div class="container">
+        <blockquote class="blockquote">
+            <p class="fs-4 fst-italic">"Start where you are. Use what you have. Do what you can."</p>
+            <footer class="blockquote-footer mt-3"> Arthur Ashe</footer>
+        </blockquote>
+    </div>
+</section>  {% endcomment %}
+ <div class="container mt-4">
+
+
+
+
+<section id="features" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold" style="color: #73BDAB;">Resources for Growth</h2>
+            <p class="lead">Explore curated paths, key concepts, and trusted resources to support your journey from curious to confident.</p>
+        </div>
+
+        <!-- Glossary -->
+        <div class="row g-4 text-center">
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
+                    <i class="bi bi-journal-text fs-1 mb-3"></i>
+                    <h5 class="card-title"><strong>Glossary</strong></h5>
+                    <p class="card-text">Explore key terms, definitions, and concepts to boost your understanding.</p>
+                    {% comment %} <a href="{% url 'project_index' %}" class="btn btn-primary btn-sm">View Projects</a> {% endcomment %}
+                </div>
+            </div>
+
+            <!-- Learning Paths -->
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
+                    <i class="bi bi-kanban fs-1 mb-3"></i>
+                    <h5 class="card-title"><strong>Learning Paths</strong></h5>
+                    <p class="card-text">Follow curated step-by-step paths combining tutorials, labs, and projects.</p>
+                    {% comment %} <a href="{% url 'tutorial_index' %}" class="btn btn-primary btn-sm">Browse Tutorials</a> {% endcomment %}
+                </div>
+            </div>
+
+            <!-- Resources -->
+            <div class="col-md-4">
+                
+                <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
+                    <i class="bi bi-box-seam fs-1 mb-3"></i>
+                    <h5 class="card-title"><strong>Resources</strong></h5>
+                    <p class="card-text">Handpicked tools, websites, and materials to help you learn and build faster.</p>
+                    {% comment %} <a href="{% url 'post_index' %}" class="btn btn-primary btn-sm">Read Blog</a> {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<!-- 6. Tutorials Cards Section -->
+
+
+{% comment %} 
+ <section class="mb-5">
+    <h2 class="mb-3" style="color: #D27D2D;">Latest Tutorials</h2>
+    <div class="row g-4">
+
+   
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100" style="background-color: #F7F3E9;">
+                <a href="#">
+                    <img src="{% static 'images/featured1.png' %}" class="card-img-top" alt="Getting Started" style="object-fit: cover; height: 260px;">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="#" class="text-decoration-none text-dark">
+                             <strong>Getting Started with Django</strong>
+                        </a>
+                    </h5>
+                    <small class="text-muted d-block mb-2">
+                    Difficulty: 
+                <span class="difficulty-bars">
+                    <i class="bi bi-square-fill filled-bar"></i>
+                    <i class="bi bi-square-fill empty-bar"></i>
+                    <i class="bi bi-square-fill empty-bar"></i>
+                </span>
+                • <i class="bi bi-clock"></i> 10 min
+                    </small>
+                    <p class="card-text">Learn how to set up your first Django project and run the development server.</p>
+                     <a href="#" class="btn btn-primary">View Tutorial</a>
+                </div>
+            </div>
+        </div>
+
+    
+        <div class="col-md-4 ">
+            <div class="card  shadow-sm border-0 h-100" style="background-color: #F7F3E9;">
+                <a href="#">
+                    <img src="{% static 'images/featured2.png' %}" class="card-img-top" alt="Models & Database" style="object-fit: cover; height: 260px;">
+                </a>
+                <div class="card-body ">
+                    <h5 class="card-title">
+                        <a href="#" class="text-decoration-none text-dark">
+                             <strong>Working with Models & Database</strong>
+                        </a>
+                    </h5>
+                    <small class="text-muted d-block mb-2">
+                        Difficulty: Intermediate • 20 min
+                    </small> 
+                       <small class="text-muted d-block mb-2">
+              
+                Difficulty: 
+                <span class="difficulty-bars">
+                    <i class="bi bi-square-fill filled-bar"></i>
+                    <i class="bi bi-square-fill filled-bar"></i>
+                    <i class="bi bi-square-fill empty-bar"></i>
+                </span>
+                • <i class="bi bi-clock"></i> 20 min
+                </small>
+                    <p class="card-text">Understand how to create models, apply migrations, and work with Django ORM.</p>
+                    <a href="#" class="btn btn-outline-primary btn-sm">View Tutorial</a> 
+                    <a href="#" class="btn btn-primary">View Tutorial</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tutorial 3 -->
+        <div class="col-md-4">
+            <div class="card shadow-sm border-0 h-100" style="background-color: #ECE6C2;">
+                <a href="#">
+                    <img src="{% static 'images/featured3.png' %}" class="card-img-top" alt="Django Templates" style="object-fit: cover; height: 260px;">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="#" class="text-decoration-none text-dark">
+                            <strong>Django Templates & Static Files</strong>
+                        </a>
+                    </h5>
+                <small class="text-muted d-block mb-2">
+                <!-- Difficulty Bars -->
+                Difficulty: 
+                <span class="difficulty-bars">
+                    <i class="bi bi-square-fill filled-bar"></i>
+                    <i class="bi bi-square-fill empty-bar"></i>
+                    <i class="bi bi-square-fill empty-bar"></i>
+                </span>
+                • <i class="bi bi-clock"></i> 15 min
+                </small>
+                    <p class="card-text">Learn how to use templates, load static files, and structure your front-end.</p>
+             <a href="#" class="btn btn-primary">View Tutorial</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="#" class="btn btn-primary">Browse All Tutorials</a>
+    </div>
+</section>  {% endcomment %}
+
+<!-- Latest Blog Posts -->
+{% comment %} <section class="mb-5">
+    <h2 class="mb-3 fw-bold" style="color: #73BDAB;">Recent Blog Posts</h2>
+    <div class="row g-4">
+        {% for post in latest_posts %}
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 h-100">
+                {% if post.image %}
+                <a href="{% url 'post_detail' post.slug %}">
+                   <img src="{{ post.image.url }}" class="card-img-top" alt="{{ post.title }}" style="object-fit: cover; height: 200px;">
+                </a>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{% url 'post_detail' post.slug %}" class="text-decoration-none text-dark">
+                            {{ post.title }}
+                        </a>
+                    </h5>
+                  <small class="text-muted d-block mb-2">
+                        {{ post.created_on.date }} | Categories:
+                        {% for category in post.categories.all %}
+                            <a href="{% url 'post_category' category.name %}" class="category-chip">
+                                {{ category.name }}
+                            </a>
+                        {% endfor %}
+                    </small> 
+                    <p class="card-text">{{ post.body|safe|truncatechars:180 }}</p>
+                    <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary btn-sm">Read More</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+        <div class="text-center mt-4">
+        <a href="{% url 'post_index' %}" class="text-decoration-none" style="color: #73BDAB;">
+            Browse all blog posts →
+        </a>
+    </div>
+</section> {% endcomment %}
+
+<div class="container mt-4">
+  <section class="mb-5">
+    <h2 class="mb-3 fw-bold" style="color: #73BDAB;">Recent Blog Posts</h2>
+    <div class="row g-4">
+      {% for post in latest_posts %}
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card shadow-sm border-0 h-100 overflow-hidden d-flex flex-column">
+
+       
+          <a href="{% url 'post_detail' post.slug %}">
+            <img src="{% static 'images/default_tutorial.png' %}" alt="{{ post.title }}"
+                 class="img-fluid w-100 rounded-top"
+                 style="height: 280px; object-fit: cover;">
+          </a>
+
+    
+          <div class="p-3 d-flex flex-column flex-grow-1">
+        
+            <h5 class="card-title mb-2">
+              <a href="{% url 'post_detail' post.slug %}" class="text-decoration-none" style="color: #6F5643;">
+                <strong>{{ post.title }}</strong>
+              </a>
+            </h5>
+
+         
+            <p class="card-text text-muted mb-3" style="font-size: 0.95rem;">
+              {{ post.excerpt|safe|truncatechars:180 }}
+            </p>
+
+            
+            <div class="mt-auto d-flex flex-wrap gap-3 text-muted small pt-2 border-top">
+              <span><i class="bi bi-calendar-event me-1"></i>{{ post.created_at|date:"F j, Y" }}</span>
+              <span><i class="bi bi-clock me-1"></i>{{ post.reading_time }} min read</span>
+            </div>
+          </div>
+        </div>
+      </div>
+   
+              {% empty %}
+            <p>No tutorials available.</p>
+        {% endfor %}
+    </div>
+  </section>
+  <div class="text-center mt-4">
+    <a href="{% url 'post_index' %}" class="text-decoration-none" style="color: #73BDAB;">
+      Browse all blog posts →
+    </a>
+  </div>
+</div>
+
+{% comment %} <section class="my-5">
+  <h2 class="mb-3 fw-bold" style="color: #73BDAB;">Recent Blog Posts</h2>
+  <div class="row g-4">
+    {% for post in latest_posts %}
+    <div class="col-12 col-md-6">
+   <div class="card shadow-sm border-0 h-100 overflow-hidden">
+  <div class="row g-0 h-100 d-flex align-items-stretch flex-column flex-md-row">
+    
+    
+    <div class="col-md-4">
+      <a href="{% url 'post_detail' post.slug %}">
+        <img src="{% static 'images/default_post.png' %}" alt="{{ post.title }}"
+             class="img-fluid w-100 h-100 rounded-top-left rounded-md-start rounded-md-bottom-0 rounded-md-top-0"
+
+             style="object-fit: cover;">
+      </a>
+    </div>
+
+    
+    <div class="col-md-8 d-flex flex-column p-3">
+      <h5 class="card-title mb-2">
+        <a href="{% url 'post_detail' post.slug %}" class="text-decoration-none" style="color: #6F5643;">
+          <strong>{{ post.title }}</strong>
+        </a>
+      </h5>
+
+      <p class="card-text text-muted mb-3" style="font-size: 0.95rem;">
+        {{ post.excerpt|safe|truncatechars:180 }}
+      </p>
+
+   <div class="mt-auto d-flex flex-wrap gap-3 text-muted small pt-2 border-top">
+  <span><i class="bi bi-calendar-event me-1"></i>{{ post.created_at|date:"F j, Y" }}</span>
+  <span><i class="bi bi-clock me-1"></i>{{ post.reading_time }} min read</span>
+</div>
+
+
+  
+    </div>
+  </div>
+</div>
+
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="text-center mt-4">
+    <a href="{% url 'post_index' %}" class="text-decoration-none" style="color: #73BDAB;">
+      Browse all blog posts →
+    </a>
+  </div>
+</section> {% endcomment %}
+
+
+{% comment %} </div>
+
+
+
+
+<section> {% endcomment %}
+
+<!-- Support Section -->
+<section id="features" class="py-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold" style="color: #73BDAB;">Support This Blog</h2>
+            <p class="lead">Your support helps me continue creating tutorials, projects, and posts. There are many ways you can help!</p>
+        </div>
+
+        <div class="row g-4 text-center">
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
+                    <i class="bi bi-cup-hot fs-1 mb-3"></i>
+                    <h5 class="card-title"><strong>Fuel the Project</strong></h5>
+                    <p class="card-text">Keep the servers running, the ideas flowing, and the coffee brewing.</p>
+                    <a href="{% url 'support' %}#donate" class="btn btn-primary btn-sm">Support Now</a>
+                   
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
+                    <i class="bi bi-share fs-1 mb-3"></i>
+                    <h5 class="card-title"><strong>Share</strong></h5>
+                    <p class="card-text">Spread the word about the blog on social media or with friends.</p>
+                    <a href="{% url 'support' %}#share" class="btn btn-primary btn-sm">Share Now</a>
+                   
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
+                    <i class="bi bi-heart fs-1 mb-3"></i>
+                    <h5 class="card-title"><strong>Give Credit</strong></h5>
+                    <p class="card-text">Attribute the content if you use it or contribute ideas and feedback.</p>
+                    <a href="{% url 'support' %}#credit" class="btn btn-primary btn-sm">Learn How</a>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+<!-- Explore More -->
+{% comment %} <section class="py-5 text-center text-white" style="background-color:#73BDAB;">
+    <div class="container">
+        <h2 class="fw-bold">Explore More</h2>
+        <p class="lead">Check out tutorials, projects, and latest blog posts to level up your skills.</p>
+        <a href="#latest-section" class="btn btn-light btn-lg mt-3">Discover</a>
+    </div>
+</section> {% endcomment %}
+
+
+
+
+
+
+
+{% comment %} <section class="mb-5">
+    <h2 class="mb-3 fw-bold" style="color: #73BDAB;">Recent Blog Posts</h2>
+    <div class="row g-4">
+    
+        <div class="col-lg-8">
+            {% if latest_posts|length > 0 %}
+            {% with post=latest_posts.0 %}
+            <div class="card shadow-sm border-0 h-100">
+                  <a href="{% url 'post_detail' post.slug %}">
+                    <img src="{% static 'images/default_post.png' %}" alt="{{ post.title }}" 
+                         style="object-fit: cover; height: 200px;">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <a href="{% url 'post_detail' post.slug %}" class="text-decoration-none text-dark">
+                            {{ post.title }}
+                        </a>
+                    </h5>
+                    <p class="card-text">{{ post.body|safe|truncatechars:250 }}</p>
+                    <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary btn-sm">Read More</a>
+                </div>
+            </div>
+            {% endwith %}
+            {% endif %}
+        </div>
+
+      
+        <div class="col-lg-4 d-flex flex-column gap-3">
+            {% for post in latest_posts|slice:"1:3" %}
+            <div class="card shadow-sm border-0 h-100">
+                  <a href="{% url 'post_detail' post.slug %}">
+                    <img src="{% static 'images/default_post.png' %}" alt="{{ post.title }}" 
+                         style="object-fit: cover; height: 200px;">
+                </a>
+                <div class="card-body">
+                    <h6 class="card-title">
+                        <a href="{% url 'post_detail' post.slug %}" class="text-decoration-none text-dark">
+                            {{ post.title }}
+                        </a>
+                    </h6>
+                    <p class="card-text">{{ post.body|safe|truncatechars:100 }}</p>
+                    <a href="{% url 'post_detail' post.slug %}" class="btn btn-primary btn-sm">Read More</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="{% url 'post_index' %}" class="text-decoration-none" style="color: #73BDAB;">
+            Browse all blog posts →
+        </a>
+    </div>
+</section> {% endcomment %}
+<!-- 9. Support Section -->
+ 
+
+
+{% comment %} <div class="container mt-4">
+  <section class="mb-5">
+    <h2 class="mb-3 fw-bold" style="color: #73BDAB;">Latest Tutorials</h2>
+    <div class="row g-4">
+      {% for post in latest_posts %}
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="card shadow-sm border-0 h-100 overflow-hidden d-flex flex-column">
+
+       
+          <a href="{% url 'post_detail' post.slug %}">
+            <img src="{% static 'images/default_tutorial.png' %}" alt="{{ post.title }}"
+                 class="img-fluid w-100 rounded-top"
+                 style="height: 280px; object-fit: cover;">
+          </a>
+
+    
+          <div class="p-3 d-flex flex-column flex-grow-1">
+        
+            <h5 class="card-title mb-2">
+              <a href="{% url 'post_detail' post.slug %}" class="text-decoration-none" style="color: #6F5643;">
+                <strong>{{ post.title }}</strong>
+              </a>
+            </h5>
+
+         
+            <p class="card-text text-muted mb-3" style="font-size: 0.95rem;">
+              {{ post.excerpt|safe|truncatechars:180 }}
+            </p>
+
+            
+            <div class="mt-auto d-flex flex-wrap gap-3 text-muted small pt-2 border-top">
+              <span><i class="bi bi-calendar-event me-1"></i>{{ post.created_at|date:"F j, Y" }}</span>
+              <span><i class="bi bi-clock me-1"></i>{{ post.reading_time }} min read</span>
+            </div>
+          </div>
+        </div>
+      </div>
+   
+              {% empty %}
+            <p>No tutorials available.</p>
+        {% endfor %}
+    </div>
+  </section>
+      <div class="text-center mt-4">
+        <a href="{% url 'tutorial_index' %}" class="text-decoration-none" style="color: #CC6B49;">
+            Browse all tutorials →
+        </a>
+    </div>
+</div> {% endcomment %}
+
+<!-- Call-to-Action / Newsletter Signup -->
+ <section class="py-5 text-center">
+  <div class="container">
+    <h3 class="fw-bold mb-3" style="color: #6F5643;">
+      <i class="bi bi-envelope-paper me-2"></i> Stay Updated
+    </h3>
+    <p class="lead mb-4">
+      Subscribe to our newsletter to get the latest tutorials, projects, and posts delivered to your inbox.
+    </p>
+    <a href="{% url 'subscribe' %}" class="btn btn-primary btn-lg">
+      <i class="bi bi-send me-2"></i>Subscribe
+    </a>
+    <p class="mt-3 text-muted" style="font-size: 0.9rem;">
+      No spam. Just occasional updates and cool stuff from ByteOverflow.
+    </p>
+  </div>
+</section>
+
+{% comment %} <section class="py-5 text-center">
+    <div class="container">
+        <h3 class="fw-bold mb-3">Stay Updated</h3>
+        <p class="lead mb-4">Subscribe to our newsletter to get the latest tutorials, projects, and posts delivered to your inbox.</p>
+        <a href="{% url 'subscribe' %}" class="btn btn-primary btn-lg">Subscribe</a>
+    </div>
+</section> {% endcomment %}
+</div>
+
+
+{% endblock content %}

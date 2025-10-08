@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block page_title %}
+Projects tagged: {{ tag.name }}
+{% endblock page_title %}
+
+{% block content %}
+<div class="row">
+    <!-- Main content -->
+    {% include "projects/_project_list.html" %}
+    <!-- Sidebar -->
+    {% include "projects/_sidebar.html" %}
+</div>
+{% endblock content %}

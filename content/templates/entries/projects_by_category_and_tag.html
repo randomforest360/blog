@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <!-- Main content: Projects -->
+        <div class="col-md-9">
+            <h2>
+                Projects in {{ current_category.name }}{% if current_tag %} tagged with #{{ current_tag.name }}{% endif %}
+            </h2>
+            <hr>
+
+            {% if page_obj %}
+                {% for project in page_obj %}
+                    <div class="card mb-3 shadow-sm">
+                        {% if project.cover %}
+                        <img src="{{ project.cover.url }}" class="card-img-top" alt="{{ project.cover_alt }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{% url 'project_detail' project.slug %}">{{ project.title }}</a>
+                            </h5>
+                            <p class="card-text">{{ project.excerpt }}</p>
+                            <p class="mb-1">
+                                <strong>Status:</strong> {{ project.get_status_display }} |
+                                <strong>Difficulty:</strong> {{ project.difficulty|default:"-" }}
+                            </p>
+                            <p>
+                                Categories:
+                                {% for category in project.categories.all %}
+                                    <a href="{% url 'project_category' category.slug %}" class="badge bg-primary text-decoration-none">{{ category.name }}</a>
+                                {% endfor %}
+                                Tags:
+                                {% for tag in project.tags.all %}
+                                    <a href="{% url 'project_tag' tag.slug %}" class="badge bg-secondary text-decoration-none">#{{ tag.name }}</a>
+                                {% endfor %}
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <!-- Pagination -->
+                <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center">
+                        {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled"><span class="page-link">Previous</span></li>
+                        {% endif %}
+                        {% for num in page_obj.paginator.page_range %}
+                            {% if page_obj.number == num %}
+                                <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+                            {% else %}
+                                <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                            </li>
+                        {% else %}
+                            <li class="page-item disabled"><span class="page-link">Next</span></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            {% else %}
+                <p class="text-muted">No projects found for this category and tag combination.</p>
+            {% endif %}
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-md-3">
+            {% include "projects/sidebar.html" %}
+        </div>
+    </div>
+</div>
+{% endblock %}

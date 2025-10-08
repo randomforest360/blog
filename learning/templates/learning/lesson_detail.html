@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container py-5">
+
+  <!-- Lesson Header -->
+  <div class="mb-5 text-center">
+    <h1 class="fw-bold" style="color:#CC6B49;">{{ lesson.title }}</h1>
+    <p class="lead text-muted">{{ lesson.path.title }}</p>
+  </div>
+
+  <!-- Lesson Content -->
+  {% if lesson.content %}
+  <div class="card shadow-sm p-4 mb-5">
+    <div class="lesson-content">
+      {{ lesson.content|safe }}
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Cross-links -->
+  <div class="mb-5">
+    {% if lesson.tutorial %}
+      <p>📘 See Tutorial: 
+        <a href="{{ lesson.tutorial.get_absolute_url }}" class="category-chip">{{ lesson.tutorial.title }}</a>
+      </p>
+    {% endif %}
+
+    {% if lesson.lab_item %}
+      <p>🧪 Try Lab: 
+        <a href="{{ lesson.lab_item.get_absolute_url }}" class="category-chip">{{ lesson.lab_item.title }}</a>
+      </p>
+    {% endif %}
+
+    {% if lesson.project %}
+      <p>🚀 Practice Project: 
+        <a href="{{ lesson.project.get_absolute_url }}" class="category-chip">{{ lesson.project.title }}</a>
+      </p>
+    {% endif %}
+  </div>
+
+  <!-- Quizzes -->
+{% if lesson.quiz %}
+  <h3>Quiz: {{ lesson.quiz.title }}</h3>
+  <ul>
+    {% for question in lesson.quiz.questions.all %}
+      <li>
+        <p>{{ question.question_text }}</p>
+        <ol type="a">
+          {% for option in question.options %}
+            <li>{{ option }}</li>
+          {% endfor %}
+        </ol>
+        <button type="button" class="btn btn-outline-primary btn-sm mt-2" onclick="this.nextElementSibling.classList.toggle('d-none')">
+          Reveal Answer
+        </button>
+            <p class="d-none mt-2 text-success fw-bold">
+                ✅ Correct: {{ question.correct_answer }}
+              </p>
+      </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+</div>
+{% endblock %}
+
+
+{% comment %} <h1>{{ lesson.title }}</h1>
+
+{% if lesson.content %}
+  <div>{{ lesson.content|safe }}</div>
+{% endif %}
+
+{% if lesson.tutorial %}
+  <p>See Tutorial: <a href="{{ lesson.tutorial.get_absolute_url }}">{{ lesson.tutorial.title }}</a></p>
+{% endif %}
+
+{% if lesson.lab_item %}
+  <p>Try Lab: <a href="{{ lesson.lab_item.get_absolute_url }}">{{ lesson.lab_item.title }}</a></p>
+{% endif %}
+
+{% if lesson.project %}
+  <p>Practice Project: <a href="{{ lesson.project.get_absolute_url }}">{{ lesson.project.title }}</a></p>
+{% endif %}
+
+
+{% if lesson.quizzes.exists %}
+  <h3>Quizzes:</h3>
+
+  {% for quiz in lesson.quizzes.all %}
+    <div class="quiz">
+      <h4>{{ quiz.title }}</h4>
+
+      <ul>
+        {% for question in quiz.questions.all %}
+          <li>
+            <p><strong>{{ question.question_text }}</strong></p>
+            <ol type="a">
+              {% for option in question.options %}
+                <li>{{ option }}</li>
+              {% endfor %}
+            </ol>
+
+            <!-- Button to reveal correct answer -->
+            <button type="button" onclick="this.nextElementSibling.classList.toggle('hidden')">
+              Reveal Answer
+            </button>
+            <p class="hidden"><em>Correct: {{ question.correct_answer }}</em></p>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endfor %}
+{% endif %} {% endcomment %}

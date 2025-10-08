@@ -1,0 +1,25 @@
+{% comment %} <h1>{{ item.title }}</h1>
+<p>{{ item.description }}</p>
+<p>Author: {{ item.author }}</p>
+{% if item.reference_link %}<p>Reference: <a href="{{ item.reference_link }}">{{ item.reference_link }}</a></p>{% endif %}
+
+<div style="display:flex; gap: 20px;">
+  <div style="flex:1">
+    <h3>Preview</h3>
+    <iframe id="preview" style="width:100%; height:300px; border:1px solid #ccc;"></iframe>
+  </div>
+  <div style="flex:1">
+    <h3>Code</h3>
+    <pre><code id="html">{{ item.html_code|escape }}</code></pre>
+    <pre><code id="css">{{ item.css_code|escape }}</code></pre>
+    <pre><code id="js">{{ item.js_code|escape }}</code></pre>
+  </div>
+</div>
+
+<script>
+  const preview = document.getElementById('preview');
+  const html = `{{ item.html_code|escapejs }}`;
+  const css = `<style>{{ item.css_code|escapejs }}</style>`;
+  const js = `<script>{{ item.js_code|escapejs }}<\/script>`;
+  preview.srcdoc = html + css + js;
+</script> {% endcomment %}

@@ -1,0 +1,11 @@
+<div class="col-md-9">
+  <div class="row g-4">
+      {% for project in page_obj %}
+          {% include "projects/_project_card.html" %}
+      {% empty %}
+          <p>No projects found.</p>
+      {% endfor %}
+  </div>
+
+  {% include "projects/_pagination.html" %}
+</div>

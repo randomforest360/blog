@@ -9,7 +9,7 @@ class ResourceListView(ListView):
     model = Resource
     template_name = "resources/resource_list.html"
     context_object_name = "resources"
-    ordering = ["-is_featured", "title"]
+    ordering = ["title"]
     paginate_by = 24  # optional, nice for big lists
 
 
@@ -27,7 +27,7 @@ class ResourceDetailView(DetailView):
 # -----------------------------
 def category_detail(request, slug):
     category = get_object_or_404(ResourceCategory, slug=slug)
-    resources = category.resources.order_by("-is_featured", "title")
+    resources = category.resources.order_by("title")
     return render(
         request,
         "resources/category_detail.html",

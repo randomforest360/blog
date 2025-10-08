@@ -8,7 +8,7 @@ class ResourceCategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Resource)
 class ResourceAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'url', 'is_featured', 'created_at')
-    list_filter = ('category', 'is_featured')
+    list_display = ('title', 'category', 'url', 'created_at')
+    list_filter = ('category',)
     search_fields = ('title', 'description', 'tags')
     ordering = ('-created_at',)

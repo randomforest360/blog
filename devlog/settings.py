@@ -25,8 +25,8 @@ SECRET_KEY = os.getenv("SECRET_KEY"),
 DEBUG = True
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ["127.0.0.1", "localhost", "192.168.8.101"]
-
+# ALLOWED_HOSTS = ["127.0.0.1", "localhost", "192.168.8.101"]
+ALLOWED_HOSTS = ["blog-emrz.onrender.com", "localhost", "127.0.0.1"]
 # Application definition
 
 INSTALLED_APPS = [

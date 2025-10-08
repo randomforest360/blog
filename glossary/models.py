@@ -22,10 +22,10 @@ class Term(models.Model):
     def get_absolute_url(self):
         return reverse("glossary:term_detail", args=[self.slug])
 
-    # def save(self, *args, **kwargs):
-    #     if self.term:
-    #         self.alphabet = self.term[0].upper()
-    #     super().save(*args, **kwargs)
+    def save(self, *args, **kwargs):
+        if self.term:
+            self.alphabet = self.term[0].upper()
+        super().save(*args, **kwargs)
 
 
 # python manage.py dumpdata glossary --indent 4 > backup/glossary_backup.json

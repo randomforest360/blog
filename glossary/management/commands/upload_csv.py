@@ -22,7 +22,7 @@ class Command(BaseCommand):
                 term_text = row['Term'].strip()
                 definition = row['Definition'].strip()
                 url = row.get('URL', '').strip() or None
-                image = row.get('Image', '').strip() or None
+                # image = row.get('Image', '').strip() or None
                 slug = row.get('Slug', '').strip() or slugify(term_text)
 
                 Term.objects.update_or_create(
@@ -31,7 +31,7 @@ class Command(BaseCommand):
                         'definition': definition,
                         'slug': slug,
                         'url': url,
-                        'image': image,
+                        # 'image': image,
                     }
                 )
                 count += 1

@@ -20,12 +20,12 @@
         <!-- Container aligned to right -->
         <div class="container-md d-flex justify-content-end">
             <div class="hero-text text-white text-end" style="max-width: 650px;">
-                <h1 class="display-4 fw-bold">Forging Ideas into Reality</h1>
+                <h1 class="display-5 fw-bold">Powered by Coffee, Code, and Curiosity</h1>
                 <p class="lead">
-                    Projects, tutorials, and experiments<br>
-                    for curious makers and developers.
+                    A space for curious minds to build,<br> explore, and experiment
+
                 </p>
-                <a class="btn btn-primary  btn-lg mt-3" href="{% url 'project_index' %}">Start Your Journey</a>
+                {% comment %} <a class="btn btn-primary  btn-lg mt-3" href="{% url 'project_index' %}">Start Your Journey</a> {% endcomment %}
             </div>
         </div>
     </div>
@@ -60,10 +60,10 @@
  <section id="about-site" class="py-5">
     <div class="container">
         <div class="row align-items-start g-4">
-        <div class="col-md-5 text-center">
+        <div class="col-md-5 text-center order-2 order-md-1">
                 <img src="{% static 'images/me-banner.png' %}" alt="About This Site" class="img-fluid rounded shadow-sm">
             </div>
-            <div class="col-md-7">
+            <div class="col-md-7 order-1 order-md-2">
                 <h2 class="fw-bold mb-3" style="color: #73BDAB;">About ByteOverflow</h2>
                 <p class="mb-3">
                     ByteOverflow is more than just a website — it’s a space built to share knowledge, spark ideas, and support developers at every stage of their journey. Whether you're debugging your first script or architecting full-scale systems, you'll find something here to fuel your curiosity and sharpen your skills.

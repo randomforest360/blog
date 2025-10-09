@@ -137,7 +137,7 @@
         style="width: {% if project.status == 'completed' %}100{% else %}{{ project.progress_percent }}{% endif %}%;">
     </div>
 </div> {% endcomment %}
-<div class="progress progress-tiny" style="position: relative; height: 25px;">
+{% comment %} <div class="progress progress-tiny" style="position: relative; height: 25px;">
     <div class="progress-bar 
         {% if project.status == 'published' and project.progress_percent == 100 %} progress-filled
         {% elif project.status == 'in_progress' %} progress-partly
@@ -150,7 +150,7 @@
             {% else %}{{ project.progress_percent }}
             {% endif %}%; position: relative;">
     </div>
-    <!-- Status label centered over the bar -->
+
     <span style="position: absolute; width: 100%; text-align: center; font-weight: 600; color: #6F5643; line-height: 25px;">
         {% if project.status == 'published' and project.progress_percent == 100 %}Completed
         {% elif project.status == 'in_progress' %}In Progress
@@ -159,7 +159,7 @@
         {% else %}Archived
         {% endif %}
     </span>
-</div>
+</div> {% endcomment %}
 
 
 

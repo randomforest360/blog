@@ -4,7 +4,7 @@
 
 
 {% block content %}
-<div class="container py-5">
+
 
   <!-- Page Title -->
   <h1 class="text-center mb-5 fw-bold" style="color: #6F5643;">
@@ -16,66 +16,76 @@
 
   <!-- 2. Deeper Dive into ByteOverflow -->
  <!-- 2. Deeper Dive into ByteOverflow -->
-<section id="deep-dive" class="mb-5">
+   <section id="design-style" class="py-3">
+    
+        <div class="row align-items-start g-4">
+       
+            <div class="col-md-7">
+                <h2 class="mb-3">Design & Style</h2>
+
+                <p class="mb-3">
+    ByteOverflow is more than a collection of tutorials — it’s a space where design, philosophy, and purpose come together. Instead of following a generic, modern blog template, it was built from the ground up to feel distinct and personal. The visual style blends retro and futuristic influences, creating a sense of nostalgia for early computing while looking ahead with clean, modern lines. Every detail is intentional — crafted to make the experience both memorable and uniquely ByteOverflow.
+                </p>
+
+
+            </div>
+ 
+  
+            <div class="col-md-5 text-center">
+                <img src="{% static 'images/Copilot_20250913_020254.png' %}" alt="About This Site" class="img-fluid rounded shadow-sm">
+            </div>
+       
+    </div>
+
+  </section>
+   <section id="robots-creativity" class="py-3">
+           <div class="row align-items-start g-4">
+             <div class="col-md-5 text-center order-2 order-md-1">
+                <img src="{% static 'images/me-banner.png' %}" alt="About This Site" class="img-fluid rounded shadow-sm">
+            </div>
+            <div class="col-md-7 order-1 order-md-2">
+                <h2 class="mb-3">Robots & Creativity</h2>
+                <p class="mb-3">The robots of ByteOverflow aren’t just decoration — they’re companions in the creative journey. Each one embodies curiosity, experimentation, and the persistence to keep learning. Their retrofuturistic design blends nostalgia with imagination, capturing the spirit of exploring old ideas through a modern lens. Sometimes they succeed, sometimes they spark smoke, but they always keep going — just like real makers do.
+                </p>
+            </div>
+ 
+  
+      
+       
+    </div> 
+    </section>
+    
+  
+  <section id="purpose-values" class="py-3">
   <h2 class="mb-3" >
-    A Deeper Dive into ByteOverflow
+    Purpose & Values
   </h2>
-  <p>
-    ByteOverflow is more than just a collection of tutorials — it’s a carefully crafted space where design, philosophy, and purpose all work together. 
-    Every choice, from the retro-inspired color palette to the playful robot illustrations, is intentional. 
-    The aesthetic draws on the charm of early computing and pixel art, evoking a sense of curiosity and nostalgia while keeping the interface clean and modern.
-  </p>
-  <p>
-    The robots aren’t just decoration — they’re mascots for the spirit of tinkering. 
-    They represent the joy of experimentation, the occasional chaos of debugging, and the satisfaction of building something that works. 
-    Pixel art elements nod to the roots of programming culture, reminding us that even the most advanced systems start with simple building blocks.
-  </p>
-  <p>
-    At its core, ByteOverflow is built on values of <strong>open reuse</strong>, <strong>ethical attribution</strong>, and <strong>creative freedom</strong>. 
-    All content here is free to explore, adapt, and build upon. 
-    Attribution is never required, but always appreciated — a small gesture that helps others discover the source and keeps the creative ecosystem thriving.
-  </p>
-  <p>
-    My long-term vision is to grow ByteOverflow into a sustainable, free learning ecosystem that empowers anyone to learn, share, and contribute without barriers. 
-    This means structuring content into clear, practical learning paths, making resources easy to navigate, and ensuring that nothing gets in the way of learning — no clutter, no friction.
-  </p>
-  <p>
-    Monetization, when it happens, will never compromise the user experience. 
-    Instead, it will focus on creative, non-intrusive ways to support the project — like optional donations, special behind-the-scenes content, or playful extras that enhance the experience without locking knowledge behind a paywall.
-  </p>
-  <p>
-    ByteOverflow will always be a place where curiosity is encouraged, creativity is celebrated, and knowledge is shared freely. 
-    Whether you’re here to follow a tutorial, get inspired by a project, or just enjoy the retro vibes, you’re part of the journey.
-  </p>
-</section>
-
-
-  <hr class="my-5">
-
-  <!-- 3. More Personal Backstory -->
-<section id="journey" class="mb-5">
-  <h2 class="mb-3">My Journey into Tech</h2>
-  <p>
-    I didn’t start in tech. My formal education was in environmental science, but I was always curious about how things worked — especially computers. Years ago, I tried to learn programming, but most knowledge was locked behind paywalls, and as a student, I couldn’t afford it. I also wasn’t great at finding the right resources, so I shelved the idea.
-  </p>
-  <p>
-    For a while, I worked as a cartographer. That’s when I began thinking about how much of my work could be automated. I’d heard of Python and how readable it was, but I still didn’t know where to start from scratch. Then I discovered <em>Automate the Boring Stuff with Python</em> — and it was pure gold. Step by step, I moved toward my goal of learning to program.
-  </p>
-  <p>
-    It wasn’t easy. There were struggles, moments of confusion, and times when I wasn’t sure why I was doing certain exercises or how they connected to real results. But eventually, I started automating tasks at work — and I was proud of that.
-  </p>
-  <p>
-    From there, my curiosity expanded. I learned basic HTML and CSS, and even though my first pages were simple (and a bit ugly), they were mine. I wanted to make them dynamic — to add logic, fetch data, store it, and communicate with a backend. That led me to SQL, web development, and experimenting with different programming languages and database servers. After trying a few, I realized they all shared core concepts — once you understand the fundamentals, switching isn’t such a big leap.
-  </p>
-  <p>
-    My second “wow” moment came when I received a Raspberry Pi for my birthday. The first time I made an LED turn on and off with my own code, I was hooked. Soon I was building late into the night — from small electronics experiments to an RC car with live video streaming.
-  </p>
-  <p>
-    I haven’t stopped since. I keep exploring new languages, frameworks, and ideas, always chasing that mix of curiosity and creation. That persistence eventually led me to software engineering, and to creating <strong>ByteOverflow</strong> — a place where knowledge is open, accessible, and shared without barriers.
-  </p>
+  <p>At its core, ByteOverflow is built on the values of open reuse, ethical attribution, and creative freedom. All content is free to explore, adapt, and build upon. Attribution is never required, but always appreciated — a small gesture that helps others discover the source and keeps the creative ecosystem thriving.</p>
+  </section>
+    
+    <section id="learning-ecosystem" class="py-3">
+  <h2 class="mb-3" >
+    Learning Ecosystem
+  </h2>
+ 
+  <p>ByteOverflow is designed as a single-author platform: only curated content is posted, ensuring quality and consistency. Visitors can explore projects, tutorials, and ideas, but there is no user posting or authentication. The structure is clear, practical, and easy to navigate, allowing anyone to learn and contribute creatively without barriers.</p>
+    </section>  
+  <section id="monetization-support" class="py-3"> 
+  <h2 class="mb-3" >
+   Monetization & Support
+  </h2>
+   
+  <p>When implemented, monetization will never compromise the user experience. Creative, non-intrusive methods — such as optional donations, behind-the-scenes content, or playful extras — support the project without locking knowledge behind a paywall. Followers can also stay updated via social media or reach out directly through the contact form.</p>
+  </section> 
+  <section id="open-learning-exploration" class="py-3"> 
+  <h2 class="mb-3" >
+   Open Learning & Exploration
+  </h2>
+  <p>ByteOverflow is a place where curiosity is encouraged, creativity is celebrated, and knowledge is shared freely. Whether exploring tutorials, getting inspired by projects, or enjoying the retro vibes, every visitor is part of the journey.</p>
 </section>
 
 
 
-</div>
+
+
 {% endblock content %}

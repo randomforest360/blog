@@ -18,8 +18,8 @@ class LabItem(models.Model):
     # tags = models.CharField(max_length=200, blank=True, help_text="Comma-separated tags")
     created_at = models.DateTimeField(auto_now_add=True)
     
-    def __str__(self):
-        return self.title
+    # def __str__(self):
+    #     return self.title
     
-    def get_absolute_url(self):
-        return reverse("lab:lab_detail", args=[str(self.id)])
+    # def get_absolute_url(self):
+    #     return reverse("lab:lab_detail", args=[str(self.id)])

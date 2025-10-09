@@ -9,3 +9,8 @@
 # def lab_detail(request, pk):
 #     item = get_object_or_404(LabItem, pk=pk)
 #     return render(request, "lab/lab_detail.html", {"item": item})
+
+from django.shortcuts import render
+
+def lab_view(request):
+    return render(request, 'lab/lab.html')

@@ -1,4 +1,4 @@
-{% extends "base_fullwidth.html" %}
+{% extends "base.html" %}
 {% load static %}
 
 {% block content %}
@@ -16,7 +16,7 @@
 {% endif %} {% endcomment %}
 
 <!-- Hero / Image Banner Section -->
-<section class="hero-banner position-relative" style="height: 400px; overflow: hidden;">
+{% comment %} <section class="hero-banner position-relative" style="height: 400px; overflow: hidden;">
     <!-- Image -->
     <img src="{% static 'images/contact_banner.jpg' %}" 
          alt="Contact Banner" 
@@ -32,65 +32,67 @@
         <h1 class="display-4 fw-bold">Get in Touch</h1>
         <p class="lead">Have a question or want to collaborate? Send me a message!</p>
     </div>
-</section>
+</section> {% endcomment %}
 
 <!-- Contact Form Section -->
-<section class="my-5">
-  <div class="container">
-    <div class="row align-items-start justify-content-center">
-      
-      <!-- Left side: CTA -->
-      <div class="col-lg-6 mb-4 mb-lg-0">
-        <h2 class="fw-bold mb-3" style="color: #73BDAB;">Let’s Connect</h2>
+<section class="my-3">
 
-        {% if social_links %}
-            <p class="lead" style="color: #6F5643;">
-                I’m always open to new ideas, collaborations, or just meeting like-minded people.  
-                Feel free to connect or follow me on these platforms:
-            </p>
-            <ul class="list-unstyled mt-4">
-                {% for link in social_links %}
-                <li class="mb-2">
-                    <i class="{{ link.icon_class }}" style="color: #CC6B49;"></i>
-                    <a href="{{ link.url }}" class="ms-2 fw-semibold" style="color: #CC6B49;">
-                        {{ link.get_platform_display }}
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p class="lead" style="color: #6F5643;">
-                I’m always open to new ideas, collaborations, or just meeting like-minded people.  
-                Feel free to reach out via any way that works for you.
-            </p>
-        {% endif %}
-      </div>
+  <div class="row align-items-start justify-content-center">
+    
+    <!-- Left side: CTA -->
+    <div class="col-lg-6 mb-4 mb-lg-0">
+      <h2 class="fw-bold mb-3" style="color: #73BDAB;">Let’s Connect</h2>
 
-      <!-- Right side: Form -->
-      <div class="col-lg-6">
-        <div class="p-4 rounded" style="background-color: #F9F6EF; border: 1px solid #E0D9C8;">
-          <h4 class="fw-bold mb-3" style="color: #6F5643;">Send me a message</h4>
-          <form method="post">
-            {% csrf_token %}
-            <div class="mb-3">
-              <label for="id_name" class="form-label" style="color: #6F5643;">Name</label>
-              <input type="text" name="name" id="id_name" class="form-control" placeholder="Your Name" required>
-            </div>
-            <div class="mb-3">
-              <label for="id_email" class="form-label" style="color: #6F5643;">Email</label>
-              <input type="email" name="email" id="id_email" class="form-control" placeholder="Your Email" required>
-            </div>
-            <div class="mb-3">
-              <label for="id_message" class="form-label" style="color: #6F5643;">Message</label>
-              <textarea name="message" id="id_message" rows="5" class="form-control" placeholder="Write your message..." required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary w-100 w-md-auto">Send Message</button>
-          </form>
-        </div>
+      <p class="lead" style="color: #6F5643;">
+        Got a spark of an idea, a quirky project, a question, or some feedback you’d like to share?
+      </p>
+            <p class="lead" style="color: #6F5643;">
+        Reach out and let’s see where it leads—sometimes the simplest ideas turn into the most interesting projects.
+      </p>
+
+      {% if social_links %}
+      <ul class="list-unstyled mt-4">
+        {% for link in social_links %}
+          <li class="mb-2">
+            <i class="{{ link.icon_class }}" style="color: #CC6B49;"></i>
+            <a href="{{ link.url }}" class="ms-2 fw-semibold" style="color: #CC6B49;">
+              {{ link.get_platform_display }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+    </div>
+
+    <!-- Right side: Form -->
+    <div class="col-lg-6">
+      <div class="p-4 rounded" style="background-color: #F9F6EF; border: 1px solid #E0D9C8;">
+        <h4 class="fw-bold mb-3" style="color: #6F5643;">Send a message</h4>
+        <form method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="id_name" class="form-label" style="color: #6F5643;">Name</label>
+            <input type="text" name="name" id="id_name" class="form-control" placeholder="Your Name" required>
+          </div>
+          <div class="mb-3">
+            <label for="id_email" class="form-label" style="color: #6F5643;">Email</label>
+            <input type="email" name="email" id="id_email" class="form-control" placeholder="Your Email" required>
+          </div>
+          <div class="mb-3">
+            <label for="id_message" class="form-label" style="color: #6F5643;">Message</label>
+            <textarea name="message" id="id_message" rows="5" class="form-control" placeholder="Write your message..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary w-100 w-md-auto">Send Message</button>
+        </form>
       </div>
     </div>
+
   </div>
+
 </section>
+
+
 
 <!-- Zoom-out Animation Script -->
 <style>

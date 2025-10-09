@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="lab-container">
+  <div class="tabs">
+    <button class="tab active" data-lang="html">HTML</button>
+    <button class="tab" data-lang="css">CSS</button>
+    <button class="tab" data-lang="js">JS</button>
+  </div>
+
+  <div class="editors">
+    <textarea id="html-editor"></textarea>
+    <textarea id="css-editor"></textarea>
+    <textarea id="js-editor"></textarea>
+  </div>
+
+  <iframe id="preview"></iframe>
+</div>
+
+<!-- CodeMirror CSS & JS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/htmlmixed/htmlmixed.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/css/css.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/javascript/javascript.min.js"></script>
+
+<style>
+body {
+  background: #1e1e1e;
+  color: #c5c8c6;
+  font-family: 'Courier New', monospace;
+  margin: 0;
+  padding: 0;
+}
+.lab-container {
+  display: flex;
+  flex-direction: column; /* Stack vertically */
+  gap: 10px;
+  max-width: 900px;
+  margin: 20px auto;
+}
+.tabs button {
+  background: #1e1e1e;
+  border: 1px solid #555;
+  color: #c5c8c6;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.tabs button.active {
+  background: #333;
+}
+.editors .CodeMirror {
+  height: 200px;
+  display: none; /* hide all by default */
+}
+#preview {
+  height: 300px;
+  width: 100%;
+  border: 1px solid #555;
+  background: #ccc; /* gray background */
+}
+</style>
+
+<script>
+const editors = {
+  html: CodeMirror.fromTextArea(document.getElementById("html-editor"), { mode: "htmlmixed", theme: "default", lineNumbers: true }),
+  css: CodeMirror.fromTextArea(document.getElementById("css-editor"), { mode: "css", theme: "default", lineNumbers: true }),
+  js: CodeMirror.fromTextArea(document.getElementById("js-editor"), { mode: "javascript", theme: "default", lineNumbers: true })
+};
+
+// Show only HTML initially
+Object.keys(editors).forEach(lang => {
+  if (lang === "html") {
+    editors[lang].getWrapperElement().style.display = "block";
+    editors[lang].refresh();
+  } else {
+    editors[lang].getWrapperElement().style.display = "none";
+  }
+});
+
+// Tab switching
+document.querySelectorAll(".tab").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+    btn.classList.add("active");
+    const lang = btn.dataset.lang;
+    Object.keys(editors).forEach(l => {
+      if (l === lang) {
+        editors[l].getWrapperElement().style.display = "block";
+        editors[l].refresh();
+      } else {
+        editors[l].getWrapperElement().style.display = "none";
+      }
+    });
+  });
+});
+
+// Run function
+function runPreview() {
+  const htmlCode = editors.html.getValue();
+  const cssCode = editors.css.getValue();
+  const jsCode = editors.js.getValue();
+  const preview = document.getElementById("preview");
+  const previewDoc = preview.contentDocument || preview.contentWindow.document;
+  previewDoc.open();
+  previewDoc.write('<!DOCTYPE html><html><head><style>' + cssCode + '</style></head><body>' + htmlCode + '<script>' + jsCode + '<\/script></body></html>');
+  previewDoc.close();
+}
+
+// Run initially
+runPreview();
+
+// Run automatically whenever user types in any editor
+Object.values(editors).forEach(editor => {
+  editor.on("change", runPreview);
+});
+</script>
+
+{% endblock content %}

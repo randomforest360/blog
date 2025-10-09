@@ -36,17 +36,13 @@
         <div class="row align-items-start g-4">
        
             <div class="col-md-7">
-                <h2 class="fw-bold mb-3" style="color: #73BDAB;">About Me</h2>
-                <p class=" mb-3">
-                      I’m a self-taught developer who learned through endless tutorials, documentation, and late-night debugging. It wasn’t always easy — broken code, moments of doubt, and a steep learning curve — but determination kept me moving forward.
-                </p>
+                <h2 class="fw-bold mb-3" style="color: #73BDAB;">About ByteOverflow</h2>
+
                 <p class="mb-3">
-    This site is my way of giving back: sharing knowledge, documenting what I’ve learned, and connecting with others who are on their own path.
+    ByteOverflow is more than just a website — it’s a space built to share knowledge, spark ideas, and support developers at every stage of their journey. Whether you're debugging your first script or architecting full-scale systems, you'll find something here to fuel your curiosity and sharpen your skills.
                 </p>
-                <p>
-                    Whether you're just starting out or deep into your tech journey, I hope you find something here that inspires you to keep going.
-                </p>
-                <a href="{% url 'about' %}#journey" class="mt-3" style="color: #73BDAB;">Read more</a>
+
+                <a href="{% url 'about' %}#design-style" class="mt-3" style="color: #73BDAB;">Read more</a>
             </div>
  
   
@@ -64,15 +60,12 @@
                 <img src="{% static 'images/me-banner.png' %}" alt="About This Site" class="img-fluid rounded shadow-sm">
             </div>
             <div class="col-md-7 order-1 order-md-2">
-                <h2 class="fw-bold mb-3" style="color: #73BDAB;">About ByteOverflow</h2>
+                <h2 class="fw-bold mb-3" style="color: #73BDAB;">Learn, Share, Create</h2>
                 <p class="mb-3">
-                    ByteOverflow is more than just a website — it’s a space built to share knowledge, spark ideas, and support developers at every stage of their journey. Whether you're debugging your first script or architecting full-scale systems, you'll find something here to fuel your curiosity and sharpen your skills.
-                </p>
-                <p class="mb-3">
-                    Everything here is created with the intention to teach, share, and connect. You’re welcome to use any of the materials freely — whether it’s code snippets, walkthroughs, or ideas. If you find something useful and feel like giving credit, that’s always appreciated.
+                    Everything here is created with the intention to teach, share, and connect. Code snippets, walkthroughs, and project ideas are free to use and adapt. If you find something useful, giving credit is appreciated, but the main goal is helping you explore, experiment, and build confidently.
                 </p>
 
-                <a href="{% url 'about' %}#deep-dive" class="mt-3" style="color: #73BDAB;">Read more</a>
+                <a href="{% url 'about' %}#purpose-values" class="mt-3" style="color: #73BDAB;">Read more</a>
             </div>
 
   
@@ -103,8 +96,14 @@
 
             <div class="col-md-4">
                 <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
-                    <i class="bi bi-journal-bookmark fs-1 mb-3"></i>
-                    <h5 class="card-title"><strong>Tutorials</strong></h5>
+                    {% comment %} <i class="bi bi-journal-bookmark fs-1 mb-3"></i> {% endcomment %}
+                     {% comment %} <i class="bi bi-flask fs-1 mb-3"></i> {% endcomment %}
+{% comment %} <i class="bi bi-list-columns-reverse fs-1 mb-3"></i> {% endcomment %}
+<i class="bi bi-robot fs-1 mb-3"></i>
+                    {% comment %} <h5 class="card-title"><strong>Lab</strong></h5> {% endcomment %}
+                                <h5 class="card-title"><a href="{% url 'lab' %}" class="stretched-link text-decoration-none text-reset">
+        <strong>Sandbox</strong>
+      </a></h5>
                     <p class="card-text">Step-by-step guides to help you learn and implement new skills.</p>
                     {% comment %} <a href="{% url 'tutorial_index' %}" class="btn btn-primary btn-sm">Browse Tutorials</a> {% endcomment %}
                 </div>
@@ -426,7 +425,7 @@
 
        
           <a href="{% url 'post_detail' post.slug %}">
-            <img src="{% static 'images/default_tutorial.png' %}" alt="{{ post.title }}"
+            <img src="{% static 'images/default_post6.png' %}" alt="{{ post.title }}"
                  class="img-fluid w-100 rounded-top"
                  style="height: 280px; object-fit: cover;">
           </a>

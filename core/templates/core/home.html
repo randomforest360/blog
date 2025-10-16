@@ -2,9 +2,10 @@
 {% comment %} {% extends "base_fullwidth.html" %} {% endcomment %}
 {% load static %}
 
-{% block content %}
+
+{% block fullwidth_content %}
 <!-- Hero Banner with Image -->
-<section class="hero-banner position-relative" style="height: 500px; overflow: hidden;">
+<section class="hero-banner position-relative  mb-2 my-md-0" style="height: 500px; overflow: hidden;">
     <!-- Background Image -->
     <img src="{% static 'images/banner12.png' %}" 
          alt="Contact Banner" 
@@ -31,6 +32,10 @@
         </div>
     </div>
 </section>
+{% endblock %}
+
+
+{% block content %}
 <!-- About website with Image -->
  <section id="about-site" class="py-2 py-md-5">
     <div class="container  p-0">
@@ -128,7 +133,7 @@
 <!-- Featured Section -->
 <!-- Featured Section -->
 
-  <section class="mb-5">
+  <section  class="py-5 mt-4">
     <h2 class="mb-3 fw-bold" style="color: #73BDAB;">Featured Project</h2>
 
     {% if featured_project %}
@@ -228,8 +233,8 @@
 
 
 
-<section id="features" class="py-5 mt-4">
-    
+<section id="features"  class="py-2 py-md-5">
+     <div class="container  p-0">
         <div class="text-center mb-5">
             <h2 class="fw-bold" style="color: #73BDAB;">Resources for Growth</h2>
             <p class="lead">Explore curated paths, key concepts, and trusted resources to support your journey from curious to confident.</p>
@@ -267,7 +272,7 @@
                 </div>
             </div>
         </div>
-   
+   </div>
 </section>
 
 
@@ -418,6 +423,7 @@
 
 
   <section class="mb-5  mt-4">
+    <div class="container  p-0">
     <h2 class="mb-3 fw-bold" style="color: #73BDAB;">Recent Blog Posts</h2>
     <div class="row g-4">
       {% for post in latest_posts %}
@@ -458,6 +464,7 @@
             <p>No tutorials available.</p>
         {% endfor %}
     </div>
+     </div>
   </section>
   <div class="text-center mt-4">
     <a href="{% url 'post_index' %}" class="text-decoration-none" style="color: #73BDAB;">

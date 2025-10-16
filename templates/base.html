@@ -52,8 +52,29 @@
 <!-- Navbar -->
 {% include "includes/navbar.html" %}
 
+<!-- Layout Wrappers -->
+<main>
+  <!-- Full-width section (no padding, for hero or banners) -->
+  <div class="layout-full">
+    {% block fullwidth_content %}{% endblock %}
+  </div>
+
+  <!-- Regular container (for most pages) -->
+  <div class="layout-contained container my-3">
+    {% if messages %}
+      <div class="mb-3">
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+  </div>
+</main>
+
 <!-- Container -->
-<main class="container my-3">
+{% comment %} <main class="container my-3">
   {% if messages %}
     <div class="mb-3">
       {% for message in messages %}
@@ -63,7 +84,7 @@
   {% endif %}
 
   {% block content %}{% endblock %}
-</main>
+</main> {% endcomment %}
 
 <!-- Footer -->
 {% include "includes/footer.html" %}

@@ -194,7 +194,7 @@ body {
     display: flex;
     flex-direction: column;
 }
-.container {
+.main-container {
     flex: 1;
 }
 
@@ -289,6 +289,17 @@ body {
     background-color: #CC6B49;
     color: #fff;
 }
+
+.social-icon {
+  color: #CC6B49;
+  font-size: 2.4rem;
+  vertical-align: middle;
+  /* transition: transform 0.2s ease; */
+}
+
+/* .social-icon:hover {
+  transform: scale(3.2);
+} */
 
 /* 
 .hero-banner {
@@ -394,3 +405,153 @@ body {
 .icon-brown {
     color: #6F5643;
 }
+
+
+/* Terminal Hero Base */
+/* .terminal-hero {
+  height: 100vh;
+  background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+
+.terminal-window {
+  background: #111;
+  border: 2px solid #333;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 700px;
+  text-align: left;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.15);
+}
+
+
+.terminal-header {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot.red { background: #ff5f56; }
+.dot.yellow { background: #ffbd2e; }
+.dot.green { background: #27c93f; }
+
+
+#terminal-text {
+  color: #00ff99;
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+.cursor {
+  display: inline-block;
+  width: 10px;
+  animation: blink 1s infinite;
+  color: #00ff99;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+} */
+
+
+
+
+/* 
+.terminal-hero {
+  height: 100vh;
+  background-color: #000;
+  color: #00ff66;
+  font-family: "IBM Plex Mono", monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.terminal-window {
+  background-color: #000;
+  border: 2px solid #00ff66;
+  border-radius: 6px;
+  width: 90%;
+  max-width: 800px;
+  padding: 20px;
+  box-shadow: 0 0 20px rgba(0, 255, 100, 0.3);
+} */
+
+.terminal-bar {
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+/* .cursor {
+  display: inline-block;
+  animation: blink 1s step-start infinite;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+@media (max-width: 768px) {
+  #terminal {
+    font-size: 0.85rem;
+    padding: 2rem 1rem;
+  }
+} */
+
+
+.cursor {
+  display: inline-block;
+  animation: blink 1s step-start infinite;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* subtle flicker for output */
+.flicker {
+  animation: flicker 0.15s infinite;
+}
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.85; }
+}
+
+@media (max-width: 768px) {
+  #terminal {
+    font-size: 0.85rem;
+    padding: 2rem 1rem;
+  }
+}
+
+/* #terminal-root .user {
+  color: #00ff99; 
+  font-weight: bold;
+}
+
+#terminal-root .path {
+  color: #33ffcc; 
+} */
+
+/* .cursor {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .terminal-window {
+    width: 95%;
+    font-size: 0.85rem;
+  }
+}  */

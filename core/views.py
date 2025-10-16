@@ -15,24 +15,47 @@ from .models import Subscriber
 
 # class HomeView(TemplateView):
 #     template_name = "core/home.html"
-
 class HomeView(TemplateView):
     template_name = "core/home.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        # Latest 4 blog posts
-        context["latest_posts"] = Entry.objects.filter(
-            type="post", status="published"
-        ).order_by("-created_at")[:6]
+        # Latest 6 blog posts
+        context["latest_posts"] = (
+            Entry.objects.filter(type="post", status="published")
+            .order_by("-created_at")[:6]
+        )
 
-        # Only 1 latest featured project
-        context["featured_project"] = Entry.objects.filter(
-            type="project", status="published", is_featured=True
-        ).order_by("-created_at").first()
+        # Up to 3 featured projects
+        context["featured_projects"] = (
+            Entry.objects.filter(
+                type="project",
+                status="published",
+                is_featured=True
+            )
+            .order_by("-created_at")[:3]
+        )
 
         return context
+
+# class HomeView(TemplateView):
+#     template_name = "core/home.html"
+
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+
+#         # Latest 4 blog posts
+#         context["latest_posts"] = Entry.objects.filter(
+#             type="post", status="published"
+#         ).order_by("-created_at")[:6]
+
+#         # Only 1 latest featured project
+#         context["featured_project"] = Entry.objects.filter(
+#             type="project", status="published", is_featured=True
+#         ).order_by("-created_at").first()
+
+#         return context
 
 class AboutView(TemplateView):
     template_name = "core/about.html"

@@ -194,7 +194,7 @@ body {
     display: flex;
     flex-direction: column;
 }
-.container {
+.main-container {
     flex: 1;
 }
 
@@ -288,6 +288,17 @@ body {
 .active-tag {
     background-color: #CC6B49;
     color: #fff;
+}
+
+.social-icon {
+  color: #CC6B49;
+  font-size: 2rem;
+  vertical-align: middle;
+  transition: transform 0.2s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.2);
 }
 
 /* 

@@ -50,18 +50,16 @@
         Reach out and let’s see where it leads—sometimes the simplest ideas turn into the most interesting projects.
       </p>
 
-      {% if social_links %}
-      <ul class="list-unstyled mt-4">
-        {% for link in social_links %}
-          <li class="mb-2">
-            <i class="{{ link.icon_class }}" style="color: #CC6B49;"></i>
-            <a href="{{ link.url }}" class="ms-2 fw-semibold" style="color: #CC6B49;">
-              {{ link.get_platform_display }}
-            </a>
-          </li>
-        {% endfor %}
-      </ul>
-      {% endif %}
+{% if social_links %}
+   <div class="d-flex justify-content-center  gap-4 mt-4">
+    {% for link in social_links %}
+      <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer" class="text-decoration-none">
+        <i class="{{ link.icon_class }} social-icon"></i>
+      </a>
+    {% endfor %}
+  </div>
+{% endif %}
+
 
     </div>
 

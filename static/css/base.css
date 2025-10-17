@@ -489,7 +489,29 @@ body {
   font-weight: 500;
   font-size: 1.1rem;
 }
-
+  #terminal-output {
+    font-family: "IBM Plex Mono", monospace;
+    /* color: #00ff99; */
+    white-space: pre-wrap;
+    line-height: 1.2;
+  }
+  .term-line {
+    display: block;
+  }
+  .prefix {
+    /* color: #66ffb3; */
+    margin-right: 4px;
+  }
+  .cursor {
+    display: inline-block;
+    width: .6ch;
+    /* color: #00ff99; */
+    font-weight: bold;
+    animation: blink 1s step-start infinite;
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
 /* .cursor {
   display: inline-block;
   animation: blink 1s step-start infinite;

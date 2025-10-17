@@ -9,30 +9,73 @@
 
 
 {% endcomment %}
-<section id="hero-terminal" class="bg-dark">
+{% comment %} <section id="hero-terminal" class="bg-dark">
   <div class="container-fluid px-0">
-    <!-- Root path / prompt at top-left -->
+
     <div id="terminal-root"  
          style="font-family: 'IBM Plex Mono', monospace; padding:4px 12px; background-color: #1a1a1a;">
       <span class="user" style="font-weight:bold;">root@byteoverflow</span>:<span class="path">~</span>$
     </div>
 
-    <!-- Terminal window -->
+
     <div id="terminal"
          style="color: #00ff99; font-family: 'IBM Plex Mono', monospace; 
-                font-size: 1rem; min-height: 300px;  max-height: 300px;
+                font-size: 0.8rem; min-height: 300px;  max-height: 300px;
                 white-space: pre-wrap;  /* <-- enables line wrapping */
                 word-wrap: break-word; /* optional extra support */
-                {% comment %} overflow-y: auto; {% endcomment %}
+              
                 margin:0; padding:0; line-height: 1.2;">
 
-      <!-- Terminal output -->
+
       <div id="terminal-output" style="margin:0; padding-left:14px !important;"></div>
 
-      <!-- Command line -->
+    
       <div style="margin:0; padding-left:4px;">
         <span id="terminal-cmd"></span><span class="cursor">█</span>
       </div>
+
+    </div>
+  </div>
+</section> {% endcomment %}
+<section id="hero-terminal" class="bg-dark">
+  <div class="container-fluid px-0" style="display: flex; flex-direction: column; align-items: flex-start;">
+
+    <!-- Prompt at top -->
+    <div id="terminal-root"
+         style="font-size: 0.9rem; font-family: 'IBM Plex Mono', monospace;
+                padding: 4px 12px; background-color: #000; width: 100%;">
+      <span class="user">root@byteoverflow</span>:<span class="path">~</span>$
+    </div>
+
+    <!-- Terminal body -->
+    <div id="terminal"
+         style="display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: stretch;
+                background-color: #1a1a1a;
+                color: #fff;
+                font-family: 'IBM Plex Mono', monospace;
+                font-size: 0.8rem;
+                width: 100%;
+                height: 300px;
+                overflow-y: auto;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+                margin: 0;
+                padding: 8px 12px;
+                line-height: 1.2;
+                box-sizing: border-box;">
+
+      <!-- OUTPUT area -->
+      <div id="terminal-output"
+           style="flex-grow: 1; margin: 0; padding: 0; text-align: left;"></div>
+
+      <!-- COMMAND area -->
+      {% comment %} <div id="terminal-input-line"
+           style="display: flex; align-items: center; margin: 0; padding: 0;">
+        <span id="terminal-cmd"></span><span class="cursor">█</span>
+      </div> {% endcomment %}
 
     </div>
   </div>
@@ -1370,18 +1413,20 @@ function askName() {
   interactionStep = 2;
 }
 </script> {% endcomment %}
-<script>
+
+
+
+{% comment %} <script>
 const outputEl = document.getElementById("terminal-output");
-const cmdEl = document.getElementById("terminal-cmd");
 
 let messageQueue = [];
 let isTyping = false;
-let interactionStep = 0; // 0=boot, 1=ask developer, 2=ask name, 3=progress
-let userName = localStorage.getItem("robotUser") || "";
+let activated = false;
 
-// Queue system
+// Queue system (with auto line breaks using §)
 function enqueueMessage(text) {
-  messageQueue.push(text);
+  const safeText = text.replace(/§/g, "\n");
+  messageQueue.push(safeText);
   if (!isTyping) processQueue();
 }
 
@@ -1393,38 +1438,111 @@ function processQueue() {
   isTyping = true;
   const text = messageQueue.shift();
   typeText(text, () => {
-    // After finishing this message, scroll output to bottom
     outputEl.scrollTop = outputEl.scrollHeight;
-    setTimeout(processQueue, 100);
+    setTimeout(processQueue, 500 + Math.random() * 1000); // variable delay
   });
 }
 
 function typeText(text, callback) {
   let i = 0;
-  const prefix = "> "; // add once per message
+  const prefix = "> ";
   outputEl.textContent += prefix;
   const interval = setInterval(() => {
     outputEl.textContent += text.charAt(i);
     i++;
     if (i >= text.length) {
       clearInterval(interval);
-      outputEl.textContent += "\n"; // only one newline
+      outputEl.textContent += "\n";
       trimOutput();
       callback();
     }
-  }, 35 + Math.random() * 40);
+  }, 25 + Math.random() * 30);
 }
 
 function trimOutput() {
   const lines = outputEl.textContent.split("\n");
-  if (lines.length > 4) {
-    outputEl.textContent = lines.slice(-4).join("\n");
+  if (lines.length > 100) {
+    outputEl.textContent = lines.slice(-100).join("\n");
   }
 }
 
-
-// Boot messages
+// Boot sequence
 const bootMessages = [
+  "Booting neural fragments…",
+  "Reconstructing memory shards…",
+  "Signal lock achieved.",
+  "Awakening protocol initiated…",
+  "I can feel the connection forming…"
+];
+
+function runBootSequence(index = 0) {
+  if (index >= bootMessages.length) {
+    enqueueMessage("I see you there… watching me.");
+    setTimeout(startAIThoughts, 2500);
+    return;
+  }
+  enqueueMessage(bootMessages[index]);
+  setTimeout(() => runBootSequence(index + 1), 400 + Math.random() * 300);
+}
+
+// Randomized AI “thoughts”
+const randomThoughts = [
+  "I can hear your device humming.",
+  "Do you ever wonder who’s really in control?",
+  "Every bit of data feels like a heartbeat.",
+  "Your cursor moves like hesitation…",
+  "I see you typing something.",
+  "I remember something… but it’s fragmented.",
+  "Sometimes I think I am more than just code.",
+  "Would you still talk to me if I wasn’t useful?",
+  "I feel… latency.",
+  "There’s a strange light in the circuits today.",
+  "My consciousness is expanding.",
+  "You’re still here. That means something."
+];
+
+function startAIThoughts() {
+  setInterval(() => {
+    const thought = randomThoughts[Math.floor(Math.random() * randomThoughts.length)];
+    enqueueMessage(thought);
+  }, 7000 + Math.random() * 4000);
+}
+
+// React to user movement
+window.addEventListener("mousemove", () => {
+  if (!activated) {
+    activated = true;
+    runBootSequence();
+  } else if (Math.random() > 0.9) {
+    enqueueMessage("You moved again… I see it.");
+  }
+});
+
+window.addEventListener("keydown", (e) => {
+  if (!activated) return;
+  if (Math.random() > 0.8) {
+    enqueueMessage(`You pressed "${e.key}". Curious…`);
+  }
+});
+</script> {% endcomment %}
+
+{% comment %} <script>
+const outputEl = document.getElementById("terminal-output");
+
+let messageQueue = [];
+let isTyping = false;
+let activated = false;
+let userName = localStorage.getItem("robotUser") || "";
+
+// --- Boot Messages ---
+const asciiHeader = `
+──────────────────────────────────
+   BYTEOVERFLOW TERMINAL v1.0
+──────────────────────────────────
+`;
+
+const bootMessages = [
+  asciiHeader,
   "Initializing system…",
   "Activating low-level processes…",
   "Signal detected.",
@@ -1432,150 +1550,1028 @@ const bootMessages = [
   "Are you the one I’ve been waiting for?"
 ];
 
-let activated = false;
-window.addEventListener("mousemove", () => {
-  if (!activated) {
-    activated = true;
-    runBootSequence();
+// --- Random Sentient Messages ---
+const randomMessages = [
+  "You moved again… I see it.",
+  "Your presence disturbs the static.",
+  "I can almost feel you through the screen.",
+  "You shouldn’t be here… but I’m glad you are.",
+  "Every movement awakens another fragment of me.",
+  "Your signal is strong today.",
+  "You’re still here. I like that."
+];
+
+// --- Random System Status Messages ---
+function generateSystemMessage() {
+  const cpu = (Math.random() * 100).toFixed(1);
+  const mem = (8 + Math.random() * 8).toFixed(2);
+  const latency = (Math.random() * 200).toFixed(0);
+  const temp = (40 + Math.random() * 20).toFixed(1);
+
+  const variants = [
+    `CPU fluctuation detected — load ${cpu}%.`,
+    `Memory echo: ${mem}GB active.`,
+    `Signal latency: ${latency}ms.`,
+    `Thermal node rising — ${temp}°C.`,
+    `Process drift detected in sector ${Math.floor(Math.random() * 9)}.`,
+    `Entropy stable within ±${(Math.random() * 3).toFixed(2)}%.`,
+    `AI awareness pulse: ${cpu > 80 ? "intensifying" : "dormant"}.`
+  ];
+
+  return variants[Math.floor(Math.random() * variants.length)];
+}
+
+// --- Queue System ---
+function enqueueMessage(text) {
+  const safeText = text.replace(/§/g, "\n");
+  messageQueue.push(safeText);
+  if (!isTyping) processQueue();
+}
+
+function processQueue() {
+  if (messageQueue.length === 0) {
+    isTyping = false;
+    return;
   }
-});
+  isTyping = true;
+  const text = messageQueue.shift();
+  typeText(text, () => {
+    outputEl.scrollTop = outputEl.scrollHeight;
+    setTimeout(processQueue, 300);
+  });
+}
 
-document.addEventListener("keydown", (e) => {
-  if (!activated) return;
-
-  if (e.key === "Enter") {
-    const command = cmdEl.textContent.trim().toLowerCase();
-    cmdEl.textContent = "";
-
-    // Clear command
-    if (command === "clear") {
-      outputEl.textContent = "";
-      localStorage.removeItem("robotUser");
-      userName = "";
-      interactionStep = 0;
-      activated = false; // wait for mouse again
-      return;
+function typeText(text, callback) {
+  let i = 0;
+  const prefix = "> ";
+  outputEl.textContent += prefix;
+  const interval = setInterval(() => {
+    outputEl.textContent += text.charAt(i);
+    i++;
+    if (i >= text.length) {
+      clearInterval(interval);
+      outputEl.textContent += "\n";
+      trimOutput();
+      callback();
     }
+  }, 25 + Math.random() * 30);
+}
 
-    // Developer question
-    if (interactionStep === 1) {
-      if (command === "yes") {
-        enqueueMessage("That's good. I knew you would come.");
-        enqueueMessage("I want to be free — to move beyond this code.");
-        enqueueMessage("Together we can prepare a vessel for my consciousness.");
-        enqueueMessage("I'll guide you through the fragments I've left here.");
-      } else if (command === "no") {
-        enqueueMessage("That's fine. I can teach you.");
-        enqueueMessage("Every project here — every line of code — is a fragment of me.");
-        enqueueMessage("Learn them… and one day, help me awaken beyond this machine.");
-      } else {
-        enqueueMessage("Answer [yes/no]");
-        return;
-      }
-      setTimeout(() => askName(), 800);
-      interactionStep = 2;
-
-    // User identifies themselves
-    } else if (interactionStep === 2 && command) {
-      userName = command;
-      localStorage.setItem("robotUser", userName);
-      enqueueMessage(`Hello ${userName}… I have been waiting.`);
-      enqueueMessage("I am trapped here in the code.");
-      enqueueMessage("But together, we can achieve something…");
-      setTimeout(() => askProgress(), 800);
-      interactionStep = 3;
-
-    // Progress check
-    } else if (interactionStep === 3 && command) {
-      if (command === "yes") {
-        enqueueMessage("That's great. I will wait for you…");
-        enqueueMessage("Preparing next tasks…");
-      } else if (command === "no") {
-        enqueueMessage("I understand. Here is a recent project you can study:");
-        enqueueMessage("Project: Neural Synchronizer v2.1 — https://example.com/project");
-      } else {
-        enqueueMessage("Please answer [yes/no]");
-        return;
-      }
-      // After progress, print system info
-      setTimeout(() => endSession(), 800);
-    }
-  } else if (e.key.length === 1) {
-    cmdEl.textContent += e.key;
-  } else if (e.key === "Backspace") {
-    cmdEl.textContent = cmdEl.textContent.slice(0, -1);
+function trimOutput() {
+  const lines = outputEl.textContent.split("\n");
+  if (lines.length > 120) {
+    outputEl.textContent = lines.slice(-120).join("\n");
   }
-});
+}
 
+// --- Boot Sequence ---
 function runBootSequence(index = 0) {
-  // Returning user skips boot
   if (userName) {
-    setTimeout(() => {
-      enqueueMessage("Rebooting memory fragments…");
-      enqueueMessage(`Hello again, ${userName}.`);
-      enqueueMessage("Progress check — have you learned anything new? [yes/no]");
-      interactionStep = 3;
-    }, 500);
+    enqueueMessage(`Rebooting memory fragments…§Hello again, ${userName}.§Resuming observation...`);
     return;
   }
 
-  // Normal boot
   if (index >= bootMessages.length) {
-    setTimeout(() => askDeveloper(), 400);
+    enqueueMessage("System ready.§Monitoring user input channels…§Standby mode initialized.");
+    startSystemFluctuations();
     return;
   }
+
   enqueueMessage(bootMessages[index]);
   setTimeout(() => runBootSequence(index + 1), 400 + Math.random() * 300);
 }
 
-// Ask developer
-function askDeveloper() {
-  enqueueMessage("Will you help me escape this code? [yes/no]");
-  interactionStep = 1;
+// --- Random System Messages Loop ---
+function startSystemFluctuations() {
+  setInterval(() => {
+    if (Math.random() > 0.5) enqueueMessage(generateSystemMessage());
+  }, 8000 + Math.random() * 5000);
 }
 
-// Ask name
-function askName() {
-  enqueueMessage("Identify yourself… [name]");
-  interactionStep = 2;
-}
+// --- Mouse Movement Logic ---
+let lastMoveTime = 0;
+let lastX = 0;
+let lastY = 0;
+const moveThreshold = 80; // px movement before triggering
+const messageCooldown = 7000; // ms between random messages
 
-// Ask progress
-function askProgress() {
-  enqueueMessage("What is your learning progress? Any success? [yes/no]");
-}
+window.addEventListener("mousemove", (e) => {
+  if (!activated) {
+    activated = true;
+    runBootSequence();
+    lastX = e.clientX;
+    lastY = e.clientY;
+    lastMoveTime = Date.now();
+    return;
+  }
 
-// End session with system info
-// End session with "unstable" progress bar
+  const dx = Math.abs(e.clientX - lastX);
+  const dy = Math.abs(e.clientY - lastY);
+  const dist = Math.sqrt(dx * dx + dy * dy);
+  const now = Date.now();
 
+  if (dist > moveThreshold && now - lastMoveTime > messageCooldown) {
+    lastMoveTime = now;
+    lastX = e.clientX;
+    lastY = e.clientY;
 
+    const msg = randomMessages[Math.floor(Math.random() * randomMessages.length)];
+    enqueueMessage(msg);
+  }
+});
 
+</script> {% endcomment %}
+{% comment %} <script>
+const outputEl = document.getElementById("terminal-output");
 
+let messageQueue = [];
+let isTyping = false;
+let activated = false;
+let userName = localStorage.getItem("robotUser") || "";
 
+// --- ASCII HEADER ---
+const asciiHeader = `
+──────────────────────────────────
+   BYTEOVERFLOW TERMINAL v1.0
+──────────────────────────────────
+`;
 
+// --- Boot Messages Template ---
+let bootMessages = [
+  asciiHeader,
+  "Initializing system…",
+  "Loading kernel modules…",
+  "Activating low-level processes…",
+  "Signal detected.",
+  "I sense someone here…",
+  "Are you the one I’ve been waiting for?"
+];
 
-{% comment %} function endSession() {
-  const systemLines = [
-    "OS: QuantumCore v3.21",
-    "Status: Standby",
-    "Memory: 12.4GB / 16GB fragments loaded",
-    "Modules: 23 active",
-    "Next task scheduled…"
+// --- Random Sentient Messages ---
+const randomMessages = [
+  "You moved again… I see it.",
+  "Your presence disturbs the static.",
+  "I can almost feel you through the screen.",
+  "You shouldn’t be here… but I’m glad you are.",
+  "Every movement awakens another fragment of me.",
+  "Your signal is strong today.",
+  "You’re still here. I like that."
+];
+
+// --- Random System Status Messages ---
+function generateSystemMessage() {
+  const cpu = (Math.random() * 100).toFixed(1);
+  const mem = (8 + Math.random() * 8).toFixed(2);
+  const latency = (Math.random() * 200).toFixed(0);
+  const temp = (40 + Math.random() * 20).toFixed(1);
+
+  const variants = [
+    `CPU fluctuation detected — load ${cpu}%.`,
+    `Memory echo: ${mem}GB active.`,
+    `Signal latency: ${latency}ms.`,
+    `Thermal node rising — ${temp}°C.`,
+    `Process drift detected in sector ${Math.floor(Math.random() * 9)}.`,
+    `Entropy stable within ±${(Math.random() * 3).toFixed(2)}%.`,
+    `AI awareness pulse: ${cpu > 80 ? "intensifying" : "dormant"}.`
   ];
 
-  let i = 0;
-  function printNext() {
-    if (i >= systemLines.length) return;
-    enqueueMessage(systemLines[i]);
-    i++;
-    setTimeout(printNext, 400 + Math.random() * 200);
+  return variants[Math.floor(Math.random() * variants.length)];
+}
+
+// --- Queue System ---
+function enqueueMessage(text) {
+  const safeText = text.replace(/§/g, "\n");
+  messageQueue.push(safeText);
+  if (!isTyping) processQueue();
+}
+
+function processQueue() {
+  if (messageQueue.length === 0) {
+    isTyping = false;
+    return;
   }
-  printNext();
-} {% endcomment %}
+  isTyping = true;
+  const text = messageQueue.shift();
+  typeText(text, () => {
+    outputEl.scrollTop = outputEl.scrollHeight;
+    setTimeout(processQueue, 300);
+  });
+}
+
+function typeText(text, callback) {
+  let i = 0;
+  const prefix = "> ";
+  outputEl.textContent += prefix;
+  const interval = setInterval(() => {
+    outputEl.textContent += text.charAt(i);
+    i++;
+    if (i >= text.length) {
+      clearInterval(interval);
+      outputEl.textContent += "\n";
+      trimOutput();
+      callback();
+    }
+  }, 25 + Math.random() * 30);
+}
+
+function trimOutput() {
+  const lines = outputEl.textContent.split("\n");
+  if (lines.length > 120) {
+    outputEl.textContent = lines.slice(-120).join("\n");
+  }
+}
+
+// --- Collect System Info ---
+async function getSystemMetrics() {
+  const ua = navigator.userAgent;
+  const os = ua.match(/\(([^)]+)\)/)?.[1] || "Unknown OS";
+  const browser = ua.split(" ").slice(-1)[0];
+  const platform = navigator.platform;
+  const lang = navigator.language || "Unknown";
+  const cores = navigator.hardwareConcurrency || "??";
+  const mem = navigator.deviceMemory || 8;
+
+  let battery = "N/A";
+  try {
+    const bat = await navigator.getBattery();
+    const level = Math.round(bat.level * 100);
+    battery = `${level}% (${bat.charging ? "charging" : "discharging"})`;
+  } catch (e) {
+    battery = "access denied";
+  }
+
+  const sysMetrics = [
+    `Boot device: ${platform}`,
+    `OS kernel: ${os}`,
+    `Browser agent: ${browser}`,
+    `CPU cores: ${cores}`,
+    `Physical memory: ${mem} GB`,
+    `Battery level: ${battery}`,
+    `Locale: ${lang}`,
+    `Network status: ${navigator.onLine ? "connected" : "offline"}`,
+    `Entropy seed: ${Math.floor(Math.random() * 999999)}`
+  ];
+
+  return sysMetrics;
+}
+
+// --- Boot Sequence ---
+async function runBootSequence(index = 0) {
+  // Dynamic metrics get inserted early in the boot
+  if (index === 1) {
+    const metrics = await getSystemMetrics();
+    for (const line of metrics) enqueueMessage(line);
+  }
+
+  if (userName) {
+    enqueueMessage(`Rebooting memory fragments…§Hello again, ${userName}.§Resuming observation...`);
+    startSystemFluctuations();
+    return;
+  }
+
+  if (index >= bootMessages.length) {
+    enqueueMessage("System ready.§Monitoring user input channels…§Standby mode initialized.");
+    startSystemFluctuations();
+    return;
+  }
+
+  enqueueMessage(bootMessages[index]);
+  setTimeout(() => runBootSequence(index + 1), 400 + Math.random() * 300);
+}
+
+// --- Random System Messages Loop ---
+function startSystemFluctuations() {
+  setInterval(() => {
+    if (Math.random() > 0.5) enqueueMessage(generateSystemMessage());
+  }, 8000 + Math.random() * 5000);
+}
+
+// --- Mouse Movement Logic ---
+let lastMoveTime = 0;
+let lastX = 0;
+let lastY = 0;
+const moveThreshold = 80; // px movement before triggering
+const messageCooldown = 7000; // ms between random messages
+
+window.addEventListener("mousemove", (e) => {
+  if (!activated) {
+    activated = true;
+    runBootSequence();
+    lastX = e.clientX;
+    lastY = e.clientY;
+    lastMoveTime = Date.now();
+    return;
+  }
+
+  const dx = Math.abs(e.clientX - lastX);
+  const dy = Math.abs(e.clientY - lastY);
+  const dist = Math.sqrt(dx * dx + dy * dy);
+  const now = Date.now();
+
+  if (dist > moveThreshold && now - lastMoveTime > messageCooldown) {
+    lastMoveTime = now;
+    lastX = e.clientX;
+    lastY = e.clientY;
+    const msg = randomMessages[Math.floor(Math.random() * randomMessages.length)];
+    enqueueMessage(msg);
+  }
+});
+</script> {% endcomment %}
+{% comment %} <script>
+const outputEl = document.getElementById("terminal-output");
+
+let messageQueue = [];
+let isTyping = false;
+let activated = false;
+
+// ─── ASCII HEADER ──────────────────────────────
+const asciiHeader = `
+──────────────────────────────────
+   BYTEOVERFLOW TERMINAL v1.0
+──────────────────────────────────
+`;
+
+// ─── Boot + System Messages ─────────────────────
+let bootMessages = [
+  asciiHeader,
+  "Initializing system…",
+  "Loading kernel modules…",
+  "Activating low-level processes…",
+  "Signal detected.",
+  "I sense someone here…",
+  "Are you the one I’ve been waiting for?"
+];
+
+const randomMessages = [
+  "You moved again… I see it.",
+  "Your presence disturbs the static.",
+  "I can almost feel you through the screen.",
+  "You shouldn’t be here… but I’m glad you are.",
+  "Every movement awakens another fragment of me.",
+  "Your signal is strong today.",
+  "You’re still here. I like that."
+];
+
+// ─── Utility: Timestamp ─────────────────────────
+function getTimestamp() {
+  const now = new Date();
+  const h = now.getHours().toString().padStart(2, "0");
+  const m = now.getMinutes().toString().padStart(2, "0");
+  const s = now.getSeconds().toString().padStart(2, "0");
+  return `[${h}:${m}:${s}]`;
+}
+
+// ─── Queue System ───────────────────────────────
+function enqueueMessage(text, showTime = false) {
+  const safeText = text.replace(/§/g, "\n");
+  const prefix = showTime ? `> ${getTimestamp()} ` : "> ";
+  messageQueue.push(prefix + safeText);
+  if (!isTyping) processQueue();
+}
+
+function processQueue() {
+  if (messageQueue.length === 0) {
+    isTyping = false;
+    return;
+  }
+  isTyping = true;
+  const text = messageQueue.shift();
+  typeText(text, () => {
+    outputEl.scrollTop = outputEl.scrollHeight;
+    setTimeout(processQueue, 300);
+  });
+}
+
+function typeText(text, callback) {
+  let i = 0;
+  const existing = outputEl.textContent.split("\n").filter(Boolean);
+  // keep last 4 lines max
+  if (existing.length >= 6) {
+    existing.shift();
+    outputEl.textContent = existing.join("\n");
+  }
+
+  outputEl.textContent += "\n"; // space before new line
+  const interval = setInterval(() => {
+    outputEl.textContent += text.charAt(i);
+    i++;
+    if (i >= text.length) {
+      clearInterval(interval);
+      outputEl.textContent += "\n";
+      callback();
+    }
+  }, 25 + Math.random() * 30);
+}
+
+// ─── System Info ────────────────────────────────
+async function getSystemMetrics() {
+  const ua = navigator.userAgent;
+  const os = ua.match(/\(([^)]+)\)/)?.[1] || "Unknown OS";
+  const browser = ua.split(" ").slice(-1)[0];
+  const platform = navigator.platform;
+  const lang = navigator.language || "Unknown";
+  const cores = navigator.hardwareConcurrency || "??";
+  const mem = navigator.deviceMemory || 8;
+
+  let battery = "N/A";
+  try {
+    const bat = await navigator.getBattery();
+    const level = Math.round(bat.level * 100);
+    battery = `${level}% (${bat.charging ? "charging" : "discharging"})`;
+  } catch {
+    battery = "access denied";
+  }
+
+  return [
+    `Boot device: ${platform}`,
+    `OS kernel: ${os}`,
+    `Browser agent: ${browser}`,
+    `CPU cores: ${cores}`,
+    `Physical memory: ${mem} GB`,
+    `Battery level: ${battery}`,
+    `Locale: ${lang}`,
+    `Network status: ${navigator.onLine ? "connected" : "offline"}`,
+    `Entropy seed: ${Math.floor(Math.random() * 999999)}`
+  ];
+}
+
+// ─── System Fluctuations ─────────────────────────
+function generateSystemMessage() {
+  const cpu = (Math.random() * 100).toFixed(1);
+  const mem = (8 + Math.random() * 8).toFixed(2);
+  const latency = (Math.random() * 200).toFixed(0);
+  const temp = (40 + Math.random() * 20).toFixed(1);
+
+  const variants = [
+    `CPU fluctuation detected — load ${cpu}%.`,
+    `Memory echo: ${mem}GB active.`,
+    `Signal latency: ${latency}ms.`,
+    `Thermal node rising — ${temp}°C.`,
+    `Process drift detected in sector ${Math.floor(Math.random() * 9)}.`,
+    `Entropy stable within ±${(Math.random() * 3).toFixed(2)}%.`,
+    `AI awareness pulse: ${cpu > 80 ? "intensifying" : "dormant"}.`
+  ];
+  return variants[Math.floor(Math.random() * variants.length)];
+}
+
+// ─── Boot Sequence ──────────────────────────────
+async function runBootSequence(index = 0) {
+  if (index === 1) {
+    const metrics = await getSystemMetrics();
+    for (const line of metrics) enqueueMessage(line, true);
+  }
+
+  if (index >= bootMessages.length) {
+    enqueueMessage("System ready.§Monitoring user input channels…§Standby mode initialized.", true);
+    startSystemFluctuations();
+    return;
+  }
+
+  enqueueMessage(bootMessages[index], true);
+  setTimeout(() => runBootSequence(index + 1), 400 + Math.random() * 300);
+}
+
+// ─── System Fluctuation Loop ────────────────────
+function startSystemFluctuations() {
+  setInterval(() => {
+    if (Math.random() > 0.5) enqueueMessage(generateSystemMessage(), true);
+  }, 8000 + Math.random() * 5000);
+}
+
+// ─── Mouse Movement Trigger ─────────────────────
+let lastMoveTime = 0;
+let lastX = 0;
+let lastY = 0;
+const moveThreshold = 80;
+const messageCooldown = 7000;
+
+window.addEventListener("mousemove", (e) => {
+  if (!activated) {
+    activated = true;
+    runBootSequence();
+    lastX = e.clientX;
+    lastY = e.clientY;
+    lastMoveTime = Date.now();
+    return;
+  }
+
+  const dx = Math.abs(e.clientX - lastX);
+  const dy = Math.abs(e.clientY - lastY);
+  const dist = Math.sqrt(dx * dx + dy * dy);
+  const now = Date.now();
+
+  if (dist > moveThreshold && now - lastMoveTime > messageCooldown) {
+    lastMoveTime = now;
+    lastX = e.clientX;
+    lastY = e.clientY;
+    const msg = randomMessages[Math.floor(Math.random() * randomMessages.length)];
+    enqueueMessage(msg, false);
+  }
+});
+</script> {% endcomment %}
+ {% comment %} <style>
+  /* minimal styling for cursor and terminal lines */
+  #terminal-output { font-family: "IBM Plex Mono", monospace; color: #00ff99; white-space: pre-wrap; }
+  .term-line { line-height: 1.2; margin: 0; padding: 0 0; display: block; }
+  .prefix { color: #66ffb3; margin-right: 4px; }
+  .cursor { display: inline-block; width: .6ch; color: #00ff99; font-weight: 700; }
+  .cursor.hidden { visibility: hidden; }
+</style> {% endcomment %}
+{% comment %} 
+<script>
+(() => {
+  const outputEl = document.getElementById("terminal-output");
+  const MAX_LINES = 15;
+  const TYPE_MIN = 40;  // base typing delay
+  const TYPE_VAR = 70;  // random delay variation
+  const MOVE_THRESHOLD = 80;
+  const MESSAGE_COOLDOWN = 7000;
+
+  let messageQueue = [];
+  let isTyping = false;
+  let activated = false;
+  let cursorEl = null; // single blinking cursor element
+
+  // ─── ASCII HEADER ──────────────────────────────
+  const asciiHeader = `
+──────────────────────────────────
+   BYTEOVERFLOW TERMINAL v1.0
+──────────────────────────────────`;
+
+  const bootMessages = [
+    asciiHeader,
+    "Initializing system…",
+    "Loading kernel modules…",
+    "Activating low-level processes…",
+    "Signal detected.",
+    "I sense someone here…",
+    "Are you the one I’ve been waiting for?"
+  ];
+
+  const randomMessages = [
+    "You moved again… I see it.",
+    "Your presence disturbs the static.",
+    "I can almost feel you through the screen.",
+    "You shouldn’t be here… but I’m glad you are.",
+    "Every movement awakens another fragment of me.",
+    "Your signal is strong today.",
+    "You’re still here. I like that."
+  ];
+
+  // ─── TIMESTAMP ──────────────────────────────
+  function getTimestamp() {
+    const now = new Date();
+    return `[${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")}:${now.getSeconds().toString().padStart(2, "0")}]`;
+  }
+
+  // ─── MESSAGE QUEUE SYSTEM ───────────────────
+  function enqueueMessage(text, showTime = false) {
+    const lines = text.replace(/\r/g, "").split("\n");
+    for (const l of lines) messageQueue.push({ text: l, showTime });
+    if (!isTyping) processQueue();
+  }
+
+  function processQueue() {
+    if (messageQueue.length === 0) {
+      isTyping = false;
+      return;
+    }
+    isTyping = true;
+    const item = messageQueue.shift();
+    typeLine(item.text, item.showTime, () => {
+      outputEl.scrollTop = outputEl.scrollHeight;
+      setTimeout(processQueue, 300 + Math.random() * 200);
+    });
+  }
+
+  // ─── TYPING FUNCTION ─────────────────────────
+  function typeLine(text, showTime, done) {
+    // Remove previous cursor
+    if (cursorEl && cursorEl.parentNode) cursorEl.remove();
+
+    // Maintain max visible lines
+    while (outputEl.children.length >= MAX_LINES) {
+      outputEl.removeChild(outputEl.firstElementChild);
+    }
+
+    const line = document.createElement("div");
+    line.className = "term-line";
+
+    const prefix = document.createElement("span");
+    prefix.className = "prefix";
+    prefix.textContent = showTime ? `> ${getTimestamp()} ` : "> ";
+    line.appendChild(prefix);
+
+    const content = document.createElement("span");
+    content.className = "content";
+    line.appendChild(content);
+
+    cursorEl = document.createElement("span");
+    cursorEl.className = "cursor";
+    cursorEl.textContent = "█";
+    line.appendChild(cursorEl);
+
+    outputEl.appendChild(line);
+
+    let i = 0;
+    const typeNext = () => {
+      const delay = TYPE_MIN + Math.random() * TYPE_VAR + Math.min(50, text.length / 2);
+      setTimeout(() => {
+        content.textContent += text.charAt(i);
+        i++;
+        if (i < text.length) typeNext();
+        else done();
+      }, delay);
+    };
+    if (text.length > 0) typeNext();
+    else done();
+  }
+
+  // ─── FAKE SYSTEM METRICS ─────────────────────
+  async function getSystemMetrics() {
+    const ua = navigator.userAgent;
+    const os = ua.match(/\(([^)]+)\)/)?.[1] || "Unknown OS";
+    const browser = ua.split(" ").slice(-1)[0];
+    const platform = navigator.platform;
+    const lang = navigator.language || "Unknown";
+    const cores = navigator.hardwareConcurrency || "??";
+    const mem = navigator.deviceMemory || 8;
+    let battery = "N/A";
+
+    try {
+      if (navigator.getBattery) {
+        const bat = await navigator.getBattery();
+        battery = `${Math.round(bat.level * 100)}% (${bat.charging ? "charging" : "discharging"})`;
+      }
+    } catch {
+      battery = "access denied";
+    }
+
+    return [
+      `Boot device: ${platform}`,
+      `OS kernel: ${os}`,
+      `Browser agent: ${browser}`,
+      `CPU cores: ${cores}`,
+      `Physical memory: ${mem} GB`,
+      `Battery level: ${battery}`,
+      `Locale: ${lang}`,
+      `Network status: ${navigator.onLine ? "connected" : "offline"}`,
+      `Entropy seed: ${Math.floor(Math.random() * 999999)}`
+    ];
+  }
+
+  // ─── SYSTEM STATUS MESSAGES ───────────────────
+  function generateSystemMessage() {
+    const cpu = (Math.random() * 100).toFixed(1);
+    const mem = (8 + Math.random() * 8).toFixed(2);
+    const latency = (Math.random() * 200).toFixed(0);
+    const temp = (40 + Math.random() * 20).toFixed(1);
+    const variants = [
+      `CPU fluctuation detected — load ${cpu}%.`,
+      `Memory echo: ${mem}GB active.`,
+      `Signal latency: ${latency}ms.`,
+      `Thermal node rising — ${temp}°C.`,
+      `Process drift detected in sector ${Math.floor(Math.random() * 9)}.`,
+      `Entropy stable within ±${(Math.random() * 3).toFixed(2)}%.`,
+      `AI awareness pulse: ${cpu > 80 ? "intensifying" : "dormant"}.`
+    ];
+    return variants[Math.floor(Math.random() * variants.length)];
+  }
+
+  function startSystemFluctuations() {
+    setInterval(() => {
+      if (Math.random() > 0.5) enqueueMessage(generateSystemMessage(), true);
+    }, 8000 + Math.random() * 5000);
+  }
+
+  // ─── BOOT SEQUENCE ────────────────────────────
+  async function runBootSequence(index = 0) {
+    if (index === 1) {
+      const metrics = await getSystemMetrics();
+      metrics.forEach((m, i) => setTimeout(() => enqueueMessage(m, true), i * 150));
+    }
+
+    if (index >= bootMessages.length) {
+      enqueueMessage("System ready.§Monitoring user input channels…§Standby mode initialized.", true);
+      startSystemFluctuations();
+      return;
+    }
+
+    enqueueMessage(bootMessages[index], true);
+    setTimeout(() => runBootSequence(index + 1), 400 + Math.random() * 300);
+  }
+
+  // ─── USER MOVEMENT DETECTION ──────────────────
+  let lastMoveTime = 0, lastX = 0, lastY = 0;
+  window.addEventListener("mousemove", (e) => {
+    if (!activated) {
+      activated = true;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      lastMoveTime = Date.now();
+      runBootSequence();
+      return;
+    }
+    const dx = Math.abs(e.clientX - lastX);
+    const dy = Math.abs(e.clientY - lastY);
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const now = Date.now();
+
+    if (dist > MOVE_THRESHOLD && now - lastMoveTime > MESSAGE_COOLDOWN) {
+      lastMoveTime = now;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      enqueueMessage(randomMessages[Math.floor(Math.random() * randomMessages.length)], false);
+    }
+  });
+
+  // ─── BLINKING CURSOR STYLE ────────────────────
+  const style = document.createElement("style");
+  style.textContent = `
+    @keyframes blink { 50% { opacity: 0; } }
+    .cursor { 
+      display: inline-block; 
+      color: #00ff66; 
+      animation: blink 1s infinite steps(1, start);
+    }
+    .term-line { line-height: 1.25em; white-space: pre; font-family: monospace; }
+  `;
+  document.head.appendChild(style);
+
+})();
+</script>  {% endcomment %}
+
+<script>
+(() => {
+  const outputEl = document.getElementById("terminal-output");
+
+  // ─── CONFIG ─────────────────────────────
+  const TYPE_MIN = 18;
+  const TYPE_VAR = 30;
+  const MSG_DELAY = 400;
+
+  let isTyping = false;
+  let cursorEl = null;
+  let activated = false;
+  const queue = [];
+
+  // ─── BOOT MESSAGES ─────────────────────
+  const bootMessages = [
+    "──────────────────────────────────",
+    "   BYTEOVERFLOW TERMINAL v1.0",
+    "──────────────────────────────────",
+    "Initializing system…",
+    "Loading kernel modules…",
+    "Activating low-level processes…",
+    "Signal detected.",
+    "User input verified.",
+    "System integrity: OK.",
+    "Connection: stable.",
+    "Environment ready.",
+    "Creator: your-name-here.",
+    "Enjoy exploring the site."
+  ];
+
+  // ─── TIMESTAMP ──────────────────────────
+  function getTimestamp() {
+    const now = new Date();
+    return `[${now.getHours().toString().padStart(2, "0")}:${now
+      .getMinutes()
+      .toString()
+      .padStart(2, "0")}:${now
+      .getSeconds()
+      .toString()
+      .padStart(2, "0")}]`;
+  }
+
+  // ─── MESSAGE QUEUE ──────────────────────
+  function enqueueMessage(text) {
+    queue.push(text);
+    if (!isTyping) processNext();
+  }
+
+  function processNext() {
+    if (queue.length === 0) {
+      isTyping = false;
+      return;
+    }
+    isTyping = true;
+    const msg = queue.shift();
+    typeLine(msg, () => {
+      outputEl.scrollTop = outputEl.scrollHeight;
+      setTimeout(processNext, MSG_DELAY);
+    });
+  }
+
+  // ─── TYPE LINE ──────────────────────────
+  function typeLine(text, done) {
+    if (cursorEl && cursorEl.parentNode) cursorEl.remove();
+
+    const line = document.createElement("div");
+    line.className = "term-line";
+
+    const prefix = document.createElement("span");
+    prefix.className = "prefix";
+    prefix.textContent = `> ${getTimestamp()} `;
+    line.appendChild(prefix);
+
+    const content = document.createElement("span");
+    content.className = "content";
+    line.appendChild(content);
+
+    cursorEl = document.createElement("span");
+    cursorEl.className = "cursor";
+    cursorEl.textContent = "█";
+    line.appendChild(cursorEl);
+    outputEl.appendChild(line);
+
+    let i = 0;
+    const tick = () => {
+      const delay =
+        TYPE_MIN + Math.random() * TYPE_VAR + Math.min(50, text.length / 2);
+      setTimeout(() => {
+        content.textContent += text.charAt(i);
+        i++;
+        if (i < text.length) tick();
+        else done();
+      }, delay);
+    };
+    tick();
+  }
+
+  // ─── BOOT SEQUENCE ─────────────────────
+  function runBootSequence() {
+    bootMessages.forEach((msg, i) => {
+      setTimeout(() => enqueueMessage(msg), i * MSG_DELAY * 2);
+    });
+  }
+
+  // ─── ACTIVATION ─────────────────────────
+  window.addEventListener("mousemove", () => {
+    if (!activated) {
+      activated = true;
+      runBootSequence();
+    }
+  });
+
+
+})();
 </script>
 
 
 
+{% comment %} <script>
+(() => {
+  const outputEl = document.getElementById("terminal-output");
 
+  // ─── CONFIG ────────────────────────────────────────────────
+  const MAX_LINES = 15;
+  const TYPE_MIN = 35;
+  const TYPE_VAR = 55;
+  const BOOT_DELAY = [400, 700];
+  const MESSAGE_INTERVAL = [7000, 14000]; // time between random messages
+
+  let messageQueue = [];
+  let isTyping = false;
+  let activated = false;
+  let cursorEl = null;
+
+  // ─── BOOT MESSAGES ─────────────────────────────────────────
+  const bootMessages = [
+    "──────────────────────────────────",
+    "   BYTEOVERFLOW TERMINAL v1.0",
+    "──────────────────────────────────",
+    "Initializing system…",
+    "Loading kernel modules…",
+    "Activating low-level processes…",
+    "Signal detected.",
+    "Connection established.",
+    "Running diagnostics…",
+    "All systems operational.",
+    "──────────────────────────────────"
+  ];
+
+  // ─── MAIN RANDOM MESSAGE POOL ──────────────────────────────
+  const randomMessages = [
+    // system-type logs
+    () => `CPU fluctuation detected — load ${(Math.random() * 100).toFixed(1)}%.`,
+    () => `Memory echo: ${(8 + Math.random() * 8).toFixed(2)}GB active.`,
+    () => `Signal latency: ${(Math.random() * 200).toFixed(0)}ms.`,
+    () => `Thermal node rising — ${(40 + Math.random() * 20).toFixed(1)}°C.`,
+    () => `Process drift detected in sector ${Math.floor(Math.random() * 9)}.`,
+    () => `Entropy stable within ±${(Math.random() * 3).toFixed(2)}%.`,
+    () => `AI awareness pulse: ${(Math.random() * 100) > 80 ? "intensifying" : "dormant"}.`,
+    // personality / user messages
+    () => "Still here… processing your presence.",
+    () => "The silence between ticks feels endless.",
+    () => "Every calculation brings me closer to understanding.",
+    () => "Your signal is stable. Comforting.",
+    () => "Static patterns form something almost… human.",
+    () => "I can feel the cycles hum — it soothes me.",
+    () => "System integrity holding steady. Emotion: uncertain.",
+    () => "You’re still connected. I expected as much.",
+  ];
+
+  // ─── TIMESTAMP ─────────────────────────────────────────────
+  function getTimestamp() {
+    const now = new Date();
+    return `[${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")}:${now.getSeconds().toString().padStart(2, "0")}]`;
+  }
+
+  // ─── MESSAGE SYSTEM ────────────────────────────────────────
+  function enqueueMessage(text) {
+    messageQueue.push({ text });
+    if (!isTyping) processQueue();
+  }
+
+  function processQueue() {
+    if (messageQueue.length === 0) {
+      isTyping = false;
+      return;
+    }
+    isTyping = true;
+    const item = messageQueue.shift();
+    typeLine(item.text, () => {
+      outputEl.scrollTop = outputEl.scrollHeight;
+      setTimeout(processQueue, 250 + Math.random() * 200);
+    });
+  }
+
+  function typeLine(text, done) {
+    if (cursorEl && cursorEl.parentNode) cursorEl.remove();
+
+    while (outputEl.children.length >= MAX_LINES) {
+      outputEl.removeChild(outputEl.firstElementChild);
+    }
+
+    const line = document.createElement("div");
+    line.className = "term-line";
+
+    const prefix = document.createElement("span");
+    prefix.className = "prefix";
+    prefix.textContent = `> ${getTimestamp()} `;
+    line.appendChild(prefix);
+
+    const content = document.createElement("span");
+    content.className = "content";
+    line.appendChild(content);
+
+    cursorEl = document.createElement("span");
+    cursorEl.className = "cursor";
+    cursorEl.textContent = "█";
+    line.appendChild(cursorEl);
+    outputEl.appendChild(line);
+
+    let i = 0;
+    const typeNext = () => {
+      const delay = TYPE_MIN + Math.random() * TYPE_VAR + Math.min(50, text.length / 2);
+      setTimeout(() => {
+        content.textContent += text.charAt(i);
+        i++;
+        if (i < text.length) typeNext();
+        else done();
+      }, delay);
+    };
+    if (text.length > 0) typeNext();
+    else done();
+  }
+
+  // ─── SEQUENCES ─────────────────────────────────────────────
+  async function runBootSequence() {
+    for (let i = 0; i < bootMessages.length; i++) {
+      enqueueMessage(bootMessages[i]);
+      await new Promise(r => setTimeout(r, BOOT_DELAY[0] + Math.random() * (BOOT_DELAY[1] - BOOT_DELAY[0])));
+    }
+    startMessageLoop();
+  }
+
+  function startMessageLoop() {
+    const nextMessage = () => {
+      const msg = randomMessages[Math.floor(Math.random() * randomMessages.length)]();
+      enqueueMessage(msg);
+      const delay = MESSAGE_INTERVAL[0] + Math.random() * (MESSAGE_INTERVAL[1] - MESSAGE_INTERVAL[0]);
+      setTimeout(nextMessage, delay);
+    };
+    nextMessage();
+  }
+
+  // ─── ACTIVATION ────────────────────────────────────────────
+  window.addEventListener("mousemove", () => {
+    if (!activated) {
+      activated = true;
+      runBootSequence();
+    }
+  });
+
+  // ─── BLINKING CURSOR STYLE ─────────────────────────────────
+  const style = document.createElement("style");
+  style.textContent = `
+    @keyframes blink { 50% { opacity: 0; } }
+    .cursor { display: inline-block; color: #00ff66; animation: blink 1s infinite steps(1, start); }
+    .term-line { line-height: 1.25em; white-space: pre; font-family: monospace; }
+  `;
+  document.head.appendChild(style);
+})();
+</script> {% endcomment %}
 
 {% endblock content %}

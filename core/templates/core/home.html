@@ -2301,7 +2301,7 @@ window.addEventListener("mousemove", (e) => {
 })();
 </script>  {% endcomment %}
 
-<script>
+{% comment %} <script>
 (() => {
   const outputEl = document.getElementById("terminal-output");
 
@@ -2328,7 +2328,6 @@ window.addEventListener("mousemove", (e) => {
     "System integrity: OK.",
     "Connection: stable.",
     "Environment ready.",
-    "Creator: your-name-here.",
     "Enjoy exploring the site."
   ];
 
@@ -2416,8 +2415,188 @@ window.addEventListener("mousemove", (e) => {
 
 
 })();
-</script>
+</script> {% endcomment %}
 
+<script>
+(() => {
+  const outputEl = document.getElementById("terminal-output");
+
+  // ─── CONFIG ─────────────────────────────
+  const TYPE_MIN = 18;
+  const TYPE_VAR = 30;
+  const MSG_DELAY = 400;
+  const MAX_LINES = Infinity; // keep all visible now
+
+  let isTyping = false;
+  let cursorEl = null;
+  let activated = false;
+  const queue = [];
+
+  // ─── BOOT MESSAGES ─────────────────────
+  const bootMessages = [
+    "Initializing system…",
+    "Loading kernel modules…",
+    "Activating low-level processes…",
+    "Running diagnostics…"
+  ];
+
+  const endMessages = [
+    "System integrity: OK.",
+    "Connection: stable.",
+    "Environment ready.",
+    //"Enjoy exploring the site.",
+    "──────────────────────────────────",
+    "   ENJOY BYTEOVERFLOW BLOG        ",
+    "──────────────────────────────────",
+  ];
+
+  // ─── TIMESTAMP ──────────────────────────
+  function getTimestamp() {
+    const now = new Date();
+    return `[${now.getHours().toString().padStart(2, "0")}:${now
+      .getMinutes()
+      .toString()
+      .padStart(2, "0")}:${now
+      .getSeconds()
+      .toString()
+      .padStart(2, "0")}]`;
+  }
+
+  // ─── MESSAGE QUEUE ──────────────────────
+  function enqueueMessage(text) {
+    queue.push(text);
+    if (!isTyping) processNext();
+  }
+
+  function processNext() {
+    if (queue.length === 0) {
+      isTyping = false;
+      return;
+    }
+    isTyping = true;
+    const msg = queue.shift();
+    typeLine(msg, () => {
+      outputEl.scrollTop = outputEl.scrollHeight;
+      setTimeout(processNext, MSG_DELAY);
+    });
+  }
+
+  // ─── TYPE LINE ──────────────────────────
+  function typeLine(text, done) {
+    if (cursorEl && cursorEl.parentNode) cursorEl.remove();
+
+    const line = document.createElement("div");
+    line.className = "term-line";
+
+    const prefix = document.createElement("span");
+    prefix.className = "prefix";
+    prefix.textContent = `> ${getTimestamp()} `;
+    line.appendChild(prefix);
+
+    const content = document.createElement("span");
+    content.className = "content";
+    line.appendChild(content);
+
+    cursorEl = document.createElement("span");
+    cursorEl.className = "cursor";
+    cursorEl.textContent = "█";
+    line.appendChild(cursorEl);
+    outputEl.appendChild(line);
+
+    let i = 0;
+    const tick = () => {
+      const delay =
+        TYPE_MIN + Math.random() * TYPE_VAR + Math.min(50, text.length / 2);
+      setTimeout(() => {
+        content.textContent += text.charAt(i);
+        i++;
+        if (i < text.length) tick();
+        else done();
+      }, delay);
+    };
+    tick();
+  }
+
+  // ─── SYSTEM METRICS ─────────────────────
+  async function getSystemMetrics() {
+    const ua = navigator.userAgent;
+    const os = ua.match(/\(([^)]+)\)/)?.[1] || "Unknown OS";
+    const browser = ua.split(" ").slice(-1)[0];
+    const platform = navigator.platform;
+    const lang = navigator.language || "Unknown";
+    const cores = navigator.hardwareConcurrency || "??";
+    const mem = navigator.deviceMemory || 8;
+    let battery = "N/A";
+
+    try {
+      if (navigator.getBattery) {
+        const bat = await navigator.getBattery();
+        battery = `${Math.round(bat.level * 100)}% (${bat.charging ? "charging" : "discharging"})`;
+      }
+    } catch {
+      battery = "access denied";
+    }
+
+    return [
+      `Boot device: ${platform}`,
+      `OS kernel: ${os}`,
+      `Browser agent: ${browser}`,
+      `CPU cores: ${cores}`,
+      `Physical memory: ${mem} GB`,
+      `Battery level: ${battery}`,
+      `Locale: ${lang}`,
+      `Network status: ${navigator.onLine ? "connected" : "offline"}`,
+      //`Entropy seed: ${Math.floor(Math.random() * 999999)}`
+    ];
+  }
+
+  // ─── BOOT SEQUENCE ─────────────────────
+  async function runBootSequence() {
+    // Boot intro
+    bootMessages.forEach((msg, i) => {
+      setTimeout(() => enqueueMessage(msg), i * MSG_DELAY * 2);
+    });
+
+    // Then system metrics
+    const metrics = await getSystemMetrics();
+    metrics.forEach((m, i) => {
+      setTimeout(() => enqueueMessage(m), (bootMessages.length + i) * MSG_DELAY * 2);
+    });
+
+    // Then final boot wrap-up messages
+    endMessages.forEach((msg, i) => {
+      setTimeout(() => enqueueMessage(msg), (bootMessages.length + metrics.length + i) * MSG_DELAY * 2);
+    });
+  }
+
+  // ─── ACTIVATION ─────────────────────────
+  window.addEventListener("mousemove", () => {
+    if (!activated) {
+      activated = true;
+      runBootSequence();
+    }
+  });
+
+  // ─── STYLES ─────────────────────────────
+  const style = document.createElement("style");
+  style.textContent = `
+    @keyframes blink { 50% { opacity: 0; } }
+    .cursor { 
+      display: inline-block; 
+      color: #00ff99; 
+      animation: blink 1s infinite steps(1, start);
+    }
+    .term-line { 
+      line-height: 1.25em; 
+      white-space: pre; 
+      font-family: monospace; 
+      color: #00ff66; 
+    }
+    .prefix { color: #00cc55; }
+  `;
+  document.head.appendChild(style);
+})();
+</script>
 
 
 {% comment %} <script>

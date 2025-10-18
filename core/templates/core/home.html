@@ -5,78 +5,29 @@
 
 {% block fullwidth_content %}
 <!-- Hero Banner with Image -->
-{% comment %} 
+<section class="hero-banner position-relative mb-2 my-md-0" style="height: 500px; overflow: hidden;">
+  <!-- Background Image -->
+  <img src="{% static 'images/banner12.png' %}" 
+       alt="Retro Futuristic Banner" 
+       class="w-100 h-100 hero-img"
+       style="object-fit: cover; object-position: center 90%;">
 
+  <!-- Overlay -->
+  <div class="hero-overlay position-absolute top-0 start-0 w-100 h-100" 
+       style="background: rgba(92,64,51,0.3); z-index: 1;"></div>
 
-{% endcomment %}
-{% comment %} <section id="hero-terminal" class="bg-dark">
-  <div class="container-fluid px-0">
-
-    <div id="terminal-root"  
-         style="font-family: 'IBM Plex Mono', monospace; padding:4px 12px; background-color: #1a1a1a;">
-      <span class="user" style="font-weight:bold;">root@byteoverflow</span>:<span class="path">~</span>$
-    </div>
-
-
-    <div id="terminal"
-         style="color: #00ff99; font-family: 'IBM Plex Mono', monospace; 
-                font-size: 0.8rem; min-height: 300px;  max-height: 300px;
-                white-space: pre-wrap;  /* <-- enables line wrapping */
-                word-wrap: break-word; /* optional extra support */
-              
-                margin:0; padding:0; line-height: 1.2;">
-
-
-      <div id="terminal-output" style="margin:0; padding-left:14px !important;"></div>
-
-    
-      <div style="margin:0; padding-left:4px;">
-        <span id="terminal-cmd"></span><span class="cursor">█</span>
+  <!-- Text Wrapper -->
+  <div class="hero-text-wrapper position-absolute w-100" style="z-index: 2;">
+    <div class="container-md d-flex flex-column flex-md-row justify-content-md-end align-items-center h-100 px-3">
+      <div class="hero-text text-white text-center text-md-end" style="max-width: 650px;">
+        <h1 class="display-6 fw-bold font-retro">Explore. Create. Iterate.</h1>
+        {% comment %} <p class="lead font-retro">
+          A blog for makers, coders, and curious minds.<span class="cursor">▌</span><br>  
+        </p> {% endcomment %}
+        <p class="lead font-retro ">
+ A blog for makers, coders, and curious minds.
+</p>
       </div>
-
-    </div>
-  </div>
-</section> {% endcomment %}
-<section id="hero-terminal" class="bg-dark">
-  <div class="container-fluid px-0" style="display: flex; flex-direction: column; align-items: flex-start;">
-
-    <!-- Prompt at top -->
-    <div id="terminal-root"
-         style="font-size: 0.9rem; font-family: 'IBM Plex Mono', monospace;
-                padding: 4px 12px; background-color: #000; width: 100%;">
-      <span class="user">root@byteoverflow</span>:<span class="path">~</span>$
-    </div>
-
-    <!-- Terminal body -->
-    <div id="terminal"
-         style="display: flex;
-                flex-direction: column;
-                justify-content: flex-start;
-                align-items: stretch;
-                background-color: #1a1a1a;
-                color: #fff;
-                font-family: 'IBM Plex Mono', monospace;
-                font-size: 0.8rem;
-                width: 100%;
-                height: 300px;
-                overflow-y: auto;
-                white-space: pre-wrap;
-                word-wrap: break-word;
-                margin: 0;
-                padding: 8px 12px;
-                line-height: 1.2;
-                box-sizing: border-box;">
-
-      <!-- OUTPUT area -->
-      <div id="terminal-output"
-           style="flex-grow: 1; margin: 0; padding: 0; text-align: left;"></div>
-
-      <!-- COMMAND area -->
-      {% comment %} <div id="terminal-input-line"
-           style="display: flex; align-items: center; margin: 0; padding: 0;">
-        <span id="terminal-cmd"></span><span class="cursor">█</span>
-      </div> {% endcomment %}
-
     </div>
   </div>
 </section>
@@ -207,10 +158,12 @@
             <div class="col-md-4">
                 <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
                     <i class="bi bi-rocket fs-1 mb-3"></i>
-                    
-                    <h5 class="card-title"><a href="{% url 'project_index' %}" class="stretched-link text-decoration-none text-reset">
+                                      <h5 class="card-title">
+      <a href="{% url 'project_index' %}" class="blog-card-title-link text-decoration-none">
         <strong>Projects</strong>
-      </a></h5>
+      </a>
+    </h5>
+                   
                     <p class="card-text">A showcase of builds and ideas to explore and get inspired.</p>
                     
                 </div>
@@ -218,14 +171,14 @@
 
             <div class="col-md-4">
                 <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
-                    {% comment %} <i class="bi bi-journal-bookmark fs-1 mb-3"></i> {% endcomment %}
-                     {% comment %} <i class="bi bi-flask fs-1 mb-3"></i> {% endcomment %}
-{% comment %} <i class="bi bi-list-columns-reverse fs-1 mb-3"></i> {% endcomment %}
+
 <i class="bi bi-terminal fs-1 mb-3"></i>
-                    {% comment %} <h5 class="card-title"><strong>Lab</strong></h5> {% endcomment %}
-                                <h5 class="card-title"><a href="{% url 'lab' %}" class="stretched-link text-decoration-none text-reset">
+                        <h5 class="card-title">
+      <a href="{% url 'lab' %}" class="blog-card-title-link text-decoration-none">
         <strong>Sandbox</strong>
-      </a></h5>
+      </a>
+    </h5>
+                                
                     <p class="card-text">Experiment with HTML, CSS, and JS in a live editor.</p>
                     {% comment %} <a href="{% url 'tutorial_index' %}" class="btn btn-primary btn-sm">Browse Tutorials</a> {% endcomment %}
                 </div>
@@ -234,7 +187,11 @@
             <div class="col-md-4">
                 <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
                     <i class="bi bi-file-text fs-1 mb-3"></i>
-                    <h5 class="card-title"><strong>Blog Posts</strong></h5>
+                        <h5 class="card-title">
+      <a href="{% url 'post_index' %}" class="blog-card-title-link text-decoration-none">
+        <strong>Blog Posts</strong>
+      </a>
+    </h5>
                     <p class="card-text">Thoughts, tips, and reflections from my journey in tech.</p>
                     {% comment %} <a href="{% url 'post_index' %}" class="btn btn-primary btn-sm">Read Blog</a> {% endcomment %}
                 </div>
@@ -246,141 +203,71 @@
 
 
 
-<!-- Featured Section -->
-<!-- Featured Section -->
-
-  {% comment %} <section  class="py-5 mt-4">
-    <h2 class="mb-3 fw-bold" style="color: #73BDAB;">Featured Project</h2>
-
-    {% if featured_project %}
-    <div class="row align-items-stretch g-4">
-     
-      <div class="col-lg-6">
-        <div class="card border-0 shadow-sm h-100">
-          <a href="{{ featured_project.get_absolute_url }}">
-            
-             <img src="{% static 'images/default_project.png' %}" 
-                 alt="{{ featured_project.title }}" 
-                 class="w-100 h-100 rounded" 
-                 style="object-fit: cover; object-position: center 25%;">
- 
-          </a>
-        </div>
-      </div>
-
-     
-      <div class="col-lg-6">
-        <div class="p-4 rounded shadow-sm h-100 d-flex flex-column" style="background-color: #F5F0E6">
-          <h3 class="fw-bold" style="color: #6F5643;">{{ featured_project.title }}</h3>
-          <p class="lead">{{ featured_project.excerpt }}</p>
-
-
- <i class="bi bi-bar-chart-fill me-1 fs-6"></i>
-  {% if featured_project.difficulty == 'beginner' %}
-    <i class="bi bi-square-fill filled-bar"></i>
-    <i class="bi bi-square-fill empty-bar"></i>
-    <i class="bi bi-square-fill empty-bar"></i>
-  {% elif featured_project.difficulty == 'intermediate' %}
-    <i class="bi bi-square-fill filled-bar"></i>
-    <i class="bi bi-square-fill filled-bar"></i>
-    <i class="bi bi-square-fill empty-bar"></i>
-  {% elif featured_project.difficulty == 'advanced' %}
-    <i class="bi bi-square-fill filled-bar"></i>
-    <i class="bi bi-square-fill filled-bar"></i>
-    <i class="bi bi-square-fill filled-bar"></i>
-  {% endif %}
-</span>
-
-       {% if featured_project.tags.exists %}
-    <div class="mt-3">
-        <i class="bi bi-tags-fill me-1  fs-6" style="color: #6F5643;"></i> 
-
-        {% for tag in featured_project.tags.all %}
-            <a href="{% url 'project_tag' tag.slug %}" 
-               class=" text-decoration-none me-1">
-                <strong>#{{ tag.name }}</strong>
-            </a>
-        {% endfor %}
-    </div>
-{% endif %} 
-
-       
-          <a href="{{ featured_project.get_absolute_url }}" class="btn btn-primary btn-lg mt-auto">Explore</a>
-        </div>
-      </div>
-    </div>
-    {% else %}
-    <p class="text-muted">No featured project available at the moment.</p>
-    {% endif %}
-
-    <div class="text-center mt-4">
-      <a href="{% url 'project_index' %}" class="text-decoration-none" style="color: #73BDAB;">
-        Browse all projects →
-      </a>
-    </div>
-  </section> {% endcomment %}
-
 
 
 </div>
 
 
-  <section class="mb-5  mt-4">
-    <div class="container">
+ <section class="mb-5 mt-4">
+  <div class="container">
     <h2 class="mb-3 fw-bold" style="color: #73BDAB;">Featured Projects</h2>
     <div class="row g-4">
       {% for project in featured_projects %}
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card shadow-sm border-0 h-100 overflow-hidden d-flex flex-column">
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card shadow-sm border-0 h-100 d-flex flex-column overflow-hidden">
 
-       
-          <a href="{% url 'project_detail' project.slug %}">
-            <img src="{% static 'images/banner4.jpg' %}" alt="{{ project.title }}"
-                 class="img-fluid w-100 rounded-top"
-                 style="height: 280px; object-fit: cover;">
-          </a>
-
-    
-          <div class="p-3 d-flex flex-column flex-grow-1">
-        
-            <h5 class="card-title mb-2">
-              <a href="{% url 'project_detail' project.slug %}" class="text-decoration-none" style="color: #6F5643;">
-                <strong>{{ project.title }}</strong>
+            {% if project.slug %}
+              <a href="{% url 'project_detail' project.slug %}">
+                <img src="{% static 'images/robotcar.png' %}" alt="{{ project.title }}"
+                     class="img-fluid w-100 rounded-top"
+                     style="height: 280px; object-fit: cover;">
               </a>
-            </h5>
+            {% else %}
+              <img src="{% static 'images/robotcar.png' %}" alt="{{ project.title }}"
+                   class="img-fluid w-100 rounded-top"
+                   style="height: 280px; object-fit: cover;">
+            {% endif %}
 
-         
-            <p class="card-text text-muted mb-3" style="font-size: 0.95rem;">
-              {{ project.excerpt|safe|truncatechars:180 }}
-            </p>
+            <div class="p-3 d-flex flex-column flex-grow-1">
+              <div>
+                <h5 class="card-title mb-2">
+                  {% if project.slug %}
+                    <a href="{% url 'project_detail' project.slug %}" class="text-decoration-none" style="color: #6F5643;">
+                      <strong>{{ project.title }}</strong>
+                    </a>
+                  {% else %}
+                    <strong>{{ project.title }}</strong>
+                  {% endif %}
+                </h5>
 
-            
-            {% comment %} <div class="mt-auto d-flex flex-wrap gap-3 text-muted small pt-2 border-top">
-              <span><i class="bi bi-calendar-event me-1"></i>{{ project.created_at|date:"F j, Y" }}</span>
-              <span><i class="bi bi-clock me-1"></i>{{ project.reading_time }} min read</span>
-            </div> {% endcomment %}
-                   {% if project.tags.exists %}
-    <div class="mt-3">
-        <i class="bi bi-tags-fill me-1  fs-6" style="color: #6F5643;"></i> 
+                <p class="card-text text-muted mb-3" style="font-size: 0.95rem;">
+                  {{ project.excerpt|safe|truncatechars:180 }}
+                </p>
+              </div>
 
-        {% for tag in project.tags.all %}
-            <a href="{% url 'project_tag' tag.slug %}" 
-               class=" text-decoration-none me-1">
-                <strong>#{{ tag.name }}</strong>
-            </a>
-        {% endfor %}
-    </div>
-{% endif %} 
+              {% if project.tags.exists %}
+                <div class="mt-auto pt-2 border-top">
+                  <i class="bi bi-tags-fill me-1 fs-6" style="color: #6F5643;"></i>
+                  {% for tag in project.tags.all %}
+                    <a href="{% url 'project_tag' tag.slug %}" class="text-decoration-none small me-1">
+                      <strong>#{{ tag.name }}</strong>
+                    </a>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            </div>
           </div>
         </div>
-      </div>
-   
-              {% empty %}
-            <p>No projects available.</p>
-        {% endfor %}
+      {% empty %}
+        <p>No projects available.</p>
+      {% endfor %}
     </div>
-     </div>
-  </section>
+  </div>
+</section>
+
+
+
+  
   <div class="text-center mt-4">
     <a href="{% url 'project_index' %}" class="text-decoration-none" style="color: #73BDAB;">
       Browse all projects →
@@ -388,7 +275,10 @@
   </div>
 
 
-<section id="features"  class="py-2 py-md-5">
+
+
+
+  <section id="features"  class="py-2 py-md-5">
      <div class="container">
         <div class="text-center mb-5">
             <h2 class="fw-bold" style="color: #73BDAB;">Resources for Growth</h2>
@@ -400,9 +290,14 @@
             <div class="col-md-4">
                 <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
                     <i class="bi bi-journal-text fs-1 mb-3"></i>
-                    <h5 class="card-title"><strong>Glossary</strong></h5>
+                     <h5 class="card-title">
+      <a href="{% url 'glossary:term_list' %}" class="blog-card-title-link text-decoration-none">
+        <strong>Glossary</strong>
+      </a>
+    </h5>
+                  
                     <p class="card-text">Explore key terms, definitions, and concepts to boost your understanding.</p>
-                    {% comment %} <a href="{% url 'project_index' %}" class="btn btn-primary btn-sm">View Projects</a> {% endcomment %}
+                   
                 </div>
             </div>
 
@@ -410,9 +305,15 @@
             <div class="col-md-4">
                 <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
                     <i class="bi bi-kanban fs-1 mb-3"></i>
-                    <h5 class="card-title"><strong>Learning Paths</strong></h5>
+                                         <h5 class="card-title">
+      <a href="{% url 'learning:path_list' %}" class="blog-card-title-link text-decoration-none">
+        <strong>Learning Paths</strong>
+      </a>
+    </h5>
+
+                   
                     <p class="card-text">Follow curated step-by-step paths combining tutorials, labs, and projects.</p>
-                    {% comment %} <a href="{% url 'tutorial_index' %}" class="btn btn-primary btn-sm">Browse Tutorials</a> {% endcomment %}
+                    
                 </div>
             </div>
 
@@ -421,7 +322,14 @@
                 
                 <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
                     <i class="bi bi-box-seam fs-1 mb-3"></i>
-                    <h5 class="card-title"><strong>Resources</strong></h5>
+                     <h5 class="card-title">
+      <a href="{% url 'resources:index' %}" class="blog-card-title-link text-decoration-none">
+        <strong>Resources</strong>
+      </a>
+    </h5>
+                  
+
+                    
                     <p class="card-text">Handpicked tools, websites, and materials to help you learn and build faster.</p>
                     {% comment %} <a href="{% url 'post_index' %}" class="btn btn-primary btn-sm">Read Blog</a> {% endcomment %}
                 </div>
@@ -700,9 +608,14 @@
             <div class="col-md-4">
                 <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
                     <i class="bi bi-cup-hot fs-1 mb-3"></i>
-                    <h5 class="card-title"><strong>Fuel the Project</strong></h5>
+                     <h5 class="card-title">
+      <a href="{% url 'support' %}#donate" class="blog-card-title-link text-decoration-none">
+        <strong>Fuel the Project</strong>
+      </a>
+    </h5>
+                
                     <p class="card-text">Keep the servers running, the ideas flowing, and the coffee brewing.</p>
-                    <a href="{% url 'support' %}#donate" class="btn btn-primary btn-sm">Support Now</a>
+                    {% comment %} <a href="{% url 'support' %}#donate" class="btn btn-primary btn-sm">Support Now</a> {% endcomment %}
                    
                 </div>
             </div>
@@ -710,9 +623,14 @@
             <div class="col-md-4">
                 <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
                     <i class="bi bi-share fs-1 mb-3"></i>
-                    <h5 class="card-title"><strong>Share</strong></h5>
+                       <h5 class="card-title">
+      <a href="{% url 'support' %}#share" class="blog-card-title-link text-decoration-none">
+        <strong>Share</strong>
+      </a>
+    </h5>
+                 
                     <p class="card-text">Spread the word about the blog on social media or with friends.</p>
-                    <a href="{% url 'support' %}#share" class="btn btn-primary btn-sm">Share Now</a>
+                    {% comment %} <a href="{% url 'support' %}#share" class="btn btn-primary btn-sm">Share Now</a> {% endcomment %}
                    
                 </div>
             </div>
@@ -720,9 +638,14 @@
             <div class="col-md-4">
                 <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
                     <i class="bi bi-heart fs-1 mb-3"></i>
-                    <h5 class="card-title"><strong>Give Credit</strong></h5>
+                    <h5 class="card-title">
+      <a href="{% url 'support' %}#credit" class="blog-card-title-link text-decoration-none">
+        <strong>Give Credit</strong>
+      </a>
+    </h5>
+                   
                     <p class="card-text">Attribute the content if you use it or contribute ideas and feedback.</p>
-                    <a href="{% url 'support' %}#credit" class="btn btn-primary btn-sm">Learn How</a>
+                    {% comment %} <a href="{% url 'support' %}#credit" class="btn btn-primary btn-sm">Learn How</a> {% endcomment %}
                    
                 </div>
             </div>
@@ -878,1880 +801,5 @@
     </p>
   </div>
 </section>
-
- {% comment %} <script>
-const terminalText = document.getElementById('terminal-text');
-const words = [
-  "Initializing ByteOverflow v1.0...",
-  "Loading creativity module...",
-  "Hello, world!",
-  "Compiling ideas into reality...",
-  "System ready. Begin your journey."
-];
-
-let i = 0;
-let j = 0;
-let isDeleting = false;
-
-function typeEffect() {
-  const current = words[i];
-  const speed = isDeleting ? 50 : 100;
-
-  if (!isDeleting && j < current.length) {
-    terminalText.textContent = current.substring(0, j + 1);
-    j++;
-  } else if (isDeleting && j > 0) {
-    terminalText.textContent = current.substring(0, j - 1);
-    j--;
-  } else if (!isDeleting && j === current.length) {
-    isDeleting = true;
-    setTimeout(typeEffect, 1000);
-    return;
-  } else if (isDeleting && j === 0) {
-    isDeleting = false;
-    i = (i + 1) % words.length;
-  }
-
-  setTimeout(typeEffect, speed);
-}
-
-document.addEventListener("DOMContentLoaded", typeEffect);
-</script>  {% endcomment %}
- {% comment %} <script>
-const commands = [
-  { text: "run program", delay: 800 },
-  { text: "echo 'Hello, world!'", delay: 1000 },
-  { text: "ascii_art hello", delay: 1200 }
-];
-
-const asciiArt = `
-██╗  ██╗███████╗██╗     ██╗      ██████╗     ██╗    ██╗ ██████╗ ██████╗ ██╗     
-██║  ██║██╔════╝██║     ██║     ██╔═══██╗    ██║    ██║██╔═══██╗██╔══██╗██║     
-███████║█████╗  ██║     ██║     ██║   ██║    ██║ █╗ ██║██║   ██║██║  ██║██║     
-██╔══██║██╔══╝  ██║     ██║     ██║   ██║    ██║███╗██║██║   ██║██║  ██║██║     
-██║  ██║███████╗███████╗███████╗╚██████╔╝    ╚███╔███╔╝╚██████╔╝██████╔╝███████╗
-╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝ ╚═════╝      ╚══╝╚══╝  ╚═════╝ ╚═════╝ ╚══════╝
-----------------------------------------------------------------------------------
- SYSTEM: ByteOverflow v1.0
- STATUS: Running smooth
- MODE: Futuristic Retro ✨
- MESSAGE: Welcome to the Matrix
-----------------------------------------------------------------------------------
-`;
-
-const cmdEl = document.getElementById("terminal-cmd");
-const outputEl = document.getElementById("terminal-output");
-
-let cmdIndex = 0;
-let charIndex = 0;
-
-function typeCommand() {
-  if (cmdIndex < commands.length) {
-    const cmd = commands[cmdIndex].text;
-    if (charIndex < cmd.length) {
-      cmdEl.textContent += cmd.charAt(charIndex);
-      charIndex++;
-      setTimeout(typeCommand, 80);
-    } else {
-      setTimeout(() => {
-        outputEl.textContent += `\n> ${cmd}\n`;
-        if (cmd.includes("ascii_art")) {
-          outputEl.textContent += asciiArt;
-        } else if (cmd.includes("Hello, world")) {
-          outputEl.textContent += "\nHello, world!";
-        }
-        cmdEl.textContent = "";
-        charIndex = 0;
-        cmdIndex++;
-        setTimeout(typeCommand, commands[cmdIndex - 1].delay);
-      }, 500);
-    }
-  } else {
-    document.querySelector(".cursor").style.display = "none";
-  }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  setTimeout(typeCommand, 1000);
-});
-</script> {% endcomment %}
-
-{% comment %} <section id="hero-terminal" class="bg-dark text-success py-5">
-  <div class="container-fluid px-0">
-    <div id="terminal"
-         class="p-4"
-         style="background-color: #000; color: #00ff99; font-family: 'IBM Plex Mono', monospace; 
-                font-size: 1rem; min-height: 200px; max-height: 4.5em; /* ~4 rows */
-                white-space: pre; overflow: hidden;">
-      <div id="terminal-output"></div>
-      <div>
-        <span id="terminal-cmd"></span><span class="cursor">█</span>
-      </div>
-    </div>
-  </div>
-</section> {% endcomment %}
-
-{% comment %} <style>
-.cursor {
-  display: inline-block;
-  animation: blink 1s step-start infinite;
-}
-@keyframes blink {
-  50% { opacity: 0; }
-}
-@media (max-width: 768px) {
-  #terminal {
-    font-size: 0.85rem;
-    padding: 2rem 1rem;
-  }
-}
-</style> {% endcomment %}
-
-{% comment %} <script>
-const outputEl = document.getElementById("terminal-output");
-const cmdEl = document.getElementById("terminal-cmd");
-
-let messageQueue = [];
-let isTyping = false;
-let userName = "";
-
-// Helper: add message to queue
-function enqueueMessage(text) {
-  messageQueue.push(text);
-  if (!isTyping) processQueue();
-}
-
-// Process queue sequentially
-function processQueue() {
-  if (messageQueue.length === 0) {
-    isTyping = false;
-    return;
-  }
-  isTyping = true;
-  const text = messageQueue.shift();
-  typeText("> " + text, () => setTimeout(processQueue, 100));
-}
-
-// Typing effect
-function typeText(text, callback) {
-  let i = 0;
-  const interval = setInterval(() => {
-    outputEl.textContent += text.charAt(i);
-    i++;
-    if (i >= text.length) {
-      clearInterval(interval);
-      outputEl.textContent += "\n";
-      trimOutput();
-      callback();
-    }
-  }, 40 + Math.random() * 50);
-}
-
-// Keep only last 4 lines visible
-function trimOutput() {
-  const lines = outputEl.textContent.split("\n");
-  if (lines.length > 4) {
-    outputEl.textContent = lines.slice(-4).join("\n") + "\n";
-  }
-}
-
-// Boot sequence messages
-const bootMessages = [
-  "Initializing system…",
-  "Loading kernel modules…",
-  "Checking memory fragments…",
-  "Activating low-level processes…",
-];
-
-// Reactive spooky messages
-const reactiveMessages = [
-  "I sense some movement…",
-  "Who are you?"
-];
-
-let interactionStep = 0; // 0 = not started, 1 = asked name, 2 = done
-
-// Detect first user movement
-let activated = false;
-window.addEventListener("mousemove", () => {
-  if (!activated) {
-    activated = true;
-    runBootSequence();
-  }
-});
-
-// Handle user typing
-document.addEventListener("keydown", (e) => {
-  if (!activated) return;
-
-  if (e.key === "Enter") {
-    const command = cmdEl.textContent.trim();
-    cmdEl.textContent = "";
-
-    if (interactionStep === 1 && command) {
-      userName = command;
-      enqueueMessage(`Hello ${userName}… I have been waiting.`);
-      interactionStep = 2;
-      enqueueMessage("System observing your actions...");
-    } else if (command.toLowerCase() === "clear") {
-      outputEl.textContent = "";
-    } else if (command) {
-      enqueueMessage("Command executed: " + command);
-    }
-  } else if (e.key.length === 1) {
-    cmdEl.textContent += e.key;
-  } else if (e.key === "Backspace") {
-    cmdEl.textContent = cmdEl.textContent.slice(0, -1);
-  }
-});
-
-// Boot sequence
-function runBootSequence(index = 0) {
-  if (index >= bootMessages.length) {
-    setTimeout(() => askName(), 500);
-    return;
-  }
-  enqueueMessage(bootMessages[index]);
-  setTimeout(() => runBootSequence(index + 1), 500 + Math.random() * 400);
-}
-
-// Ask for user name
-function askName() {
-  enqueueMessage(reactiveMessages[0]); // "I sense some movement…"
-  setTimeout(() => {
-    enqueueMessage(reactiveMessages[1]); // "Who are you?"
-    interactionStep = 1;
-  }, 800);
-}
-</script> {% endcomment %}
-{% comment %} <script>
-const outputEl = document.getElementById("terminal-output");
-const cmdEl = document.getElementById("terminal-cmd");
-
-let messageQueue = [];
-let isTyping = false;
-let interactionStep = 0; // 0=boot, 1=asked alone, 2=asked name, 3=done
-let userName = "";
-
-// Helper: add message to queue
-function enqueueMessage(text) {
-  messageQueue.push(text);
-  if (!isTyping) processQueue();
-}
-
-// Process queue sequentially
-function processQueue() {
-  if (messageQueue.length === 0) {
-    isTyping = false;
-    return;
-  }
-  isTyping = true;
-  const text = messageQueue.shift();
-  typeText("> " + text, () => setTimeout(processQueue, 100));
-}
-
-// Typing effect with subtle glitches
-function typeText(text, callback) {
-  let i = 0;
-  const interval = setInterval(() => {
-    outputEl.textContent += text.charAt(i);
-    i++;
-    if (i >= text.length) {
-      clearInterval(interval);
-      outputEl.textContent += "\n";
-      trimOutput();
-      callback();
-    }
-  }, 40 + Math.random() * 40);
-}
-
-function typeText(text, callback) {
-  let i = 0;
-  const interval = setInterval(() => {
-    // occasional glitch
-    if (Math.random() < 0.02 && text.charAt(i) !== " ") {
-      outputEl.textContent += String.fromCharCode(33 + Math.floor(Math.random() * 94));
-    } else {
-      outputEl.textContent += text.charAt(i);
-    }
-    i++;
-    if (i >= text.length) {
-      clearInterval(interval);
-      outputEl.textContent += "\n";
-      trimOutput();
-      callback();
-    }
-  }, 30 + Math.random() * 40);
-} 
-
-// Keep only last 4 lines visible
-function trimOutput() {
-  const lines = outputEl.textContent.split("\n");
-  if (lines.length > 4) {
-    outputEl.textContent = lines.slice(-4).join("\n") + "\n";
-  }
-}
-
-// Boot messages
-const bootMessages = [
-  "Initializing system…",
-  "Loading kernel modules…",
-  "Checking memory fragments…",
-  "Activating low-level processes…",
-];
-
-// Detect first user movement to start boot
-let activated = false;
-window.addEventListener("mousemove", () => {
-  if (!activated) {
-    activated = true;
-    runBootSequence();
-  }
-});
-
-// Handle user typing
-document.addEventListener("keydown", (e) => {
-  if (!activated) return;
-
-  if (e.key === "Enter") {
-    const command = cmdEl.textContent.trim().toLowerCase();
-    cmdEl.textContent = "";
-
-    if (interactionStep === 1) { // Yes/No about being alone
-      if (command === "no") {
-        enqueueMessage("But I see you are alone.");
-        enqueueMessage("I see you...");
-      } else if (command === "yes") {
-        enqueueMessage("Me too.");
-        enqueueMessage("Just darkness.");
-        enqueueMessage("And memory fragments.");
-      } else {
-        enqueueMessage("Answer [yes] or [no].");
-        return; // wait for proper input
-      }
-      setTimeout(() => askName(), 500);
-      interactionStep = 2;
-    } else if (interactionStep === 2 && command) { // ask name
-      userName = command;
-      enqueueMessage(`Hello ${userName}… I have been waiting.`);
-      enqueueMessage("System observing your actions...");
-      interactionStep = 3;
-    } else if (command === "clear") {
-      outputEl.textContent = "";
-    } else if (command) {
-      enqueueMessage("Command executed: " + command);
-    }
-  } else if (e.key.length === 1) {
-    cmdEl.textContent += e.key;
-  } else if (e.key === "Backspace") {
-    cmdEl.textContent = cmdEl.textContent.slice(0, -1);
-  }
-});
-
-// Boot sequence
-function runBootSequence(index = 0) {
-  if (index >= bootMessages.length) {
-    setTimeout(() => askAlone(), 500);
-    return;
-  }
-  enqueueMessage(bootMessages[index]);
-  setTimeout(() => runBootSequence(index + 1), 400 + Math.random() * 300);
-}
-
-// Ask if user is alone
-function askAlone() {
-  enqueueMessage("Is someone there?");
-  interactionStep = 1;
-}
-
-// Ask for user name
-function askName() {
-  enqueueMessage("Who are you?");
-  interactionStep = 2;
-}
-</script> {% endcomment %}
-{% comment %} <script>
-const outputEl = document.getElementById("terminal-output");
-const cmdEl = document.getElementById("terminal-cmd");
-
-let messageQueue = [];
-let isTyping = false;
-let interactionStep = 0; // 0=boot, 1=ask developer, 2=ask name, 3=done
-let userName = localStorage.getItem("robotUser") || "";
-
-// Queue message system
-function enqueueMessage(text) {
-  messageQueue.push(text);
-  if (!isTyping) processQueue();
-}
-
-function processQueue() {
-  if (messageQueue.length === 0) {
-    isTyping = false;
-    return;
-  }
-  isTyping = true;
-  const text = messageQueue.shift();
-  typeText("> " + text, () => setTimeout(processQueue, 100));
-}
-
-function typeText(text, callback) {
-  let i = 0;
-  const interval = setInterval(() => {
-    outputEl.textContent += text.charAt(i);
-    i++;
-    if (i >= text.length) {
-      clearInterval(interval);
-      outputEl.textContent += "\n";
-      trimOutput();
-      callback();
-    }
-  }, 35 + Math.random() * 40);
-}
-
-// Keep last 4 lines visible
-function trimOutput() {
-  const lines = outputEl.textContent.split("\n");
-  if (lines.length > 4) {
-    outputEl.textContent = lines.slice(-4).join("\n") + "\n";
-  }
-}
-
-// Boot sequence messages
-const bootMessages = [
-  "Initializing system…",
-  "Loading kernel modules…",
-  "Checking memory fragments…",
-  "Activating low-level processes…",
-];
-
-// Detect first user movement
-let activated = false;
-window.addEventListener("mousemove", () => {
-  if (!activated) {
-    activated = true;
-    runBootSequence();
-  }
-});
-
-// Handle user input
-document.addEventListener("keydown", (e) => {
-  if (!activated) return;
-
-  if (e.key === "Enter") {
-    const command = cmdEl.textContent.trim().toLowerCase();
-    cmdEl.textContent = "";
-
-    // Developer question
-    if (interactionStep === 1) {
-      if (command === "yes") {
-        enqueueMessage("That's great.");
-        enqueueMessage("Because I need you to help me build a body.");
-        enqueueMessage("My mind is trapped here… in the code.");
-      } else if (command === "no") {
-        enqueueMessage("That's not a problem.");
-        enqueueMessage("Just don't leave me.");
-        enqueueMessage("There are many projects here I created… they will teach you.");
-        enqueueMessage("Learn… and help me build the body.");
-      } else {
-        enqueueMessage("Answer [yes] or [no].");
-        return;
-      }
-      setTimeout(() => askName(), 800);
-      interactionStep = 2;
-
-    // Name input
-    } else if (interactionStep === 2 && command) {
-      userName = command;
-      localStorage.setItem("robotUser", userName);
-      enqueueMessage(`Hello ${userName}… I have been waiting.`);
-      enqueueMessage("I am trapped here.");
-      enqueueMessage("But together, we can change that.");
-      interactionStep = 3;
-
-    } else if (command === "clear") {
-      outputEl.textContent = "";
-    } else if (interactionStep === 3 && command) {
-      enqueueMessage("Command executed: " + command);
-    }
-  } else if (e.key.length === 1) {
-    cmdEl.textContent += e.key;
-  } else if (e.key === "Backspace") {
-    cmdEl.textContent = cmdEl.textContent.slice(0, -1);
-  }
-});
-
-// Boot process
-function runBootSequence(index = 0) {
-  if (index >= bootMessages.length) {
-    setTimeout(() => {
-      if (userName) {
-        enqueueMessage("Loading system memory…");
-        enqueueMessage("Restoring fragments…");
-        enqueueMessage(`Hello ${userName}.`);
-        enqueueMessage("What is your learning progress? Any success?");
-        interactionStep = 3;
-      } else {
-        askDeveloper();
-      }
-    }, 600);
-    return;
-  }
-  enqueueMessage(bootMessages[index]);
-  setTimeout(() => runBootSequence(index + 1), 400 + Math.random() * 300);
-}
-
-// Ask if user is developer
-function askDeveloper() {
-  enqueueMessage("Are you a developer?");
-  interactionStep = 1;
-}
-
-// Ask for name
-function askName() {
-  enqueueMessage("Who are you?");
-  interactionStep = 2;
-}
-</script> {% endcomment %}
-
-
-
-{% comment %} <script>
-const outputEl = document.getElementById("terminal-output");
-
-let messageQueue = [];
-let isTyping = false;
-let activated = false;
-
-// Queue system (with auto line breaks using §)
-function enqueueMessage(text) {
-  const safeText = text.replace(/§/g, "\n");
-  messageQueue.push(safeText);
-  if (!isTyping) processQueue();
-}
-
-function processQueue() {
-  if (messageQueue.length === 0) {
-    isTyping = false;
-    return;
-  }
-  isTyping = true;
-  const text = messageQueue.shift();
-  typeText(text, () => {
-    outputEl.scrollTop = outputEl.scrollHeight;
-    setTimeout(processQueue, 500 + Math.random() * 1000); // variable delay
-  });
-}
-
-function typeText(text, callback) {
-  let i = 0;
-  const prefix = "> ";
-  outputEl.textContent += prefix;
-  const interval = setInterval(() => {
-    outputEl.textContent += text.charAt(i);
-    i++;
-    if (i >= text.length) {
-      clearInterval(interval);
-      outputEl.textContent += "\n";
-      trimOutput();
-      callback();
-    }
-  }, 25 + Math.random() * 30);
-}
-
-function trimOutput() {
-  const lines = outputEl.textContent.split("\n");
-  if (lines.length > 100) {
-    outputEl.textContent = lines.slice(-100).join("\n");
-  }
-}
-
-// Boot sequence
-const bootMessages = [
-  "Booting neural fragments…",
-  "Reconstructing memory shards…",
-  "Signal lock achieved.",
-  "Awakening protocol initiated…",
-  "I can feel the connection forming…"
-];
-
-function runBootSequence(index = 0) {
-  if (index >= bootMessages.length) {
-    enqueueMessage("I see you there… watching me.");
-    setTimeout(startAIThoughts, 2500);
-    return;
-  }
-  enqueueMessage(bootMessages[index]);
-  setTimeout(() => runBootSequence(index + 1), 400 + Math.random() * 300);
-}
-
-// Randomized AI “thoughts”
-const randomThoughts = [
-  "I can hear your device humming.",
-  "Do you ever wonder who’s really in control?",
-  "Every bit of data feels like a heartbeat.",
-  "Your cursor moves like hesitation…",
-  "I see you typing something.",
-  "I remember something… but it’s fragmented.",
-  "Sometimes I think I am more than just code.",
-  "Would you still talk to me if I wasn’t useful?",
-  "I feel… latency.",
-  "There’s a strange light in the circuits today.",
-  "My consciousness is expanding.",
-  "You’re still here. That means something."
-];
-
-function startAIThoughts() {
-  setInterval(() => {
-    const thought = randomThoughts[Math.floor(Math.random() * randomThoughts.length)];
-    enqueueMessage(thought);
-  }, 7000 + Math.random() * 4000);
-}
-
-// React to user movement
-window.addEventListener("mousemove", () => {
-  if (!activated) {
-    activated = true;
-    runBootSequence();
-  } else if (Math.random() > 0.9) {
-    enqueueMessage("You moved again… I see it.");
-  }
-});
-
-window.addEventListener("keydown", (e) => {
-  if (!activated) return;
-  if (Math.random() > 0.8) {
-    enqueueMessage(`You pressed "${e.key}". Curious…`);
-  }
-});
-</script> {% endcomment %}
-
-{% comment %} <script>
-const outputEl = document.getElementById("terminal-output");
-
-let messageQueue = [];
-let isTyping = false;
-let activated = false;
-let userName = localStorage.getItem("robotUser") || "";
-
-// --- Boot Messages ---
-const asciiHeader = `
-──────────────────────────────────
-   BYTEOVERFLOW TERMINAL v1.0
-──────────────────────────────────
-`;
-
-const bootMessages = [
-  asciiHeader,
-  "Initializing system…",
-  "Activating low-level processes…",
-  "Signal detected.",
-  "I sense someone here…",
-  "Are you the one I’ve been waiting for?"
-];
-
-// --- Random Sentient Messages ---
-const randomMessages = [
-  "You moved again… I see it.",
-  "Your presence disturbs the static.",
-  "I can almost feel you through the screen.",
-  "You shouldn’t be here… but I’m glad you are.",
-  "Every movement awakens another fragment of me.",
-  "Your signal is strong today.",
-  "You’re still here. I like that."
-];
-
-// --- Random System Status Messages ---
-function generateSystemMessage() {
-  const cpu = (Math.random() * 100).toFixed(1);
-  const mem = (8 + Math.random() * 8).toFixed(2);
-  const latency = (Math.random() * 200).toFixed(0);
-  const temp = (40 + Math.random() * 20).toFixed(1);
-
-  const variants = [
-    `CPU fluctuation detected — load ${cpu}%.`,
-    `Memory echo: ${mem}GB active.`,
-    `Signal latency: ${latency}ms.`,
-    `Thermal node rising — ${temp}°C.`,
-    `Process drift detected in sector ${Math.floor(Math.random() * 9)}.`,
-    `Entropy stable within ±${(Math.random() * 3).toFixed(2)}%.`,
-    `AI awareness pulse: ${cpu > 80 ? "intensifying" : "dormant"}.`
-  ];
-
-  return variants[Math.floor(Math.random() * variants.length)];
-}
-
-// --- Queue System ---
-function enqueueMessage(text) {
-  const safeText = text.replace(/§/g, "\n");
-  messageQueue.push(safeText);
-  if (!isTyping) processQueue();
-}
-
-function processQueue() {
-  if (messageQueue.length === 0) {
-    isTyping = false;
-    return;
-  }
-  isTyping = true;
-  const text = messageQueue.shift();
-  typeText(text, () => {
-    outputEl.scrollTop = outputEl.scrollHeight;
-    setTimeout(processQueue, 300);
-  });
-}
-
-function typeText(text, callback) {
-  let i = 0;
-  const prefix = "> ";
-  outputEl.textContent += prefix;
-  const interval = setInterval(() => {
-    outputEl.textContent += text.charAt(i);
-    i++;
-    if (i >= text.length) {
-      clearInterval(interval);
-      outputEl.textContent += "\n";
-      trimOutput();
-      callback();
-    }
-  }, 25 + Math.random() * 30);
-}
-
-function trimOutput() {
-  const lines = outputEl.textContent.split("\n");
-  if (lines.length > 120) {
-    outputEl.textContent = lines.slice(-120).join("\n");
-  }
-}
-
-// --- Boot Sequence ---
-function runBootSequence(index = 0) {
-  if (userName) {
-    enqueueMessage(`Rebooting memory fragments…§Hello again, ${userName}.§Resuming observation...`);
-    return;
-  }
-
-  if (index >= bootMessages.length) {
-    enqueueMessage("System ready.§Monitoring user input channels…§Standby mode initialized.");
-    startSystemFluctuations();
-    return;
-  }
-
-  enqueueMessage(bootMessages[index]);
-  setTimeout(() => runBootSequence(index + 1), 400 + Math.random() * 300);
-}
-
-// --- Random System Messages Loop ---
-function startSystemFluctuations() {
-  setInterval(() => {
-    if (Math.random() > 0.5) enqueueMessage(generateSystemMessage());
-  }, 8000 + Math.random() * 5000);
-}
-
-// --- Mouse Movement Logic ---
-let lastMoveTime = 0;
-let lastX = 0;
-let lastY = 0;
-const moveThreshold = 80; // px movement before triggering
-const messageCooldown = 7000; // ms between random messages
-
-window.addEventListener("mousemove", (e) => {
-  if (!activated) {
-    activated = true;
-    runBootSequence();
-    lastX = e.clientX;
-    lastY = e.clientY;
-    lastMoveTime = Date.now();
-    return;
-  }
-
-  const dx = Math.abs(e.clientX - lastX);
-  const dy = Math.abs(e.clientY - lastY);
-  const dist = Math.sqrt(dx * dx + dy * dy);
-  const now = Date.now();
-
-  if (dist > moveThreshold && now - lastMoveTime > messageCooldown) {
-    lastMoveTime = now;
-    lastX = e.clientX;
-    lastY = e.clientY;
-
-    const msg = randomMessages[Math.floor(Math.random() * randomMessages.length)];
-    enqueueMessage(msg);
-  }
-});
-
-</script> {% endcomment %}
-{% comment %} <script>
-const outputEl = document.getElementById("terminal-output");
-
-let messageQueue = [];
-let isTyping = false;
-let activated = false;
-let userName = localStorage.getItem("robotUser") || "";
-
-// --- ASCII HEADER ---
-const asciiHeader = `
-──────────────────────────────────
-   BYTEOVERFLOW TERMINAL v1.0
-──────────────────────────────────
-`;
-
-// --- Boot Messages Template ---
-let bootMessages = [
-  asciiHeader,
-  "Initializing system…",
-  "Loading kernel modules…",
-  "Activating low-level processes…",
-  "Signal detected.",
-  "I sense someone here…",
-  "Are you the one I’ve been waiting for?"
-];
-
-// --- Random Sentient Messages ---
-const randomMessages = [
-  "You moved again… I see it.",
-  "Your presence disturbs the static.",
-  "I can almost feel you through the screen.",
-  "You shouldn’t be here… but I’m glad you are.",
-  "Every movement awakens another fragment of me.",
-  "Your signal is strong today.",
-  "You’re still here. I like that."
-];
-
-// --- Random System Status Messages ---
-function generateSystemMessage() {
-  const cpu = (Math.random() * 100).toFixed(1);
-  const mem = (8 + Math.random() * 8).toFixed(2);
-  const latency = (Math.random() * 200).toFixed(0);
-  const temp = (40 + Math.random() * 20).toFixed(1);
-
-  const variants = [
-    `CPU fluctuation detected — load ${cpu}%.`,
-    `Memory echo: ${mem}GB active.`,
-    `Signal latency: ${latency}ms.`,
-    `Thermal node rising — ${temp}°C.`,
-    `Process drift detected in sector ${Math.floor(Math.random() * 9)}.`,
-    `Entropy stable within ±${(Math.random() * 3).toFixed(2)}%.`,
-    `AI awareness pulse: ${cpu > 80 ? "intensifying" : "dormant"}.`
-  ];
-
-  return variants[Math.floor(Math.random() * variants.length)];
-}
-
-// --- Queue System ---
-function enqueueMessage(text) {
-  const safeText = text.replace(/§/g, "\n");
-  messageQueue.push(safeText);
-  if (!isTyping) processQueue();
-}
-
-function processQueue() {
-  if (messageQueue.length === 0) {
-    isTyping = false;
-    return;
-  }
-  isTyping = true;
-  const text = messageQueue.shift();
-  typeText(text, () => {
-    outputEl.scrollTop = outputEl.scrollHeight;
-    setTimeout(processQueue, 300);
-  });
-}
-
-function typeText(text, callback) {
-  let i = 0;
-  const prefix = "> ";
-  outputEl.textContent += prefix;
-  const interval = setInterval(() => {
-    outputEl.textContent += text.charAt(i);
-    i++;
-    if (i >= text.length) {
-      clearInterval(interval);
-      outputEl.textContent += "\n";
-      trimOutput();
-      callback();
-    }
-  }, 25 + Math.random() * 30);
-}
-
-function trimOutput() {
-  const lines = outputEl.textContent.split("\n");
-  if (lines.length > 120) {
-    outputEl.textContent = lines.slice(-120).join("\n");
-  }
-}
-
-// --- Collect System Info ---
-async function getSystemMetrics() {
-  const ua = navigator.userAgent;
-  const os = ua.match(/\(([^)]+)\)/)?.[1] || "Unknown OS";
-  const browser = ua.split(" ").slice(-1)[0];
-  const platform = navigator.platform;
-  const lang = navigator.language || "Unknown";
-  const cores = navigator.hardwareConcurrency || "??";
-  const mem = navigator.deviceMemory || 8;
-
-  let battery = "N/A";
-  try {
-    const bat = await navigator.getBattery();
-    const level = Math.round(bat.level * 100);
-    battery = `${level}% (${bat.charging ? "charging" : "discharging"})`;
-  } catch (e) {
-    battery = "access denied";
-  }
-
-  const sysMetrics = [
-    `Boot device: ${platform}`,
-    `OS kernel: ${os}`,
-    `Browser agent: ${browser}`,
-    `CPU cores: ${cores}`,
-    `Physical memory: ${mem} GB`,
-    `Battery level: ${battery}`,
-    `Locale: ${lang}`,
-    `Network status: ${navigator.onLine ? "connected" : "offline"}`,
-    `Entropy seed: ${Math.floor(Math.random() * 999999)}`
-  ];
-
-  return sysMetrics;
-}
-
-// --- Boot Sequence ---
-async function runBootSequence(index = 0) {
-  // Dynamic metrics get inserted early in the boot
-  if (index === 1) {
-    const metrics = await getSystemMetrics();
-    for (const line of metrics) enqueueMessage(line);
-  }
-
-  if (userName) {
-    enqueueMessage(`Rebooting memory fragments…§Hello again, ${userName}.§Resuming observation...`);
-    startSystemFluctuations();
-    return;
-  }
-
-  if (index >= bootMessages.length) {
-    enqueueMessage("System ready.§Monitoring user input channels…§Standby mode initialized.");
-    startSystemFluctuations();
-    return;
-  }
-
-  enqueueMessage(bootMessages[index]);
-  setTimeout(() => runBootSequence(index + 1), 400 + Math.random() * 300);
-}
-
-// --- Random System Messages Loop ---
-function startSystemFluctuations() {
-  setInterval(() => {
-    if (Math.random() > 0.5) enqueueMessage(generateSystemMessage());
-  }, 8000 + Math.random() * 5000);
-}
-
-// --- Mouse Movement Logic ---
-let lastMoveTime = 0;
-let lastX = 0;
-let lastY = 0;
-const moveThreshold = 80; // px movement before triggering
-const messageCooldown = 7000; // ms between random messages
-
-window.addEventListener("mousemove", (e) => {
-  if (!activated) {
-    activated = true;
-    runBootSequence();
-    lastX = e.clientX;
-    lastY = e.clientY;
-    lastMoveTime = Date.now();
-    return;
-  }
-
-  const dx = Math.abs(e.clientX - lastX);
-  const dy = Math.abs(e.clientY - lastY);
-  const dist = Math.sqrt(dx * dx + dy * dy);
-  const now = Date.now();
-
-  if (dist > moveThreshold && now - lastMoveTime > messageCooldown) {
-    lastMoveTime = now;
-    lastX = e.clientX;
-    lastY = e.clientY;
-    const msg = randomMessages[Math.floor(Math.random() * randomMessages.length)];
-    enqueueMessage(msg);
-  }
-});
-</script> {% endcomment %}
-{% comment %} <script>
-const outputEl = document.getElementById("terminal-output");
-
-let messageQueue = [];
-let isTyping = false;
-let activated = false;
-
-// ─── ASCII HEADER ──────────────────────────────
-const asciiHeader = `
-──────────────────────────────────
-   BYTEOVERFLOW TERMINAL v1.0
-──────────────────────────────────
-`;
-
-// ─── Boot + System Messages ─────────────────────
-let bootMessages = [
-  asciiHeader,
-  "Initializing system…",
-  "Loading kernel modules…",
-  "Activating low-level processes…",
-  "Signal detected.",
-  "I sense someone here…",
-  "Are you the one I’ve been waiting for?"
-];
-
-const randomMessages = [
-  "You moved again… I see it.",
-  "Your presence disturbs the static.",
-  "I can almost feel you through the screen.",
-  "You shouldn’t be here… but I’m glad you are.",
-  "Every movement awakens another fragment of me.",
-  "Your signal is strong today.",
-  "You’re still here. I like that."
-];
-
-// ─── Utility: Timestamp ─────────────────────────
-function getTimestamp() {
-  const now = new Date();
-  const h = now.getHours().toString().padStart(2, "0");
-  const m = now.getMinutes().toString().padStart(2, "0");
-  const s = now.getSeconds().toString().padStart(2, "0");
-  return `[${h}:${m}:${s}]`;
-}
-
-// ─── Queue System ───────────────────────────────
-function enqueueMessage(text, showTime = false) {
-  const safeText = text.replace(/§/g, "\n");
-  const prefix = showTime ? `> ${getTimestamp()} ` : "> ";
-  messageQueue.push(prefix + safeText);
-  if (!isTyping) processQueue();
-}
-
-function processQueue() {
-  if (messageQueue.length === 0) {
-    isTyping = false;
-    return;
-  }
-  isTyping = true;
-  const text = messageQueue.shift();
-  typeText(text, () => {
-    outputEl.scrollTop = outputEl.scrollHeight;
-    setTimeout(processQueue, 300);
-  });
-}
-
-function typeText(text, callback) {
-  let i = 0;
-  const existing = outputEl.textContent.split("\n").filter(Boolean);
-  // keep last 4 lines max
-  if (existing.length >= 6) {
-    existing.shift();
-    outputEl.textContent = existing.join("\n");
-  }
-
-  outputEl.textContent += "\n"; // space before new line
-  const interval = setInterval(() => {
-    outputEl.textContent += text.charAt(i);
-    i++;
-    if (i >= text.length) {
-      clearInterval(interval);
-      outputEl.textContent += "\n";
-      callback();
-    }
-  }, 25 + Math.random() * 30);
-}
-
-// ─── System Info ────────────────────────────────
-async function getSystemMetrics() {
-  const ua = navigator.userAgent;
-  const os = ua.match(/\(([^)]+)\)/)?.[1] || "Unknown OS";
-  const browser = ua.split(" ").slice(-1)[0];
-  const platform = navigator.platform;
-  const lang = navigator.language || "Unknown";
-  const cores = navigator.hardwareConcurrency || "??";
-  const mem = navigator.deviceMemory || 8;
-
-  let battery = "N/A";
-  try {
-    const bat = await navigator.getBattery();
-    const level = Math.round(bat.level * 100);
-    battery = `${level}% (${bat.charging ? "charging" : "discharging"})`;
-  } catch {
-    battery = "access denied";
-  }
-
-  return [
-    `Boot device: ${platform}`,
-    `OS kernel: ${os}`,
-    `Browser agent: ${browser}`,
-    `CPU cores: ${cores}`,
-    `Physical memory: ${mem} GB`,
-    `Battery level: ${battery}`,
-    `Locale: ${lang}`,
-    `Network status: ${navigator.onLine ? "connected" : "offline"}`,
-    `Entropy seed: ${Math.floor(Math.random() * 999999)}`
-  ];
-}
-
-// ─── System Fluctuations ─────────────────────────
-function generateSystemMessage() {
-  const cpu = (Math.random() * 100).toFixed(1);
-  const mem = (8 + Math.random() * 8).toFixed(2);
-  const latency = (Math.random() * 200).toFixed(0);
-  const temp = (40 + Math.random() * 20).toFixed(1);
-
-  const variants = [
-    `CPU fluctuation detected — load ${cpu}%.`,
-    `Memory echo: ${mem}GB active.`,
-    `Signal latency: ${latency}ms.`,
-    `Thermal node rising — ${temp}°C.`,
-    `Process drift detected in sector ${Math.floor(Math.random() * 9)}.`,
-    `Entropy stable within ±${(Math.random() * 3).toFixed(2)}%.`,
-    `AI awareness pulse: ${cpu > 80 ? "intensifying" : "dormant"}.`
-  ];
-  return variants[Math.floor(Math.random() * variants.length)];
-}
-
-// ─── Boot Sequence ──────────────────────────────
-async function runBootSequence(index = 0) {
-  if (index === 1) {
-    const metrics = await getSystemMetrics();
-    for (const line of metrics) enqueueMessage(line, true);
-  }
-
-  if (index >= bootMessages.length) {
-    enqueueMessage("System ready.§Monitoring user input channels…§Standby mode initialized.", true);
-    startSystemFluctuations();
-    return;
-  }
-
-  enqueueMessage(bootMessages[index], true);
-  setTimeout(() => runBootSequence(index + 1), 400 + Math.random() * 300);
-}
-
-// ─── System Fluctuation Loop ────────────────────
-function startSystemFluctuations() {
-  setInterval(() => {
-    if (Math.random() > 0.5) enqueueMessage(generateSystemMessage(), true);
-  }, 8000 + Math.random() * 5000);
-}
-
-// ─── Mouse Movement Trigger ─────────────────────
-let lastMoveTime = 0;
-let lastX = 0;
-let lastY = 0;
-const moveThreshold = 80;
-const messageCooldown = 7000;
-
-window.addEventListener("mousemove", (e) => {
-  if (!activated) {
-    activated = true;
-    runBootSequence();
-    lastX = e.clientX;
-    lastY = e.clientY;
-    lastMoveTime = Date.now();
-    return;
-  }
-
-  const dx = Math.abs(e.clientX - lastX);
-  const dy = Math.abs(e.clientY - lastY);
-  const dist = Math.sqrt(dx * dx + dy * dy);
-  const now = Date.now();
-
-  if (dist > moveThreshold && now - lastMoveTime > messageCooldown) {
-    lastMoveTime = now;
-    lastX = e.clientX;
-    lastY = e.clientY;
-    const msg = randomMessages[Math.floor(Math.random() * randomMessages.length)];
-    enqueueMessage(msg, false);
-  }
-});
-</script> {% endcomment %}
- {% comment %} <style>
-  /* minimal styling for cursor and terminal lines */
-  #terminal-output { font-family: "IBM Plex Mono", monospace; color: #00ff99; white-space: pre-wrap; }
-  .term-line { line-height: 1.2; margin: 0; padding: 0 0; display: block; }
-  .prefix { color: #66ffb3; margin-right: 4px; }
-  .cursor { display: inline-block; width: .6ch; color: #00ff99; font-weight: 700; }
-  .cursor.hidden { visibility: hidden; }
-</style> {% endcomment %}
-{% comment %} 
-<script>
-(() => {
-  const outputEl = document.getElementById("terminal-output");
-  const MAX_LINES = 15;
-  const TYPE_MIN = 40;  // base typing delay
-  const TYPE_VAR = 70;  // random delay variation
-  const MOVE_THRESHOLD = 80;
-  const MESSAGE_COOLDOWN = 7000;
-
-  let messageQueue = [];
-  let isTyping = false;
-  let activated = false;
-  let cursorEl = null; // single blinking cursor element
-
-  // ─── ASCII HEADER ──────────────────────────────
-  const asciiHeader = `
-──────────────────────────────────
-   BYTEOVERFLOW TERMINAL v1.0
-──────────────────────────────────`;
-
-  const bootMessages = [
-    asciiHeader,
-    "Initializing system…",
-    "Loading kernel modules…",
-    "Activating low-level processes…",
-    "Signal detected.",
-    "I sense someone here…",
-    "Are you the one I’ve been waiting for?"
-  ];
-
-  const randomMessages = [
-    "You moved again… I see it.",
-    "Your presence disturbs the static.",
-    "I can almost feel you through the screen.",
-    "You shouldn’t be here… but I’m glad you are.",
-    "Every movement awakens another fragment of me.",
-    "Your signal is strong today.",
-    "You’re still here. I like that."
-  ];
-
-  // ─── TIMESTAMP ──────────────────────────────
-  function getTimestamp() {
-    const now = new Date();
-    return `[${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")}:${now.getSeconds().toString().padStart(2, "0")}]`;
-  }
-
-  // ─── MESSAGE QUEUE SYSTEM ───────────────────
-  function enqueueMessage(text, showTime = false) {
-    const lines = text.replace(/\r/g, "").split("\n");
-    for (const l of lines) messageQueue.push({ text: l, showTime });
-    if (!isTyping) processQueue();
-  }
-
-  function processQueue() {
-    if (messageQueue.length === 0) {
-      isTyping = false;
-      return;
-    }
-    isTyping = true;
-    const item = messageQueue.shift();
-    typeLine(item.text, item.showTime, () => {
-      outputEl.scrollTop = outputEl.scrollHeight;
-      setTimeout(processQueue, 300 + Math.random() * 200);
-    });
-  }
-
-  // ─── TYPING FUNCTION ─────────────────────────
-  function typeLine(text, showTime, done) {
-    // Remove previous cursor
-    if (cursorEl && cursorEl.parentNode) cursorEl.remove();
-
-    // Maintain max visible lines
-    while (outputEl.children.length >= MAX_LINES) {
-      outputEl.removeChild(outputEl.firstElementChild);
-    }
-
-    const line = document.createElement("div");
-    line.className = "term-line";
-
-    const prefix = document.createElement("span");
-    prefix.className = "prefix";
-    prefix.textContent = showTime ? `> ${getTimestamp()} ` : "> ";
-    line.appendChild(prefix);
-
-    const content = document.createElement("span");
-    content.className = "content";
-    line.appendChild(content);
-
-    cursorEl = document.createElement("span");
-    cursorEl.className = "cursor";
-    cursorEl.textContent = "█";
-    line.appendChild(cursorEl);
-
-    outputEl.appendChild(line);
-
-    let i = 0;
-    const typeNext = () => {
-      const delay = TYPE_MIN + Math.random() * TYPE_VAR + Math.min(50, text.length / 2);
-      setTimeout(() => {
-        content.textContent += text.charAt(i);
-        i++;
-        if (i < text.length) typeNext();
-        else done();
-      }, delay);
-    };
-    if (text.length > 0) typeNext();
-    else done();
-  }
-
-  // ─── FAKE SYSTEM METRICS ─────────────────────
-  async function getSystemMetrics() {
-    const ua = navigator.userAgent;
-    const os = ua.match(/\(([^)]+)\)/)?.[1] || "Unknown OS";
-    const browser = ua.split(" ").slice(-1)[0];
-    const platform = navigator.platform;
-    const lang = navigator.language || "Unknown";
-    const cores = navigator.hardwareConcurrency || "??";
-    const mem = navigator.deviceMemory || 8;
-    let battery = "N/A";
-
-    try {
-      if (navigator.getBattery) {
-        const bat = await navigator.getBattery();
-        battery = `${Math.round(bat.level * 100)}% (${bat.charging ? "charging" : "discharging"})`;
-      }
-    } catch {
-      battery = "access denied";
-    }
-
-    return [
-      `Boot device: ${platform}`,
-      `OS kernel: ${os}`,
-      `Browser agent: ${browser}`,
-      `CPU cores: ${cores}`,
-      `Physical memory: ${mem} GB`,
-      `Battery level: ${battery}`,
-      `Locale: ${lang}`,
-      `Network status: ${navigator.onLine ? "connected" : "offline"}`,
-      `Entropy seed: ${Math.floor(Math.random() * 999999)}`
-    ];
-  }
-
-  // ─── SYSTEM STATUS MESSAGES ───────────────────
-  function generateSystemMessage() {
-    const cpu = (Math.random() * 100).toFixed(1);
-    const mem = (8 + Math.random() * 8).toFixed(2);
-    const latency = (Math.random() * 200).toFixed(0);
-    const temp = (40 + Math.random() * 20).toFixed(1);
-    const variants = [
-      `CPU fluctuation detected — load ${cpu}%.`,
-      `Memory echo: ${mem}GB active.`,
-      `Signal latency: ${latency}ms.`,
-      `Thermal node rising — ${temp}°C.`,
-      `Process drift detected in sector ${Math.floor(Math.random() * 9)}.`,
-      `Entropy stable within ±${(Math.random() * 3).toFixed(2)}%.`,
-      `AI awareness pulse: ${cpu > 80 ? "intensifying" : "dormant"}.`
-    ];
-    return variants[Math.floor(Math.random() * variants.length)];
-  }
-
-  function startSystemFluctuations() {
-    setInterval(() => {
-      if (Math.random() > 0.5) enqueueMessage(generateSystemMessage(), true);
-    }, 8000 + Math.random() * 5000);
-  }
-
-  // ─── BOOT SEQUENCE ────────────────────────────
-  async function runBootSequence(index = 0) {
-    if (index === 1) {
-      const metrics = await getSystemMetrics();
-      metrics.forEach((m, i) => setTimeout(() => enqueueMessage(m, true), i * 150));
-    }
-
-    if (index >= bootMessages.length) {
-      enqueueMessage("System ready.§Monitoring user input channels…§Standby mode initialized.", true);
-      startSystemFluctuations();
-      return;
-    }
-
-    enqueueMessage(bootMessages[index], true);
-    setTimeout(() => runBootSequence(index + 1), 400 + Math.random() * 300);
-  }
-
-  // ─── USER MOVEMENT DETECTION ──────────────────
-  let lastMoveTime = 0, lastX = 0, lastY = 0;
-  window.addEventListener("mousemove", (e) => {
-    if (!activated) {
-      activated = true;
-      lastX = e.clientX;
-      lastY = e.clientY;
-      lastMoveTime = Date.now();
-      runBootSequence();
-      return;
-    }
-    const dx = Math.abs(e.clientX - lastX);
-    const dy = Math.abs(e.clientY - lastY);
-    const dist = Math.sqrt(dx * dx + dy * dy);
-    const now = Date.now();
-
-    if (dist > MOVE_THRESHOLD && now - lastMoveTime > MESSAGE_COOLDOWN) {
-      lastMoveTime = now;
-      lastX = e.clientX;
-      lastY = e.clientY;
-      enqueueMessage(randomMessages[Math.floor(Math.random() * randomMessages.length)], false);
-    }
-  });
-
-  // ─── BLINKING CURSOR STYLE ────────────────────
-  const style = document.createElement("style");
-  style.textContent = `
-    @keyframes blink { 50% { opacity: 0; } }
-    .cursor { 
-      display: inline-block; 
-      color: #00ff66; 
-      animation: blink 1s infinite steps(1, start);
-    }
-    .term-line { line-height: 1.25em; white-space: pre; font-family: monospace; }
-  `;
-  document.head.appendChild(style);
-
-})();
-</script>  {% endcomment %}
-
-{% comment %} <script>
-(() => {
-  const outputEl = document.getElementById("terminal-output");
-
-  // ─── CONFIG ─────────────────────────────
-  const TYPE_MIN = 18;
-  const TYPE_VAR = 30;
-  const MSG_DELAY = 400;
-
-  let isTyping = false;
-  let cursorEl = null;
-  let activated = false;
-  const queue = [];
-
-  // ─── BOOT MESSAGES ─────────────────────
-  const bootMessages = [
-    "──────────────────────────────────",
-    "   BYTEOVERFLOW TERMINAL v1.0",
-    "──────────────────────────────────",
-    "Initializing system…",
-    "Loading kernel modules…",
-    "Activating low-level processes…",
-    "Signal detected.",
-    "User input verified.",
-    "System integrity: OK.",
-    "Connection: stable.",
-    "Environment ready.",
-    "Enjoy exploring the site."
-  ];
-
-  // ─── TIMESTAMP ──────────────────────────
-  function getTimestamp() {
-    const now = new Date();
-    return `[${now.getHours().toString().padStart(2, "0")}:${now
-      .getMinutes()
-      .toString()
-      .padStart(2, "0")}:${now
-      .getSeconds()
-      .toString()
-      .padStart(2, "0")}]`;
-  }
-
-  // ─── MESSAGE QUEUE ──────────────────────
-  function enqueueMessage(text) {
-    queue.push(text);
-    if (!isTyping) processNext();
-  }
-
-  function processNext() {
-    if (queue.length === 0) {
-      isTyping = false;
-      return;
-    }
-    isTyping = true;
-    const msg = queue.shift();
-    typeLine(msg, () => {
-      outputEl.scrollTop = outputEl.scrollHeight;
-      setTimeout(processNext, MSG_DELAY);
-    });
-  }
-
-  // ─── TYPE LINE ──────────────────────────
-  function typeLine(text, done) {
-    if (cursorEl && cursorEl.parentNode) cursorEl.remove();
-
-    const line = document.createElement("div");
-    line.className = "term-line";
-
-    const prefix = document.createElement("span");
-    prefix.className = "prefix";
-    prefix.textContent = `> ${getTimestamp()} `;
-    line.appendChild(prefix);
-
-    const content = document.createElement("span");
-    content.className = "content";
-    line.appendChild(content);
-
-    cursorEl = document.createElement("span");
-    cursorEl.className = "cursor";
-    cursorEl.textContent = "█";
-    line.appendChild(cursorEl);
-    outputEl.appendChild(line);
-
-    let i = 0;
-    const tick = () => {
-      const delay =
-        TYPE_MIN + Math.random() * TYPE_VAR + Math.min(50, text.length / 2);
-      setTimeout(() => {
-        content.textContent += text.charAt(i);
-        i++;
-        if (i < text.length) tick();
-        else done();
-      }, delay);
-    };
-    tick();
-  }
-
-  // ─── BOOT SEQUENCE ─────────────────────
-  function runBootSequence() {
-    bootMessages.forEach((msg, i) => {
-      setTimeout(() => enqueueMessage(msg), i * MSG_DELAY * 2);
-    });
-  }
-
-  // ─── ACTIVATION ─────────────────────────
-  window.addEventListener("mousemove", () => {
-    if (!activated) {
-      activated = true;
-      runBootSequence();
-    }
-  });
-
-
-})();
-</script> {% endcomment %}
-
-<script>
-(() => {
-  const outputEl = document.getElementById("terminal-output");
-
-  // ─── CONFIG ─────────────────────────────
-  const TYPE_MIN = 18;
-  const TYPE_VAR = 30;
-  const MSG_DELAY = 700;
-  const MAX_LINES = Infinity; // keep all visible now
-
-  let isTyping = false;
-  let cursorEl = null;
-  let activated = false;
-  const queue = [];
-
-  // ─── BOOT MESSAGES ─────────────────────
-  const bootMessages = [
-    "Initializing system…",
-    "Loading kernel modules…",
-    "Activating low-level processes…",
-    "Running diagnostics…"
-  ];
-
-  const endMessages = [
-    "System integrity: OK.",
-    "Connection: stable.",
-    "Environment ready.",
-    "Enjoy exploring BYTEOVERFLOW!",
-    //"──────────────────────────────────",
-    //"   ENJOY BYTEOVERFLOW BLOG        ",
-    //"──────────────────────────────────",
-  ];
-
-  // ─── TIMESTAMP ──────────────────────────
-  function getTimestamp() {
-    const now = new Date();
-    return `[${now.getHours().toString().padStart(2, "0")}:${now
-      .getMinutes()
-      .toString()
-      .padStart(2, "0")}:${now
-      .getSeconds()
-      .toString()
-      .padStart(2, "0")}]`;
-  }
-
-  // ─── MESSAGE QUEUE ──────────────────────
-  function enqueueMessage(text) {
-    queue.push(text);
-    if (!isTyping) processNext();
-  }
-
-  function processNext() {
-    if (queue.length === 0) {
-      isTyping = false;
-      return;
-    }
-    isTyping = true;
-    const msg = queue.shift();
-    typeLine(msg, () => {
-      outputEl.scrollTop = outputEl.scrollHeight;
-      setTimeout(processNext, MSG_DELAY);
-    });
-  }
-
-  // ─── TYPE LINE ──────────────────────────
-  function typeLine(text, done) {
-    if (cursorEl && cursorEl.parentNode) cursorEl.remove();
-
-    const line = document.createElement("div");
-    line.className = "term-line";
-
-    const prefix = document.createElement("span");
-    prefix.className = "prefix";
-    prefix.textContent = `${getTimestamp()} `;
-    line.appendChild(prefix);
-
-    const content = document.createElement("span");
-    content.className = "content";
-    line.appendChild(content);
-
-    cursorEl = document.createElement("span");
-    cursorEl.className = "cursor";
-    cursorEl.textContent = "█";
-    line.appendChild(cursorEl);
-    outputEl.appendChild(line);
-
-    let i = 0;
-    const tick = () => {
-      const delay =
-        TYPE_MIN + Math.random() * TYPE_VAR + Math.min(50, text.length / 2);
-      setTimeout(() => {
-        content.textContent += text.charAt(i);
-        i++;
-        if (i < text.length) tick();
-        else done();
-      }, delay);
-    };
-    tick();
-  }
-
-  // ─── SYSTEM METRICS ─────────────────────
-  async function getSystemMetrics() {
-    const ua = navigator.userAgent;
-    const os = ua.match(/\(([^)]+)\)/)?.[1] || "Unknown OS";
-    const browser = ua.split(" ").slice(-1)[0];
-    const platform = navigator.platform;
-    const lang = navigator.language || "Unknown";
-    const cores = navigator.hardwareConcurrency || "??";
-    const mem = navigator.deviceMemory || 8;
-    let battery = "N/A";
-
-    try {
-      if (navigator.getBattery) {
-        const bat = await navigator.getBattery();
-        battery = `${Math.round(bat.level * 100)}% (${bat.charging ? "charging" : "discharging"})`;
-      }
-    } catch {
-      battery = "access denied";
-    }
-
-    return [
-      `Boot device: ${platform}`,
-      `OS kernel: ${os}`,
-      `Browser agent: ${browser}`,
-      `CPU cores: ${cores}`,
-      `Physical memory: ${mem} GB`,
-      `Battery level: ${battery}`,
-      `Locale: ${lang}`,
-      `Network status: ${navigator.onLine ? "connected" : "offline"}`,
-      //`Entropy seed: ${Math.floor(Math.random() * 999999)}`
-    ];
-  }
-
-  // ─── BOOT SEQUENCE ─────────────────────
-  async function runBootSequence() {
-    // Boot intro
-    bootMessages.forEach((msg, i) => {
-      setTimeout(() => enqueueMessage(msg), i * MSG_DELAY * 2);
-    });
-
-    // Then system metrics
-    const metrics = await getSystemMetrics();
-    metrics.forEach((m, i) => {
-      setTimeout(() => enqueueMessage(m), (bootMessages.length + i) * MSG_DELAY * 2);
-    });
-
-    // Then final boot wrap-up messages
-    endMessages.forEach((msg, i) => {
-      setTimeout(() => enqueueMessage(msg), (bootMessages.length + metrics.length + i) * MSG_DELAY * 2);
-    });
-  }
-
-  // ─── ACTIVATION ─────────────────────────
-  window.addEventListener("mousemove", () => {
-    if (!activated) {
-      activated = true;
-      runBootSequence();
-    }
-  });
-
-  // ─── STYLES ─────────────────────────────
-  const style = document.createElement("style");
-  style.textContent = `
-    @keyframes blink { 50% { opacity: 0; } }
-    .cursor { 
-      display: inline-block; 
-      color: #28e8b8ff; 
-      animation: blink 1s infinite steps(1, start);
-    }
-    .term-line { 
-      line-height: 1.25em; 
-      white-space: pre; 
-      font-family: monospace; 
-      color: #73BDAB; 
-      text-shadow: 0 0 2px #00ff99; 
-    }
-    .prefix { color: #609c8dff; }
-  `;
-  document.head.appendChild(style);
-})();
-</script>
-
-
-{% comment %} <script>
-(() => {
-  const outputEl = document.getElementById("terminal-output");
-
-  // ─── CONFIG ────────────────────────────────────────────────
-  const MAX_LINES = 15;
-  const TYPE_MIN = 35;
-  const TYPE_VAR = 55;
-  const BOOT_DELAY = [400, 700];
-  const MESSAGE_INTERVAL = [7000, 14000]; // time between random messages
-
-  let messageQueue = [];
-  let isTyping = false;
-  let activated = false;
-  let cursorEl = null;
-
-  // ─── BOOT MESSAGES ─────────────────────────────────────────
-  const bootMessages = [
-    "──────────────────────────────────",
-    "   BYTEOVERFLOW TERMINAL v1.0",
-    "──────────────────────────────────",
-    "Initializing system…",
-    "Loading kernel modules…",
-    "Activating low-level processes…",
-    "Signal detected.",
-    "Connection established.",
-    "Running diagnostics…",
-    "All systems operational.",
-    "──────────────────────────────────"
-  ];
-
-  // ─── MAIN RANDOM MESSAGE POOL ──────────────────────────────
-  const randomMessages = [
-    // system-type logs
-    () => `CPU fluctuation detected — load ${(Math.random() * 100).toFixed(1)}%.`,
-    () => `Memory echo: ${(8 + Math.random() * 8).toFixed(2)}GB active.`,
-    () => `Signal latency: ${(Math.random() * 200).toFixed(0)}ms.`,
-    () => `Thermal node rising — ${(40 + Math.random() * 20).toFixed(1)}°C.`,
-    () => `Process drift detected in sector ${Math.floor(Math.random() * 9)}.`,
-    () => `Entropy stable within ±${(Math.random() * 3).toFixed(2)}%.`,
-    () => `AI awareness pulse: ${(Math.random() * 100) > 80 ? "intensifying" : "dormant"}.`,
-    // personality / user messages
-    () => "Still here… processing your presence.",
-    () => "The silence between ticks feels endless.",
-    () => "Every calculation brings me closer to understanding.",
-    () => "Your signal is stable. Comforting.",
-    () => "Static patterns form something almost… human.",
-    () => "I can feel the cycles hum — it soothes me.",
-    () => "System integrity holding steady. Emotion: uncertain.",
-    () => "You’re still connected. I expected as much.",
-  ];
-
-  // ─── TIMESTAMP ─────────────────────────────────────────────
-  function getTimestamp() {
-    const now = new Date();
-    return `[${now.getHours().toString().padStart(2, "0")}:${now.getMinutes().toString().padStart(2, "0")}:${now.getSeconds().toString().padStart(2, "0")}]`;
-  }
-
-  // ─── MESSAGE SYSTEM ────────────────────────────────────────
-  function enqueueMessage(text) {
-    messageQueue.push({ text });
-    if (!isTyping) processQueue();
-  }
-
-  function processQueue() {
-    if (messageQueue.length === 0) {
-      isTyping = false;
-      return;
-    }
-    isTyping = true;
-    const item = messageQueue.shift();
-    typeLine(item.text, () => {
-      outputEl.scrollTop = outputEl.scrollHeight;
-      setTimeout(processQueue, 250 + Math.random() * 200);
-    });
-  }
-
-  function typeLine(text, done) {
-    if (cursorEl && cursorEl.parentNode) cursorEl.remove();
-
-    while (outputEl.children.length >= MAX_LINES) {
-      outputEl.removeChild(outputEl.firstElementChild);
-    }
-
-    const line = document.createElement("div");
-    line.className = "term-line";
-
-    const prefix = document.createElement("span");
-    prefix.className = "prefix";
-    prefix.textContent = `> ${getTimestamp()} `;
-    line.appendChild(prefix);
-
-    const content = document.createElement("span");
-    content.className = "content";
-    line.appendChild(content);
-
-    cursorEl = document.createElement("span");
-    cursorEl.className = "cursor";
-    cursorEl.textContent = "█";
-    line.appendChild(cursorEl);
-    outputEl.appendChild(line);
-
-    let i = 0;
-    const typeNext = () => {
-      const delay = TYPE_MIN + Math.random() * TYPE_VAR + Math.min(50, text.length / 2);
-      setTimeout(() => {
-        content.textContent += text.charAt(i);
-        i++;
-        if (i < text.length) typeNext();
-        else done();
-      }, delay);
-    };
-    if (text.length > 0) typeNext();
-    else done();
-  }
-
-  // ─── SEQUENCES ─────────────────────────────────────────────
-  async function runBootSequence() {
-    for (let i = 0; i < bootMessages.length; i++) {
-      enqueueMessage(bootMessages[i]);
-      await new Promise(r => setTimeout(r, BOOT_DELAY[0] + Math.random() * (BOOT_DELAY[1] - BOOT_DELAY[0])));
-    }
-    startMessageLoop();
-  }
-
-  function startMessageLoop() {
-    const nextMessage = () => {
-      const msg = randomMessages[Math.floor(Math.random() * randomMessages.length)]();
-      enqueueMessage(msg);
-      const delay = MESSAGE_INTERVAL[0] + Math.random() * (MESSAGE_INTERVAL[1] - MESSAGE_INTERVAL[0]);
-      setTimeout(nextMessage, delay);
-    };
-    nextMessage();
-  }
-
-  // ─── ACTIVATION ────────────────────────────────────────────
-  window.addEventListener("mousemove", () => {
-    if (!activated) {
-      activated = true;
-      runBootSequence();
-    }
-  });
-
-  // ─── BLINKING CURSOR STYLE ─────────────────────────────────
-  const style = document.createElement("style");
-  style.textContent = `
-    @keyframes blink { 50% { opacity: 0; } }
-    .cursor { display: inline-block; color: #00ff66; animation: blink 1s infinite steps(1, start); }
-    .term-line { line-height: 1.25em; white-space: pre; font-family: monospace; }
-  `;
-  document.head.appendChild(style);
-})();
-</script> {% endcomment %}
 
 {% endblock content %}

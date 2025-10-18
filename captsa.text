@@ -200,3 +200,80 @@ Server-side validation + rate limiting.
 Optional: Email confirmation or CAPTCHA fallback for suspicious traffic.
 
 Optional: third-party spam filters (Akismet, StopForumSpam).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+🎬 Retro-Futuristic Terminal Hero Image Style Guide
+🖥️ Visual Theme
+Era Fusion: Combines 1980s sci-fi aesthetics with futuristic minimalism.
+
+Terminal Design: Wide-format console with rounded edges, curved glass screen, and analog elements like dials and vents.
+
+Typography: Monospaced font with glowing green and amber text, evoking vintage CRT monitors.
+
+🎨 Color Palette
+Primary Tones:
+
+Pastel teal
+
+Dusty rose
+
+Warm gray
+
+Accent Colors:
+
+Pale green (for system logs)
+
+Amber (for highlights)
+
+Dark teal (screen background)
+
+Lighting: Soft ambient glow with diffused shadows for a calm, cinematic feel.
+
+🧠 Content Elements
+System Logs: Displayed in full lines with timestamps, IPs, mount points, and device info.
+
+Interface Details:
+
+“SYSTEM LOGS” header
+
+Technical readouts like load averages, network uptime, and daemon updates
+
+Keyboard & Controls: Beige mechanical keys, ventilation grille, and a recessed power button.
+
+🪞 Mood & Atmosphere
+Vibe: Serene, nostalgic, and tech-forward.
+
+Background: Gradient from warm pinkish-orange to soft teal, with subtle reflections and shadows.
+
+Composition: Clean lines, mid-century modern influence, and balanced layout.
+
+
+
+
+
+
+
+
+
+
+
+
+
+A retro-futuristic robot gazing at a glowing sunset on the horizon. The robot has a boxy, mustard-yellow body with beveled edges, a curved glass interface on its chest displaying glowing monospaced system logs in pale green and amber. Its binocular-like eyes are mounted on a flexible teal neck, and its arms feature analog dials and claw-like grippers. The robot sits on dark teal tank treads with vintage detailing. The background features a serene landscape with a large, circular sun casting warm orange and dusty rose hues across a pastel teal sky. The surface beneath the robot reflects the sunset glow, and the overall mood is nostalgic, cinematic, and tech-forward. Style inspired by 1980s sci-fi and mid-century modern design.

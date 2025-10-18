@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% comment %} {% extends "base_fullwidth.html" %} {% endcomment %}
 {% load static %}
 
 
 {% block fullwidth_content %}
 <!-- Hero Banner with Image -->
 <section class="hero-banner position-relative mb-2 my-md-0" style="height: 500px; overflow: hidden;">
+  
   <!-- Background Image -->
   <img src="{% static 'images/banner12.png' %}" 
        alt="Retro Futuristic Banner" 
@@ -21,130 +21,133 @@
     <div class="container-md d-flex flex-column flex-md-row justify-content-md-end align-items-center h-100 px-3">
       <div class="hero-text text-white text-center text-md-end" style="max-width: 650px;">
         <h1 class="display-6 fw-bold font-retro">Explore. Create. Iterate.</h1>
-        {% comment %} <p class="lead font-retro">
-          A blog for makers, coders, and curious minds.<span class="cursor">▌</span><br>  
-        </p> {% endcomment %}
-        <p class="lead font-retro ">
- A blog for makers, coders, and curious minds.
-</p>
+        <p class="lead font-retro">A blog for makers, coders, and curious minds.</p>
       </div>
     </div>
   </div>
-</section>
 
+</section>
 {% endblock %}
 
 
 {% block content %}
 
+<!-- About ByteOverflow Section -->
+<section id="about-site" class="py-2 py-md-5">
+  <div class="container p-0">
+    <div class="row align-items-start g-4">
+      
+      <!-- Text Column -->
+      <div class="col-md-7">
+        <h2 class="fw-bold mb-3" style="color: #73BDAB;">About ByteOverflow</h2>
+        <p class="mb-3">
+          ByteOverflow is more than just a website — it’s a space built to share knowledge, spark ideas, and support developers at every stage of their journey. Whether you're debugging your first script or architecting full-scale systems, you'll find something here to fuel your curiosity and sharpen your skills.
+        </p>
+        <a href="{% url 'about' %}#design-style" class="mt-3" style="color: #73BDAB;">Read more</a>
+      </div>
 
-<!-- About website with Image -->
- <section id="about-site" class="py-2 py-md-5">
-    <div class="container  p-0">
-        <div class="row align-items-start g-4">
-       
-            <div class="col-md-7">
-                <h2 class="fw-bold mb-3" style="color: #73BDAB;">About ByteOverflow</h2>
+      <!-- Image Column -->
+      <div class="col-md-5 text-center">
+        <img src="{% static 'images/website-banner.png' %}" alt="About This Site" class="img-fluid rounded shadow-sm">
+      </div>
 
-                <p class="mb-3">
-    ByteOverflow is more than just a website — it’s a space built to share knowledge, spark ideas, and support developers at every stage of their journey. Whether you're debugging your first script or architecting full-scale systems, you'll find something here to fuel your curiosity and sharpen your skills.
-                </p>
-
-                <a href="{% url 'about' %}#design-style" class="mt-3" style="color: #73BDAB;">Read more</a>
-            </div>
- 
-  
-            <div class="col-md-5 text-center">
-                <img src="{% static 'images/website-banner.png' %}" alt="About This Site" class="img-fluid rounded shadow-sm">
-            </div>
-        </div>
     </div>
-</section> 
-<!-- About website with Image -->
- <section id="about-site" class="py-2 py-md-5">
-    <div class="container p-0">
-        <div class="row align-items-start">
-        <div class="col-md-5 text-center order-2 order-md-1">
-                <img src="{% static 'images/me-banner.png' %}" alt="About This Site" class="img-fluid rounded shadow-sm">
-            </div>
-            <div class="col-md-7 order-1 order-md-2">
-                <h2 class="fw-bold mb-3" style="color: #73BDAB;">Learn, Share, Create</h2>
-                <p class="mb-3">
-                    Everything here is created with the intention to teach, share, and connect. Code snippets, walkthroughs, and project ideas are free to use and adapt. If you find something useful, giving credit is appreciated, but the main goal is helping you explore, experiment, and build confidently.
-                </p>
-
-                <a href="{% url 'about' %}#purpose-values" class="mt-3" style="color: #73BDAB;">Read more</a>
-            </div>
-
-  
-           
-        </div>
-    </div>
-</section> 
-
-<section id="features" class="py-2 py-md-5">
-    <div class="container  p-0">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold" style="color: #73BDAB;">Explore the Site</h2>
-            <p class="lead">Discover tutorials, projects, and blog posts to inspire and guide your journey.</p>
-        </div>
-
-        <div class="row g-4 text-center">
-            <div class="col-md-4">
-                <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
-                    <i class="bi bi-rocket fs-1 mb-3"></i>
-                                      <h5 class="card-title">
-      <a href="{% url 'project_index' %}" class="blog-card-title-link text-decoration-none">
-        <strong>Projects</strong>
-      </a>
-    </h5>
-                   
-                    <p class="card-text">A showcase of builds and ideas to explore and get inspired.</p>
-                    
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
-
-<i class="bi bi-terminal fs-1 mb-3"></i>
-                        <h5 class="card-title">
-      <a href="{% url 'lab' %}" class="blog-card-title-link text-decoration-none">
-        <strong>Sandbox</strong>
-      </a>
-    </h5>
-                                
-                    <p class="card-text">Experiment with HTML, CSS, and JS in a live editor.</p>
-                    {% comment %} <a href="{% url 'tutorial_index' %}" class="btn btn-primary btn-sm">Browse Tutorials</a> {% endcomment %}
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
-                    <i class="bi bi-file-text fs-1 mb-3"></i>
-                        <h5 class="card-title">
-      <a href="{% url 'post_index' %}" class="blog-card-title-link text-decoration-none">
-        <strong>Blog Posts</strong>
-      </a>
-    </h5>
-                    <p class="card-text">Thoughts, tips, and reflections from my journey in tech.</p>
-                    {% comment %} <a href="{% url 'post_index' %}" class="btn btn-primary btn-sm">Read Blog</a> {% endcomment %}
-                </div>
-            </div>
-        </div>
-    </div>
+  </div>
 </section>
 
+<!-- Learn, Share, Create Section -->
+<section id="about-site" class="py-2 py-md-5">
+  <div class="container p-0">
+    <div class="row align-items-start">
+      
+      <!-- Image Column -->
+      <div class="col-md-5 text-center order-2 order-md-1">
+        <img src="{% static 'images/me-banner.png' %}" alt="About This Site" class="img-fluid rounded shadow-sm">
+      </div>
 
+      <!-- Text Column -->
+      <div class="col-md-7 order-1 order-md-2">
+        <h2 class="fw-bold mb-3" style="color: #73BDAB;">Learn, Share, Create</h2>
+        <p class="mb-3">
+          Everything here is created with the intention to teach, share, and connect. Code snippets, walkthroughs, and project ideas are free to use and adapt. If you find something useful, giving credit is appreciated, but the main goal is helping you explore, experiment, and build confidently.
+        </p>
+        <a href="{% url 'about' %}#purpose-values" class="mt-3" style="color: #73BDAB;">Read more</a>
+      </div>
 
- <section class="mb-5 mt-4">
+    </div>
+  </div>
+</section>
+
+<!-- Features Section -->
+<section id="features" class="py-2 py-md-5">
+  <div class="container p-0">
+    
+    <!-- Section Header -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold" style="color: #73BDAB;">Explore the Site</h2>
+      <p class="lead">Discover tutorials, projects, and blog posts to inspire and guide your journey.</p>
+    </div>
+
+    <!-- Feature Cards -->
+    <div class="row g-4 text-center">
+      
+      <!-- Projects Card -->
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
+          <i class="bi bi-rocket fs-1 mb-3"></i>
+          <h5 class="card-title">
+            <a href="{% url 'project_index' %}" class="blog-card-title-link text-decoration-none">
+              <strong>Projects</strong>
+            </a>
+          </h5>
+          <p class="card-text">A showcase of builds and ideas to explore and get inspired.</p>
+        </div>
+      </div>
+
+      <!-- Sandbox Card -->
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
+          <i class="bi bi-terminal fs-1 mb-3"></i>
+          <h5 class="card-title">
+            <a href="{% url 'lab' %}" class="blog-card-title-link text-decoration-none">
+              <strong>Sandbox</strong>
+            </a>
+          </h5>
+          <p class="card-text">Experiment with HTML, CSS, and JS in a live editor.</p>
+        </div>
+      </div>
+
+      <!-- Blog Posts Card -->
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
+          <i class="bi bi-file-text fs-1 mb-3"></i>
+          <h5 class="card-title">
+            <a href="{% url 'post_index' %}" class="blog-card-title-link text-decoration-none">
+              <strong>Blog Posts</strong>
+            </a>
+          </h5>
+          <p class="card-text">Thoughts, tips, and reflections from my journey in tech.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Featured Projects Section -->
+<section class="mb-5 mt-4">
   <div class="container">
+    
+    <!-- Section Header -->
     <h2 class="mb-3 fw-bold" style="color: #73BDAB;">Featured Projects</h2>
+
+    <!-- Project Cards -->
     <div class="row g-4">
       {% for project in featured_projects %}
         <div class="col-12 col-md-6 col-lg-4">
           <div class="card shadow-sm border-0 h-100 d-flex flex-column overflow-hidden">
 
+            <!-- Project Image -->
             {% if project.slug %}
               <a href="{% url 'project_detail' project.slug %}">
                 <img src="{% static 'images/robotcar.png' %}" alt="{{ project.title }}"
@@ -157,8 +160,10 @@
                    style="height: 280px; object-fit: cover;">
             {% endif %}
 
+            <!-- Card Body -->
             <div class="p-3 d-flex flex-column flex-grow-1">
               <div>
+                <!-- Project Title -->
                 <h5 class="card-title mb-2">
                   {% if project.slug %}
                     <a href="{% url 'project_detail' project.slug %}" class="text-decoration-none" style="color: #6F5643;">
@@ -169,11 +174,13 @@
                   {% endif %}
                 </h5>
 
+                <!-- Project Excerpt -->
                 <p class="card-text text-muted mb-3" style="font-size: 0.95rem;">
                   {{ project.excerpt|safe|truncatechars:180 }}
                 </p>
               </div>
 
+              <!-- Tags Section -->
               {% if project.tags.exists %}
                 <div class="mt-auto pt-2 border-top">
                   <i class="bi bi-tags-fill me-1 fs-6" style="color: #6F5643;"></i>
@@ -185,211 +192,213 @@
                 </div>
               {% endif %}
             </div>
+
           </div>
         </div>
       {% empty %}
         <p>No projects available.</p>
       {% endfor %}
     </div>
+
   </div>
 </section>
 
+<!-- Browse All Projects Link -->
+<div class="text-center mt-4">
+  <a href="{% url 'project_index' %}" class="text-decoration-none" style="color: #73BDAB;">
+    Browse all projects →
+  </a>
+</div>
 
+<!-- Resources for Growth Section -->
+<section id="features" class="py-2 py-md-5">
+  <div class="container">
+    
+    <!-- Section Header -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold" style="color: #73BDAB;">Resources for Growth</h2>
+      <p class="lead">
+        Explore curated paths, key concepts, and trusted resources to support your journey from curious to confident.
+      </p>
+    </div>
 
-  
-  <div class="text-center mt-4">
-    <a href="{% url 'project_index' %}" class="text-decoration-none" style="color: #73BDAB;">
-      Browse all projects →
-    </a>
+    <!-- Resource Cards -->
+    <div class="row g-4 text-center">
+      
+      <!-- Glossary Card -->
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
+          <i class="bi bi-journal-text fs-1 mb-3"></i>
+          <h5 class="card-title">
+            <a href="{% url 'glossary:term_list' %}" class="blog-card-title-link text-decoration-none">
+              <strong>Glossary</strong>
+            </a>
+          </h5>
+          <p class="card-text">
+            Explore key terms, definitions, and concepts to boost your understanding.
+          </p>
+        </div>
+      </div>
+
+      <!-- Learning Paths Card -->
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
+          <i class="bi bi-kanban fs-1 mb-3"></i>
+          <h5 class="card-title">
+            <a href="{% url 'learning:path_list' %}" class="blog-card-title-link text-decoration-none">
+              <strong>Learning Paths</strong>
+            </a>
+          </h5>
+          <p class="card-text">
+            Follow curated step-by-step paths combining tutorials, labs, and projects.
+          </p>
+        </div>
+      </div>
+
+      <!-- Resources Card -->
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
+          <i class="bi bi-box-seam fs-1 mb-3"></i>
+          <h5 class="card-title">
+            <a href="{% url 'resources:index' %}" class="blog-card-title-link text-decoration-none">
+              <strong>Resources</strong>
+            </a>
+          </h5>
+          <p class="card-text">
+            Handpicked tools, websites, and materials to help you learn and build faster.
+          </p>
+        </div>
+      </div>
+
+    </div>
   </div>
-
-
-
-
-
-  <section id="features"  class="py-2 py-md-5">
-     <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold" style="color: #73BDAB;">Resources for Growth</h2>
-            <p class="lead">Explore curated paths, key concepts, and trusted resources to support your journey from curious to confident.</p>
-        </div>
-
-        <!-- Glossary -->
-        <div class="row g-4 text-center">
-            <div class="col-md-4">
-                <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
-                    <i class="bi bi-journal-text fs-1 mb-3"></i>
-                     <h5 class="card-title">
-      <a href="{% url 'glossary:term_list' %}" class="blog-card-title-link text-decoration-none">
-        <strong>Glossary</strong>
-      </a>
-    </h5>
-                  
-                    <p class="card-text">Explore key terms, definitions, and concepts to boost your understanding.</p>
-                   
-                </div>
-            </div>
-
-            <!-- Learning Paths -->
-            <div class="col-md-4">
-                <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
-                    <i class="bi bi-kanban fs-1 mb-3"></i>
-                                         <h5 class="card-title">
-      <a href="{% url 'learning:path_list' %}" class="blog-card-title-link text-decoration-none">
-        <strong>Learning Paths</strong>
-      </a>
-    </h5>
-
-                   
-                    <p class="card-text">Follow curated step-by-step paths combining tutorials, labs, and projects.</p>
-                    
-                </div>
-            </div>
-
-            <!-- Resources -->
-            <div class="col-md-4">
-                
-                <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
-                    <i class="bi bi-box-seam fs-1 mb-3"></i>
-                     <h5 class="card-title">
-      <a href="{% url 'resources:index' %}" class="blog-card-title-link text-decoration-none">
-        <strong>Resources</strong>
-      </a>
-    </h5>
-                  
-
-                    
-                    <p class="card-text">Handpicked tools, websites, and materials to help you learn and build faster.</p>
-                    {% comment %} <a href="{% url 'post_index' %}" class="btn btn-primary btn-sm">Read Blog</a> {% endcomment %}
-                </div>
-            </div>
-        </div>
-   </div>
 </section>
 
-
-
-
-  <section class="mb-5  mt-4">
-    <div class="container">
+<!-- Recent Blog Posts Section -->
+<section class="mb-5 mt-4">
+  <div class="container">
+    
+    <!-- Section Header -->
     <h2 class="mb-3 fw-bold" style="color: #73BDAB;">Recent Blog Posts</h2>
+
+    <!-- Blog Post Cards -->
     <div class="row g-4">
       {% for post in latest_posts %}
-      <div class="col-12 col-md-6 col-lg-4">
-        <div class="card shadow-sm border-0 h-100 overflow-hidden d-flex flex-column">
-
-       
-          <a href="{% url 'post_detail' post.slug %}">
-            <img src="{% static 'images/default_post6.png' %}" alt="{{ post.title }}"
-                 class="img-fluid w-100 rounded-top"
-                 style="height: 280px; object-fit: cover;">
-          </a>
-
-    
-          <div class="p-3 d-flex flex-column flex-grow-1">
-        
-            <h5 class="card-title mb-2">
-              <a href="{% url 'post_detail' post.slug %}" class="text-decoration-none" style="color: #6F5643;">
-                <strong>{{ post.title }}</strong>
-              </a>
-            </h5>
-
-         
-            <p class="card-text text-muted mb-3" style="font-size: 0.95rem;">
-              {{ post.excerpt|safe|truncatechars:180 }}
-            </p>
-
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card shadow-sm border-0 h-100 overflow-hidden d-flex flex-column">
             
-            <div class="mt-auto d-flex flex-wrap gap-3 text-muted small pt-2 border-top">
-              <span><i class="bi bi-calendar-event me-1"></i>{{ post.created_at|date:"F j, Y" }}</span>
-              <span><i class="bi bi-clock me-1"></i>{{ post.reading_time }} min read</span>
+            <!-- Post Image -->
+            <a href="{% url 'post_detail' post.slug %}">
+              <img src="{% static 'images/default_post6.png' %}" alt="{{ post.title }}"
+                   class="img-fluid w-100 rounded-top"
+                   style="height: 280px; object-fit: cover;">
+            </a>
+
+            <!-- Card Body -->
+            <div class="p-3 d-flex flex-column flex-grow-1">
+              
+              <!-- Post Title -->
+              <h5 class="card-title mb-2">
+                <a href="{% url 'post_detail' post.slug %}" class="text-decoration-none" style="color: #6F5643;">
+                  <strong>{{ post.title }}</strong>
+                </a>
+              </h5>
+
+              <!-- Post Excerpt -->
+              <p class="card-text text-muted mb-3" style="font-size: 0.95rem;">
+                {{ post.excerpt|safe|truncatechars:180 }}
+              </p>
+
+              <!-- Meta Info -->
+              <div class="mt-auto d-flex flex-wrap gap-3 text-muted small pt-2 border-top">
+                <span><i class="bi bi-calendar-event me-1"></i>{{ post.created_at|date:"F j, Y" }}</span>
+                <span><i class="bi bi-clock me-1"></i>{{ post.reading_time }} min read</span>
+              </div>
+
             </div>
           </div>
         </div>
-      </div>
-   
-              {% empty %}
-            <p>No tutorials available.</p>
-        {% endfor %}
+      {% empty %}
+        <p>No tutorials available.</p>
+      {% endfor %}
     </div>
-     </div>
-  </section>
-  <div class="text-center mt-4">
-    <a href="{% url 'post_index' %}" class="text-decoration-none" style="color: #73BDAB;">
-      Browse all blog posts →
-    </a>
+
   </div>
+</section>
 
-
+<!-- Browse All Posts Link -->
+<div class="text-center mt-4">
+  <a href="{% url 'post_index' %}" class="text-decoration-none" style="color: #73BDAB;">
+    Browse all blog posts →
+  </a>
+</div>
 
 <!-- Support Section -->
 <section id="features" class="py-5">
-    <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold" style="color: #73BDAB;">Support This Blog</h2>
-            <p class="lead">Your support helps me continue creating tutorials, projects, and posts. There are many ways you can help!</p>
+  <div class="container">
+    
+    <!-- Section Header -->
+    <div class="text-center mb-5">
+      <h2 class="fw-bold" style="color: #73BDAB;">Support This Blog</h2>
+      <p class="lead">
+        Your support helps me continue creating tutorials, projects, and posts. There are many ways you can help!
+      </p>
+    </div>
+
+    <!-- Support Cards -->
+    <div class="row g-4 text-center">
+      
+      <!-- Fuel the Project -->
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
+          <i class="bi bi-cup-hot fs-1 mb-3"></i>
+          <h5 class="card-title">
+            <a href="{% url 'support' %}#donate" class="blog-card-title-link text-decoration-none">
+              <strong>Fuel the Project</strong>
+            </a>
+          </h5>
+          <p class="card-text">
+            Keep the servers running, the ideas flowing, and the coffee brewing.
+          </p>
         </div>
+      </div>
 
-        <div class="row g-4 text-center">
-            <div class="col-md-4">
-                <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
-                    <i class="bi bi-cup-hot fs-1 mb-3"></i>
-                     <h5 class="card-title">
-      <a href="{% url 'support' %}#donate" class="blog-card-title-link text-decoration-none">
-        <strong>Fuel the Project</strong>
-      </a>
-    </h5>
-                
-                    <p class="card-text">Keep the servers running, the ideas flowing, and the coffee brewing.</p>
-                    {% comment %} <a href="{% url 'support' %}#donate" class="btn btn-primary btn-sm">Support Now</a> {% endcomment %}
-                   
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
-                    <i class="bi bi-share fs-1 mb-3"></i>
-                       <h5 class="card-title">
-      <a href="{% url 'support' %}#share" class="blog-card-title-link text-decoration-none">
-        <strong>Share</strong>
-      </a>
-    </h5>
-                 
-                    <p class="card-text">Spread the word about the blog on social media or with friends.</p>
-                    {% comment %} <a href="{% url 'support' %}#share" class="btn btn-primary btn-sm">Share Now</a> {% endcomment %}
-                   
-                </div>
-            </div>
-
-            <div class="col-md-4">
-                <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
-                    <i class="bi bi-heart fs-1 mb-3"></i>
-                    <h5 class="card-title">
-      <a href="{% url 'support' %}#credit" class="blog-card-title-link text-decoration-none">
-        <strong>Give Credit</strong>
-      </a>
-    </h5>
-                   
-                    <p class="card-text">Attribute the content if you use it or contribute ideas and feedback.</p>
-                    {% comment %} <a href="{% url 'support' %}#credit" class="btn btn-primary btn-sm">Learn How</a> {% endcomment %}
-                   
-                </div>
-            </div>
+      <!-- Share -->
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
+          <i class="bi bi-share fs-1 mb-3"></i>
+          <h5 class="card-title">
+            <a href="{% url 'support' %}#share" class="blog-card-title-link text-decoration-none">
+              <strong>Share</strong>
+            </a>
+          </h5>
+          <p class="card-text">
+            Spread the word about the blog on social media or with friends.
+          </p>
         </div>
- </div>
- 
+      </div>
+
+      <!-- Give Credit -->
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
+          <i class="bi bi-heart fs-1 mb-3"></i>
+          <h5 class="card-title">
+            <a href="{% url 'support' %}#credit" class="blog-card-title-link text-decoration-none">
+              <strong>Give Credit</strong>
+            </a>
+          </h5>
+          <p class="card-text">
+            Attribute the content if you use it or contribute ideas and feedback.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </section>
 
-
-
-
-
-
-
-
-
 <!-- Call-to-Action / Newsletter Signup -->
- <section class="py-5 text-center">
+<section class="py-5 text-center">
   <div class="container">
     <h3 class="fw-bold mb-3" style="color: #6F5643;">
       <i class="bi bi-envelope-paper me-2"></i> Stay Updated

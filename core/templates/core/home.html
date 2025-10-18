@@ -976,7 +976,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script> {% endcomment %}
 
-<section id="hero-terminal" class="bg-dark text-success py-5">
+{% comment %} <section id="hero-terminal" class="bg-dark text-success py-5">
   <div class="container-fluid px-0">
     <div id="terminal"
          class="p-4"
@@ -989,7 +989,7 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     </div>
   </div>
-</section>
+</section> {% endcomment %}
 
 {% comment %} <style>
 .cursor {
@@ -2424,7 +2424,7 @@ window.addEventListener("mousemove", (e) => {
   // ─── CONFIG ─────────────────────────────
   const TYPE_MIN = 18;
   const TYPE_VAR = 30;
-  const MSG_DELAY = 400;
+  const MSG_DELAY = 700;
   const MAX_LINES = Infinity; // keep all visible now
 
   let isTyping = false;
@@ -2444,10 +2444,10 @@ window.addEventListener("mousemove", (e) => {
     "System integrity: OK.",
     "Connection: stable.",
     "Environment ready.",
-    //"Enjoy exploring the site.",
-    "──────────────────────────────────",
-    "   ENJOY BYTEOVERFLOW BLOG        ",
-    "──────────────────────────────────",
+    "Enjoy exploring BYTEOVERFLOW!",
+    //"──────────────────────────────────",
+    //"   ENJOY BYTEOVERFLOW BLOG        ",
+    //"──────────────────────────────────",
   ];
 
   // ─── TIMESTAMP ──────────────────────────
@@ -2490,7 +2490,7 @@ window.addEventListener("mousemove", (e) => {
 
     const prefix = document.createElement("span");
     prefix.className = "prefix";
-    prefix.textContent = `> ${getTimestamp()} `;
+    prefix.textContent = `${getTimestamp()} `;
     line.appendChild(prefix);
 
     const content = document.createElement("span");
@@ -2591,6 +2591,7 @@ window.addEventListener("mousemove", (e) => {
       white-space: pre; 
       font-family: monospace; 
       color: #73BDAB; 
+      text-shadow: 0 0 2px #00ff99; 
     }
     .prefix { color: #609c8dff; }
   `;

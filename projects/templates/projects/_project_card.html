@@ -24,9 +24,13 @@
             {{ project.title }}
           </a>
         </h3>
-
         <small class="text-muted d-block mb-2">
-          {{ project.created_at.date }} | Categories:
+          {{ project.created_at.date }} |
+          {% if project.difficulty %}
+              Difficulty: {{ project.get_difficulty_display }}
+          {% else %}
+              Difficulty: N/A
+          {% endif %}
           {% for category in project.categories.all %}
             <a href="{% url 'project_category' category.slug %}" class="category-chip">
               {{ category.name }}

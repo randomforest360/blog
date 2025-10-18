@@ -3,30 +3,15 @@
         Search Projects
     </div>
     <div class="card-body">
-        {% comment %} <form method="get" action="{% url 'project_search' %}" id="project-search-form">
+        <form method="get" action="{% url 'project_search' %}" id="project-search-form">
             <div class="input-group">
                 <input type="search" name="q" id="search-input"
                        class="form-control"
                        placeholder="Search by title..."
-                       value="{{ request.GET.q|default:'' }}">
+                       value="{{ query|default:'' }}">
                 <button class="btn btn-primary" type="submit">Go</button>
             </div>
-        </form> {% endcomment %}
-<form method="get" action="{% url 'project_search' %}" id="project-search-form">
-    {% if selected_category %}
-        <input type="hidden" name="category" value="{{ selected_category.slug }}">
-    {% endif %}
-    <div class="input-group">
-        <input type="search" name="q" id="search-input"
-               class="form-control"
-               placeholder="Search by title..."
-               value="{{ query }}">
-        <button class="btn btn-primary" type="submit">Go</button>
-    </div>
-</form>
-
-
-
+        </form>
     </div>
 </div>
 
@@ -41,4 +26,4 @@
             searchForm.submit();
         }
     });
-</script> 
+</script>

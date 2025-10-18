@@ -21,7 +21,7 @@
     <div class="container-md d-flex flex-column flex-md-row justify-content-md-end align-items-center h-100 px-3">
       <div class="hero-text text-white text-center text-md-end" style="max-width: 650px;">
         <h1 class="display-6 fw-bold font-retro">Explore. Create. Iterate.</h1>
-        <p class="lead font-retro">A blog for makers, coders, and curious minds.</p>
+        <p class="lead font-retro">Ideas, projects, and insights for makers and coders.</p>
       </div>
     </div>
   </div>
@@ -96,7 +96,7 @@
         <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
           <i class="bi bi-rocket fs-1 mb-3"></i>
           <h5 class="card-title">
-            <a href="{% url 'project_index' %}" class="blog-card-title-link text-decoration-none">
+            <a href="{% url 'project_index' %}" class="blog-card-title-link text-decoration-none" style="color: #6F5643;">
               <strong>Projects</strong>
             </a>
           </h5>
@@ -109,7 +109,7 @@
         <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
           <i class="bi bi-terminal fs-1 mb-3"></i>
           <h5 class="card-title">
-            <a href="{% url 'lab' %}" class="blog-card-title-link text-decoration-none">
+            <a href="{% url 'lab' %}" class="blog-card-title-link text-decoration-none" style="color: #6F5643;">
               <strong>Sandbox</strong>
             </a>
           </h5>
@@ -122,7 +122,7 @@
         <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
           <i class="bi bi-file-text fs-1 mb-3"></i>
           <h5 class="card-title">
-            <a href="{% url 'post_index' %}" class="blog-card-title-link text-decoration-none">
+            <a href="{% url 'post_index' %}" class="blog-card-title-link text-decoration-none" style="color: #6F5643;">
               <strong>Blog Posts</strong>
             </a>
           </h5>
@@ -183,9 +183,8 @@
               <!-- Tags Section -->
               {% if project.tags.exists %}
                 <div class="mt-auto pt-2 border-top">
-                  <i class="bi bi-tags-fill me-1 fs-6" style="color: #6F5643;"></i>
                   {% for tag in project.tags.all %}
-                    <a href="{% url 'project_tag' tag.slug %}" class="text-decoration-none small me-1">
+                    <a href="{% url 'project_tag' tag.slug %}" class="text-decoration-none small me-1" style="color: #6F5643;">
                       <strong>#{{ tag.name }}</strong>
                     </a>
                   {% endfor %}
@@ -230,7 +229,7 @@
         <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
           <i class="bi bi-journal-text fs-1 mb-3"></i>
           <h5 class="card-title">
-            <a href="{% url 'glossary:term_list' %}" class="blog-card-title-link text-decoration-none">
+            <a href="{% url 'glossary:term_list' %}" class="blog-card-title-link text-decoration-none" style="color: #6F5643;">
               <strong>Glossary</strong>
             </a>
           </h5>
@@ -245,7 +244,7 @@
         <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
           <i class="bi bi-kanban fs-1 mb-3"></i>
           <h5 class="card-title">
-            <a href="{% url 'learning:path_list' %}" class="blog-card-title-link text-decoration-none">
+            <a href="{% url 'learning:path_list' %}" class="blog-card-title-link text-decoration-none" style="color: #6F5643;">
               <strong>Learning Paths</strong>
             </a>
           </h5>
@@ -260,7 +259,7 @@
         <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
           <i class="bi bi-box-seam fs-1 mb-3"></i>
           <h5 class="card-title">
-            <a href="{% url 'resources:index' %}" class="blog-card-title-link text-decoration-none">
+            <a href="{% url 'resources:index' %}" class="blog-card-title-link text-decoration-none" style="color: #6F5643;">
               <strong>Resources</strong>
             </a>
           </h5>
@@ -353,7 +352,7 @@
         <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
           <i class="bi bi-cup-hot fs-1 mb-3"></i>
           <h5 class="card-title">
-            <a href="{% url 'support' %}#donate" class="blog-card-title-link text-decoration-none">
+            <a href="{% url 'support' %}#donate" class="blog-card-title-link text-decoration-none" style="color: #6F5643;">
               <strong>Fuel the Project</strong>
             </a>
           </h5>
@@ -368,7 +367,7 @@
         <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
           <i class="bi bi-share fs-1 mb-3"></i>
           <h5 class="card-title">
-            <a href="{% url 'support' %}#share" class="blog-card-title-link text-decoration-none">
+            <a href="{% url 'support' %}#share" class="blog-card-title-link text-decoration-none" style="color: #6F5643;">
               <strong>Share</strong>
             </a>
           </h5>
@@ -383,7 +382,7 @@
         <div class="card shadow-sm h-100 p-3" style="color: #6F5643;">
           <i class="bi bi-heart fs-1 mb-3"></i>
           <h5 class="card-title">
-            <a href="{% url 'support' %}#credit" class="blog-card-title-link text-decoration-none">
+            <a href="{% url 'support' %}#credit" class="blog-card-title-link text-decoration-none" style="color: #6F5643;">
               <strong>Give Credit</strong>
             </a>
           </h5>

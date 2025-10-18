@@ -21,18 +21,15 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', include('core.urls')),
-    path('', include('content.urls')),
     path('projects/', include('projects.urls')),
-    path('tutorials/', include('tutorials.urls')),
     path('blog/', include('blog.urls')),
     path('lab/', include('lab.urls')),
     path('learning-paths/', include('learning.urls')),
     path('resources/', include('resources.urls')),
     path('glossary/', include('glossary.urls')),
-
+ 
     
     # path('gallery/', include('gallery.urls')),
-    # path('track/', include('track.urls')),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('admin/', admin.site.urls),
 ]

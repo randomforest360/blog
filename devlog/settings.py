@@ -50,14 +50,12 @@ INSTALLED_APPS = [
     # Custom apps
     'content',
     'gallery',
-    'track',
     'core',
     'lab',
     'learning',
     'resources',
     'glossary',
     'projects',
-    'tutorials',
     'blog',
 
     # Third-party apps

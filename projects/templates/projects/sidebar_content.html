@@ -1,0 +1,124 @@
+<!-- Table of Contents -->
+<div class="card mb-4 shadow-sm">
+  <div class="card-header" style="background-color:#CC6B49; color:#fff; font-weight:600;">
+    Table of Contents
+  </div>
+  <div id="toc" class="p-3 bg-light border rounded" style="background-color: #F5F0E6 !important;">
+    {% if toc_headings %}
+      <ul class="mb-0" style="list-style-type:none; padding-left:0;">
+        {% for h in toc_headings %}
+          <li style="padding-left:{% if h.level == 'h3' %}25px{% else %}0{% endif %}; line-height:1.4; margin-bottom:4px; display:flex; align-items:top;">
+            <span style="color:#CC6B49; font-size:0.8em; margin-right:8px;">
+              {% if h.level == 'h2' %}●{% else %}○{% endif %}
+            </span>
+            <a href="#{{ h.id }}" style="text-decoration:none; color:#6F5643; transition:all 0.2s;">
+              {{ h.text }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="text-muted mb-0">No Table of Contents available.</p>
+    {% endif %}
+  </div>
+</div>
+
+<!-- Project Links -->
+<div class="card my-4 shadow-sm">
+  <div class="card-header" style="background-color:#948c3c; color:#fff; font-weight:600;">
+    Project Links
+  </div>
+  <ul class="list-group list-group-flush">
+    {% for link in project.links.all %}
+      <li class="list-group-item" style="color: #6F5643;background-color: #F5F0E6;">
+        <strong>{{ link.get_link_type_display }}:</strong>
+        <a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.title }}</a>
+      </li>
+    {% empty %}
+      <li class="list-group-item text-muted">No Project Links Yet.</li>
+    {% endfor %}
+  </ul>
+</div>
+
+<!-- Design Assets -->
+<div class="card my-4 shadow-sm">
+  <div class="card-header" style="background-color:#6F5643; color:#fff; font-weight:600;">
+    Assets
+  </div>
+  <ul class="list-group list-group-flush">
+    {% for asset in project.assets.all %}
+      <li class="list-group-item" style="color: #6F5643; background-color: #F5F0E6;">
+        <strong>{{ asset.get_asset_type_display }}:</strong>
+        <a href="{{ asset.file.url }}" target="_blank" rel="noopener">{{ asset.title }}</a>
+        {% if asset.description %}
+          <div class="small text-muted mt-1">{{ asset.description }}</div>
+        {% endif %}
+      </li>
+    {% empty %}
+      <li class="list-group-item text-muted">No Assets Yet.</li>
+    {% endfor %}
+  </ul>
+</div>
+
+
+{% comment %} <!-- Table of Contents -->
+<div class="card mb-4 shadow-sm">
+    <div class="card-header" style="background-color:#CC6B49; color:#fff; font-weight:600;">
+        Table of Contents
+    </div>
+    <div id="toc" class="p-3 bg-light border rounded" style="background-color: #F5F0E6 !important;">
+        {% if toc_headings %}
+            <ul class="mb-0" style="list-style-type:none; padding-left:0;">
+                {% for h in toc_headings %}
+                    <li style="padding-left:{% if h.level == 'h3' %}25px{% else %}0{% endif %}; line-height:1.4; margin-bottom:4px; display:flex; align-items:top;">
+                        <span style="color:#CC6B49; font-size:0.8em; margin-right:8px;">
+                            {% if h.level == 'h2' %}●{% else %}○{% endif %}
+                        </span>
+                        <a href="#{{ h.id }}" style="text-decoration:none; color:#6F5643; transition:all 0.2s;">
+                            {{ h.text }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="text-muted mb-0">No Table of Contents available.</p>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Project Links -->
+<div class="card my-4 shadow-sm">
+    <div class="card-header" style="background-color:#948c3c; color:#fff; font-weight:600;">
+        Project Links
+    </div>
+    <ul class="list-group list-group-flush">
+        {% for link in project.links.all %}
+            <li class="list-group-item" style="color: #6F5643;background-color: #F5F0E6;">
+                <strong>{{ link.get_link_type_display }}:</strong>
+                <a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.title }}</a>
+            </li>
+        {% empty %}
+            <li class="list-group-item text-muted">No Project Links Yet.</li>
+        {% endfor %}
+    </ul>
+</div>
+
+<!-- Design Assets -->
+<div class="card my-4 shadow-sm">
+    <div class="card-header" style="background-color:#6F5643; color:#fff; font-weight:600;">
+        Assets
+    </div>
+    <ul class="list-group list-group-flush">
+        {% for asset in project.assets.all %}
+            <li class="list-group-item" style="color: #6F5643; background-color: #F5F0E6;">
+                <strong>{{ asset.get_asset_type_display }}:</strong>
+                <a href="{{ asset.file.url }}" target="_blank" rel="noopener">{{ asset.title }}</a>
+                {% if asset.description %}
+                    <div class="small text-muted mt-1">{{ asset.description }}</div>
+                {% endif %}
+            </li>
+        {% empty %}
+            <li class="list-group-item text-muted">No Assets Yet.</li>
+        {% endfor %}
+    </ul>
+</div> {% endcomment %}

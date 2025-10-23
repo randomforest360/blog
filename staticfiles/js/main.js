@@ -2,6 +2,9 @@
 
 document.addEventListener("DOMContentLoaded", function() {
 
+
+  
+
  
     // ---- Copy buttons for code blocks ----
     document.querySelectorAll("pre code").forEach(function(codeBlock) {
@@ -139,6 +142,12 @@ if (tocContainer) {
         link.addEventListener("mouseleave", () => link.style.textDecoration = "none");
     });
 }
+  const sidebar = document.getElementById("sidebarMenu");
+    const toggleBtn = document.getElementById("toggleBtn");
+
+    toggleBtn.addEventListener("click", function () {
+      sidebar.classList.toggle("active");
+    });
 
 document.addEventListener('click', function(e) {
     if (e.target && e.target.id === 'load-more-comments') {

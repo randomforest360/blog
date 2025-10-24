@@ -9,14 +9,37 @@
 {% block content %}
 
 <!-- Offcanvas Sidebar for Small Screens -->
-<div class="offcanvas offcanvas-start" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
-  <div class="offcanvas-header" style="background-color:#CC6B49; color:#fff;">
-    <h5 class="offcanvas-title" id="sidebarMenuLabel">Sidebar</h5>
-    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+<div class="offcanvas offcanvas-start" style="border: 0 !important" tabindex="-1" id="sidebarMenu" aria-labelledby="sidebarMenuLabel">
+ 
+    <nav class="navbar navbar-expand-lg">
+  <div class="container">
+
+    <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}" >
+     
+      <i class="bi bi-rocket fs-1 me-2" style="color: #73BDAB; transform: rotate(45deg); display: inline-block;"></i>
+
+      <span style="color: #F0AD4E"><strong>ByteOverflow</strong></span>
+    </a>
+
+  <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
-  <div class="offcanvas-body" style="background-color: #F5F0E6;">
+
+ 
+</nav>
+  {% comment %} <div class="offcanvas-header p-3" style="background-color: #2B2B2B; border-bottom: 2px solid #D2A24C;">
+     <a class="navbar-brand d-flex align-items-center" href="{% url 'home' %}" >
+   
+      <i class="bi bi-rocket fs-1 me-2" style="color: #73BDAB; transform: rotate(45deg); display: inline-block;"></i>
+
+      <span style="color: #F0AD4E"><strong>ByteOverflow</strong></span>
+    </a>
+
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div> {% endcomment %}
+  <div class="offcanvas-body p-2" style="background-color: #F5F0E6;">
     {% include "projects/sidebar_content.html" %}
   </div>
+
 </div>
 
 <!-- Floating Button for Small Screens -->
@@ -93,11 +116,56 @@
         {% endif %}
       </div>
     </div>
-
-    <h2>Required Materials</h2>
-    <ul style="list-style: none; padding: 0;">
+{% if project.links.exists %}
+<div class="card shadow-sm border-0 mb-4">
+  <div class="card-header" style="background-color:#CC6B49; color:#fff; font-weight:600;">
+    Project Links
+  </div>
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+      {% for link in project.links.all %}
+        <li class="list-group-item px-0">
+          <strong>{{ link.get_link_type_display }}:</strong>
+          <a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.title }}</a>
+        </li>
+      {% empty %}
+        <li class="list-group-item text-muted">No Project Links Yet.</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endif %}
+{% if project.assets.exists %}
+<div class="card shadow-sm border-0 mb-4">
+  <div class="card-header" style="background-color:#6F5643; color:#fff; font-weight:600;">
+    Assets
+  </div>
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+      {% for asset in project.assets.all %}
+        <li class="list-group-item px-0">
+          <strong>{{ asset.get_asset_type_display }}:</strong>
+          <a href="{{ asset.file.url }}" target="_blank" rel="noopener">{{ asset.title }}</a>
+          {% if asset.description %}
+            <div class="small text-muted mt-1">{{ asset.description }}</div>
+          {% endif %}
+        </li>
+      {% empty %}
+        <li class="list-group-item text-muted">No Assets Yet.</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endif %}
+{% if project.entrymaterial_set.exists %}
+<div class="card shadow-sm border-0 mb-4">
+  <div class="card-header" style="background-color:#948c3c; color:#fff; font-weight:600;">
+    Required Materials
+  </div>
+  <div class="card-body">
+    <ul class="list-unstyled mb-0">
       {% for entry_material in project.entrymaterial_set.all %}
-        <li style="display: flex; align-items: center; margin-bottom: 12px;">
+        <li class="d-flex align-items-center mb-3">
           {% if entry_material.material.icon %}
             <a href="{{ entry_material.material.url }}" target="_blank">
               <img src="{{ entry_material.material.icon.url }}" alt="{{ entry_material.material.name }}"
@@ -106,18 +174,28 @@
           {% endif %}
           <div>
             <strong>{{ entry_material.material.name }}</strong>
-            {% if entry_material.quantity %} - {{ entry_material.quantity }}{% endif %}
+            {% if entry_material.quantity %} – {{ entry_material.quantity }}{% endif %}
             {% if entry_material.notes %} ({{ entry_material.notes }}){% endif %}
             {% if entry_material.url %}
               <br>
-            <a href="{{ entry_material.material.url }}" target="_blank" style="color:#007BFF; text-decoration:underline;">Buy</a>
+              <a href="{{ entry_material.material.url }}" target="_blank" style="color:#007BFF; text-decoration:underline;">Buy</a>
             {% endif %}
           </div>
         </li>
-      {% empty %}
-        <li>No materials listed for this project.</li>
       {% endfor %}
     </ul>
+  </div>
+</div>
+{% else %}
+<div class="card shadow-sm border-0 mb-4">
+  <div class="card-header" style="background-color:#73BDAB; color:#fff; font-weight:600;">
+    Required Materials
+  </div>
+  <div class="card-body text-muted">
+    No materials listed for this project.
+  </div>
+</div>
+{% endif %}
 
     <a href="{% url 'project_index' %}" class="btn btn-primary mb-5">← Back to Projects</a>
   </div>

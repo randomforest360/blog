@@ -109,6 +109,16 @@ a:hover {
     background-color: #2B2B2B;
     border-bottom: 2px solid #D2A24C;
 }
+.accordion-button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.accordion-button:hover {
+  background-color: #b85c3f; /* slightly darker than #CC6B49 */
+}
+
+
 .navbar .navbar-brand,
 .navbar .navbar-nav .nav-link {
     color: #fdfcf7 !important;
